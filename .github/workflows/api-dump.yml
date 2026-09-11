@@ -42,7 +42,7 @@ jobs:
         run: |
           set -o pipefail
           JAR=$(grep JAR= jar.path | cut -d= -f2)
-          CLASSES='net.minecraft.client.gui.hud.InGameOverlayRenderer net.minecraft.client.option.KeyBinding net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket net.minecraft.client.font.TextVisitFactory net.minecraft.client.render.LightmapTextureManager net.minecraft.client.gui.hud.InGameHud'
+          CLASSES='net.minecraft.text.TextVisitFactory net.minecraft.client.input.MouseInput net.minecraft.client.gui.hud.InGameHud'
           {
             echo "# yarn 1.21.11 javap dump (private members)"
             for c in $CLASSES; do
