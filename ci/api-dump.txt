@@ -1,69 +1,128 @@
 # yarn 1.21.11 javap dump (private members)
 
-===================== net.minecraft.registry.Registry
-Compiled from "Registry.java"
-public interface net.minecraft.registry.Registry<T> extends com.mojang.serialization.Keyable, net.minecraft.registry.RegistryWrapper$Impl<T>, net.minecraft.util.collection.IndexedIterable<T>, net.fabricmc.fabric.api.event.registry.FabricRegistry {
-  public abstract net.minecraft.registry.RegistryKey<? extends net.minecraft.registry.Registry<T>> getKey();
-  public default com.mojang.serialization.Codec<T> getCodec();
-  public default com.mojang.serialization.Codec<net.minecraft.registry.entry.RegistryEntry<T>> getEntryCodec();
-  private com.mojang.serialization.Codec<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getReferenceEntryCodec();
-  private com.mojang.serialization.DataResult<net.minecraft.registry.entry.RegistryEntry$Reference<T>> validateReference(net.minecraft.registry.entry.RegistryEntry<T>);
-  public default <U> java.util.stream.Stream<U> keys(com.mojang.serialization.DynamicOps<U>);
-  public abstract net.minecraft.util.Identifier getId(T);
-  public abstract java.util.Optional<net.minecraft.registry.RegistryKey<T>> getKey(T);
-  public abstract int getRawId(T);
-  public abstract T get(net.minecraft.registry.RegistryKey<T>);
-  public abstract T get(net.minecraft.util.Identifier);
-  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntryInfo> getEntryInfo(net.minecraft.registry.RegistryKey<T>);
-  public default java.util.Optional<T> getOptionalValue(net.minecraft.util.Identifier);
-  public default java.util.Optional<T> getOptionalValue(net.minecraft.registry.RegistryKey<T>);
-  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getDefaultEntry();
-  public default T getValueOrThrow(net.minecraft.registry.RegistryKey<T>);
-  public abstract java.util.Set<net.minecraft.util.Identifier> getIds();
-  public abstract java.util.Set<java.util.Map$Entry<net.minecraft.registry.RegistryKey<T>, T>> getEntrySet();
-  public abstract java.util.Set<net.minecraft.registry.RegistryKey<T>> getKeys();
-  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getRandom(net.minecraft.util.math.random.Random);
-  public default java.util.stream.Stream<T> stream();
-  public abstract boolean containsId(net.minecraft.util.Identifier);
-  public abstract boolean contains(net.minecraft.registry.RegistryKey<T>);
-  public static <T> T register(net.minecraft.registry.Registry<? super T>, java.lang.String, T);
-  public static <V, T extends V> T register(net.minecraft.registry.Registry<V>, net.minecraft.util.Identifier, T);
-  public static <V, T extends V> T register(net.minecraft.registry.Registry<V>, net.minecraft.registry.RegistryKey<V>, T);
-  public static <R, T extends R> net.minecraft.registry.entry.RegistryEntry$Reference<T> registerReference(net.minecraft.registry.Registry<R>, net.minecraft.registry.RegistryKey<R>, T);
-  public static <R, T extends R> net.minecraft.registry.entry.RegistryEntry$Reference<T> registerReference(net.minecraft.registry.Registry<R>, net.minecraft.util.Identifier, T);
-  public abstract net.minecraft.registry.Registry<T> freeze();
-  public abstract net.minecraft.registry.entry.RegistryEntry$Reference<T> createEntry(T);
-  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getEntry(int);
-  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getEntry(net.minecraft.util.Identifier);
-  public abstract net.minecraft.registry.entry.RegistryEntry<T> getEntry(T);
-  public default java.lang.Iterable<net.minecraft.registry.entry.RegistryEntry<T>> iterateEntries(net.minecraft.registry.tag.TagKey<T>);
-  public abstract java.util.stream.Stream<net.minecraft.registry.entry.RegistryEntryList$Named<T>> streamTags();
-  public default net.minecraft.util.collection.IndexedIterable<net.minecraft.registry.entry.RegistryEntry<T>> getIndexedEntries();
-  public abstract net.minecraft.registry.Registry$PendingTagLoad<T> startTagReload(net.minecraft.registry.tag.TagGroupLoader$RegistryTags<T>);
-  private static java.lang.Object method_34028(com.mojang.serialization.DynamicOps, net.minecraft.util.Identifier);
-  private java.lang.String method_57063(net.minecraft.registry.entry.RegistryEntry);
-  private com.mojang.serialization.Lifecycle method_57060(net.minecraft.registry.entry.RegistryEntry$Reference);
-  private static net.minecraft.util.Identifier method_57062(net.minecraft.registry.entry.RegistryEntry$Reference);
-  private com.mojang.serialization.DataResult method_57065(net.minecraft.util.Identifier);
-  private com.mojang.serialization.DataResult method_57066(net.minecraft.util.Identifier);
-  private java.lang.String method_57067(net.minecraft.util.Identifier);
-  private static net.minecraft.registry.entry.RegistryEntry method_57064(net.minecraft.registry.entry.RegistryEntry$Reference);
-  private com.mojang.serialization.DataResult method_47448(java.lang.Object);
+===================== net.minecraft.client.render.item.HeldItemRenderer
+Compiled from "HeldItemRenderer.java"
+public class net.minecraft.client.render.item.HeldItemRenderer {
+  private static final net.minecraft.client.render.RenderLayer MAP_BACKGROUND;
+  private static final net.minecraft.client.render.RenderLayer MAP_BACKGROUND_CHECKERBOARD;
+  private static final float field_32735;
+  private static final float field_32736;
+  private static final float field_32737;
+  private static final float field_32738;
+  private static final float EQUIP_OFFSET_TRANSLATE_X;
+  private static final float EQUIP_OFFSET_TRANSLATE_Y;
+  private static final float EQUIP_OFFSET_TRANSLATE_Z;
+  private static final float field_32742;
+  private static final float field_32743;
+  private static final float field_32744;
+  private static final float field_32745;
+  private static final float EAT_OR_DRINK_X_ANGLE_MULTIPLIER;
+  private static final float EAT_OR_DRINK_Y_ANGLE_MULTIPLIER;
+  private static final float EAT_OR_DRINK_Z_ANGLE_MULTIPLIER;
+  private static final float field_32749;
+  private static final float field_32750;
+  private static final float field_32751;
+  private static final double field_32752;
+  private static final float field_32753;
+  private static final float field_32754;
+  private static final float field_32755;
+  private static final float field_32756;
+  private static final float field_32757;
+  private static final float ARM_HOLDING_ITEM_SECOND_Y_ANGLE_MULTIPLIER;
+  private static final float ARM_HOLDING_ITEM_FIRST_Z_ANGLE_MULTIPLIER;
+  private static final float field_32690;
+  private static final float field_32691;
+  private static final float field_32692;
+  private static final float field_32693;
+  private static final float field_32694;
+  private static final float field_32695;
+  private static final float field_32696;
+  private static final float field_32697;
+  private static final float field_32698;
+  private static final float ARM_HOLDING_ITEM_TRANSLATE_X;
+  private static final int ARM_HOLDING_ITEM_X_ANGLE_MULTIPLIER;
+  private static final int ARM_HOLDING_ITEM_THIRD_Y_ANGLE_MULTIPLIER;
+  private static final int ARM_HOLDING_ITEM_SECOND_Z_ANGLE_MULTIPLIER;
+  private static final float field_32703;
+  private static final float field_32704;
+  private static final float field_32705;
+  private static final float field_32706;
+  private static final float field_32707;
+  private static final float field_32708;
+  private static final float field_32709;
+  private static final float field_32710;
+  private static final float field_32711;
+  private static final float ARM_X_ANGLE_MULTIPLIER;
+  private static final float ARM_Y_ANGLE_MULTIPLIER;
+  private static final float ARM_Z_ANGLE_MULTIPLIER;
+  private static final float ARM_TRANSLATE_X;
+  private static final float ARM_TRANSLATE_Y;
+  private static final float ARM_TRANSLATE_Z;
+  private static final float field_32718;
+  private static final float FIRST_PERSON_MAP_FIRST_SCALE;
+  private static final float FIRST_PERSON_MAP_TRANSLATE_X;
+  private static final float FIRST_PERSON_MAP_TRANSLATE_Y;
+  private static final float FIRST_PERSON_MAP_TRANSLATE_Z;
+  private static final float FIRST_PERSON_MAP_SECOND_SCALE;
+  private static final int field_32724;
+  private static final int field_32725;
+  private static final int field_32726;
+  private static final float field_32727;
+  private static final float field_32728;
+  private static final float field_32729;
+  private static final float field_32730;
+  private static final float field_32731;
+  private static final float field_32732;
+  private static final float field_32733;
+  private static final float field_32734;
+  private final net.minecraft.client.MinecraftClient client;
+  private final net.minecraft.client.render.MapRenderState mapRenderState;
+  private net.minecraft.item.ItemStack mainHand;
+  private net.minecraft.item.ItemStack offHand;
+  private float equipProgressMainHand;
+  private float lastEquipProgressMainHand;
+  private float equipProgressOffHand;
+  private float lastEquipProgressOffHand;
+  private final net.minecraft.client.render.entity.EntityRenderManager entityRenderDispatcher;
+  private final net.minecraft.client.item.ItemModelManager itemModelManager;
+  public net.minecraft.client.render.item.HeldItemRenderer(net.minecraft.client.MinecraftClient, net.minecraft.client.render.entity.EntityRenderManager, net.minecraft.client.item.ItemModelManager);
+  public void renderItem(net.minecraft.entity.LivingEntity, net.minecraft.item.ItemStack, net.minecraft.item.ItemDisplayContext, net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int);
+  private float getMapAngle(float);
+  private void renderArm(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int, net.minecraft.util.Arm);
+  private void renderMapInOneHand(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int, float, net.minecraft.util.Arm, float, net.minecraft.item.ItemStack);
+  private void renderMapInBothHands(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int, float, float, float);
+  private void renderFirstPersonMap(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int, net.minecraft.item.ItemStack);
+  private void renderArmHoldingItem(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int, float, float, net.minecraft.util.Arm);
+  private void applyEatOrDrinkTransformation(net.minecraft.client.util.math.MatrixStack, float, net.minecraft.util.Arm, net.minecraft.item.ItemStack, net.minecraft.entity.player.PlayerEntity);
+  private void applyBrushTransformation(net.minecraft.client.util.math.MatrixStack, float, net.minecraft.util.Arm, net.minecraft.entity.player.PlayerEntity);
+  private void applySwingOffset(net.minecraft.client.util.math.MatrixStack, net.minecraft.util.Arm, float);
+  private void applyEquipOffset(net.minecraft.client.util.math.MatrixStack, net.minecraft.util.Arm, float);
+  public void renderItem(float, net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, net.minecraft.client.network.ClientPlayerEntity, int);
+  static net.minecraft.client.render.item.HeldItemRenderer$HandRenderType getHandRenderType(net.minecraft.client.network.ClientPlayerEntity);
+  private static net.minecraft.client.render.item.HeldItemRenderer$HandRenderType getUsingItemHandRenderType(net.minecraft.client.network.ClientPlayerEntity);
+  private static boolean isChargedCrossbow(net.minecraft.item.ItemStack);
+  private void renderFirstPersonItem(net.minecraft.client.network.AbstractClientPlayerEntity, float, float, net.minecraft.util.Hand, float, net.minecraft.item.ItemStack, float, net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.command.OrderedRenderCommandQueue, int);
+  private void swingArm(float, net.minecraft.client.util.math.MatrixStack, int, net.minecraft.util.Arm);
+  private boolean shouldSkipHandAnimationOnSwap(net.minecraft.item.ItemStack, net.minecraft.item.ItemStack);
+  public void updateHeldItems();
+  public void resetEquipProgress(net.minecraft.util.Hand);
+  private static void method_73476(int, net.minecraft.client.util.math.MatrixStack$Entry, net.minecraft.client.render.VertexConsumer);
+  static {};
 }
 
 ===================== Search: misc classes
-      891  2026-09-11 20:00   net/minecraft/client/gl/SimpleFramebuffer.class
-     4180  2026-09-11 20:00   net/minecraft/client/gl/SimpleFramebufferFactory.class
-     2832  2026-09-11 20:00   net/minecraft/client/render/VertexFormats.class
-      850  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter.class
-      480  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
-     3616  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms.class
-     7300  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniformStorage.class
-    22718  2026-09-11 20:00   net/minecraft/client/gl/RenderPipelines.class
-    12580  2026-09-11 20:00   net/minecraft/client/render/RenderLayer.class
-     3105  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
-     3400  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
-     2625  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter$Dynamic.class
-      970  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter$Constant.class
+      891  2026-09-11 20:06   net/minecraft/client/gl/SimpleFramebuffer.class
+     4180  2026-09-11 20:06   net/minecraft/client/gl/SimpleFramebufferFactory.class
+     2832  2026-09-11 20:06   net/minecraft/client/render/VertexFormats.class
+      850  2026-09-11 20:06   net/minecraft/client/render/RenderTickCounter.class
+      480  2026-09-11 20:06   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
+     3616  2026-09-11 20:06   net/minecraft/client/gl/DynamicUniforms.class
+     7300  2026-09-11 20:06   net/minecraft/client/gl/DynamicUniformStorage.class
+    22718  2026-09-11 20:06   net/minecraft/client/gl/RenderPipelines.class
+    12580  2026-09-11 20:06   net/minecraft/client/render/RenderLayer.class
+     3105  2026-09-11 20:06   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
+     3400  2026-09-11 20:06   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
+      970  2026-09-11 20:06   net/minecraft/client/render/RenderTickCounter$Constant.class
+     2625  2026-09-11 20:06   net/minecraft/client/render/RenderTickCounter$Dynamic.class
 ===================== Search: item classes
-    11326  2026-09-11 20:00   net/minecraft/item/AxeItem.class
+    11326  2026-09-11 20:06   net/minecraft/item/AxeItem.class
