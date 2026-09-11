@@ -28,80 +28,24 @@ Cannot remap modifiers because it does not exist in any of the targets [] or the
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:37: warning: [removal] runFinalization() in System has been deprecated and marked for removal
             System.runFinalization();
                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                            ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                           ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                   ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                                  ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                       ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                      ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                       ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                      ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
+/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: no suitable method found for getEntry(RegistryKey<Enchantment>)
+        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).getEntry(key).orElseThrow();
                                                                                                                                                         ^
-  symbol:   method entryOf(RegistryKey<Enchantment>)
-  location: interface Registry<Enchantment>
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
-            Vec3d vec3d = camera.getPos();
-                                ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:617: error: cannot find symbol
-        double deltaX = pos.x - camera.getPos().x;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:618: error: cannot find symbol
-        double deltaY = pos.y - camera.getPos().y;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:619: error: cannot find symbol
-        double deltaZ = pos.z - camera.getPos().z;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
+    method Registry.getEntry(int) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to int)
+    method Registry.getEntry(Identifier) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to Identifier)
+    method Registry.getEntry(Enchantment) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to Enchantment)
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-13 errors
+1 error
 4 warnings
 
 > Task :compileJava FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789156616219.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789156725048.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/hdhdh/hdhdh/build/reports/problems/problems-report.html
 
@@ -110,47 +54,16 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
 > Compilation failed; see the compiler output below.
+  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: no suitable method found for getEntry(RegistryKey<Enchantment>)
+          return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).getEntry(key).orElseThrow();
+                                                                                                                                                          ^
+      method Registry.getEntry(int) is not applicable
+        (argument mismatch; RegistryKey<Enchantment> cannot be converted to int)
+      method Registry.getEntry(Identifier) is not applicable
+        (argument mismatch; RegistryKey<Enchantment> cannot be converted to Identifier)
+      method Registry.getEntry(Enchantment) is not applicable
+        (argument mismatch; RegistryKey<Enchantment> cannot be converted to Enchantment)
   Note: Recompile with -Xlint:deprecation for details.
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                              ^
-    symbol:   variable player
-    location: class FastBridge
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                             ^
-    symbol:   variable player
-    location: class FastBridge
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-              arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                     ^
-    symbol:   variable player
-    location: class Freecam
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-              arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                                    ^
-    symbol:   variable player
-    location: class Freecam
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                         ^
-    symbol:   variable player
-    location: class FakeLag
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                        ^
-    symbol:   variable player
-    location: class FakeLag
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                         ^
-    symbol:   variable player
-    location: class FakeLag
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                        ^
-    symbol:   variable player
-    location: class FakeLag
   Note: Recompile with -Xlint:unchecked for details.
   Note: Some input files use or override a deprecated API.
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:27: warning: [removal] runFinalization() in System has been deprecated and marked for removal
@@ -166,32 +79,7 @@ Execution failed for task ':compileJava' (registered by plugin class 'org.gradle
               System.runFinalization();
                     ^
   Note: Some input files use unchecked or unsafe operations.
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-          return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
-                                                                                                                                                          ^
-    symbol:   method entryOf(RegistryKey<Enchantment>)
-    location: interface Registry<Enchantment>
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
-              Vec3d vec3d = camera.getPos();
-                                  ^
-    symbol:   method getPos()
-    location: variable camera of type Camera
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:617: error: cannot find symbol
-          double deltaX = pos.x - camera.getPos().x;
-                                        ^
-    symbol:   method getPos()
-    location: variable camera of type Camera
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:618: error: cannot find symbol
-          double deltaY = pos.y - camera.getPos().y;
-                                        ^
-    symbol:   method getPos()
-    location: variable camera of type Camera
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:619: error: cannot find symbol
-          double deltaZ = pos.z - camera.getPos().z;
-                                        ^
-    symbol:   method getPos()
-    location: variable camera of type Camera
-  13 errors
+  1 error
   4 warnings
 
 * Try:
@@ -246,76 +134,20 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:37: warning: [removal] runFinalization() in System has been deprecated and marked for removal
             System.runFinalization();
                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                            ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                           ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                   ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
-                                                                                                  ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                       ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                      ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                       ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
-                                                                                      ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
+/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: no suitable method found for getEntry(RegistryKey<Enchantment>)
+        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).getEntry(key).orElseThrow();
                                                                                                                                                         ^
-  symbol:   method entryOf(RegistryKey<Enchantment>)
-  location: interface Registry<Enchantment>
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
-            Vec3d vec3d = camera.getPos();
-                                ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:617: error: cannot find symbol
-        double deltaX = pos.x - camera.getPos().x;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:618: error: cannot find symbol
-        double deltaY = pos.y - camera.getPos().y;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:619: error: cannot find symbol
-        double deltaZ = pos.z - camera.getPos().z;
-                                      ^
-  symbol:   method getPos()
-  location: variable camera of type Camera
+    method Registry.getEntry(int) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to int)
+    method Registry.getEntry(Identifier) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to Identifier)
+    method Registry.getEntry(Enchantment) is not applicable
+      (argument mismatch; RegistryKey<Enchantment> cannot be converted to Enchantment)
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-13 errors
+1 error
 4 warnings
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:89)
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:50)
@@ -457,5 +289,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 1m 3s
+BUILD FAILED in 48s
 1 actionable task: 1 executed
