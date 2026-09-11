@@ -31,7 +31,7 @@ public class RenderUtil {
         matrixStack.scale(f3, f3, 1);
         RenderHelper.getContext().drawItem(itemStack, (int)(f / f3), (int)(f2 / f3));
         if (bl) {
-            RenderHelper.getContext().drawItemInSlot(MinecraftClient.getInstance().textRenderer, itemStack, (int)(f / f3), (int)(f2 / f3));
+            RenderHelper.getContext().drawStackOverlay(MinecraftClient.getInstance().textRenderer, itemStack, (int)(f / f3), (int)(f2 / f3));
         }
         matrixStack.pop();
         RenderSystem.applyModelViewMatrix();
@@ -604,9 +604,9 @@ public class RenderUtil {
 
 
     public static Vec3d getEntityPos(Entity entity) {
-        double d = lerpTickDelta(entity.getX(), entity.prevX);
-        double d2 = lerpTickDelta(entity.getY(), entity.prevY);
-        double d3 = lerpTickDelta(entity.getZ(), entity.prevZ);
+        double d = lerpTickDelta(entity.getX(), entity.lastX);
+        double d2 = lerpTickDelta(entity.getY(), entity.lastY);
+        double d3 = lerpTickDelta(entity.getZ(), entity.lastZ);
         return new Vec3d(d, d2, d3);
     }
 

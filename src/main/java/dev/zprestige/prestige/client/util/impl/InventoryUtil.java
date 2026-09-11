@@ -4,12 +4,12 @@ import dev.zprestige.prestige.client.util.MC;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.potion.PotionUtil;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
 
@@ -57,7 +57,7 @@ public class InventoryUtil implements MC {
     }
 
     public boolean hasStatusEffect(ItemStack itemStack, StatusEffect statusEffect) {
-        for (StatusEffectInstance statusEffectInstance : PotionUtil.getPotionEffects(itemStack)) {
+        for (StatusEffectInstance statusEffectInstance : PotionContentsComponent.getPotionEffects(itemStack)) {
             if (statusEffectInstance.getEffectType() == statusEffect) {
                 return true;
             }

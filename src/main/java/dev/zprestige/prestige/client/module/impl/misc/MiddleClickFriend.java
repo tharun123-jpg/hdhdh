@@ -22,7 +22,7 @@ public class MiddleClickFriend extends Module {
             Window window = getMc().getWindow();
             if (GLFW.glfwGetKey(window.getHandle(), 2) == 1 && getMc().crosshairTarget instanceof EntityHitResult hitResult) {
                 if (hitResult.getEntity() instanceof PlayerEntity) {
-                    String name = hitResult.getEntity().getEntityName();
+                    String name = hitResult.getEntity().getNameForScoreboard();
                     SocialsManager socialsManager = Prestige.Companion.getSocialsManager();
                     if (socialsManager.isFriend(name)) {
                         socialsManager.removeFriend(name);

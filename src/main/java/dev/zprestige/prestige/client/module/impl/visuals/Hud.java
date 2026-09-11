@@ -81,7 +81,7 @@ public class Hud extends Module {
                 RenderUtil.renderRoundedRect(f3, f4, f3 + f, f4 + f2, new Color(14, 14, 14), 5);
                 if (player != null) {
                     playerTexture = this.getMc().getNetworkHandler().getPlayerListEntry(player.getUuid()).getSkinTexture();
-                    name = player.getEntityName();
+                    name = player.getNameForScoreboard();
                     health = (float)Math.ceil(player.getHealth() + player.getAbsorptionAmount());
                     healthval = MathUtil.findMiddleValue((player.getHealth() + player.getAbsorptionAmount()) / 24, 0, 1);
                     items = player.getArmorItems();

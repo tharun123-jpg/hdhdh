@@ -148,7 +148,7 @@ public class Triggerbot extends Module {
     boolean method602(Entity entity) {
         if (entity instanceof PlayerEntity) {
             SocialsManager socialsManager = Prestige.Companion.getSocialsManager();
-            String string = entity.getEntityName();
+            String string = entity.getNameForScoreboard();
             if (socialsManager.isFriend(string)) return false;
         }
         if (!(entity instanceof EndCrystalEntity || entity instanceof MagmaCubeEntity || entity instanceof SlimeEntity || entity instanceof PlayerEntity)) {

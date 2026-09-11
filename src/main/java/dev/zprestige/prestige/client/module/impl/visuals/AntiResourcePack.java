@@ -5,8 +5,8 @@ import dev.zprestige.prestige.client.event.impl.PacketReceiveEvent;
 import dev.zprestige.prestige.client.module.Category;
 import dev.zprestige.prestige.client.module.Module;
 import dev.zprestige.prestige.client.util.impl.PacketUtil;
-import net.minecraft.network.packet.c2s.play.ResourcePackStatusC2SPacket;
-import net.minecraft.network.packet.s2c.play.ResourcePackSendS2CPacket;
+import net.minecraft.network.packet.c2s.common.ResourcePackStatusC2SPacket;
+import net.minecraft.network.packet.s2c.common.ResourcePackSendS2CPacket;
 
 public class AntiResourcePack extends Module {
 

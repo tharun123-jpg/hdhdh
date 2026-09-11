@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value={PlayerEntity.class})
 public class MixinPlayerEntity {
-    @Inject(method={"resetLastAttackedTicks"}, at={@At(value="HEAD")}, cancellable=true)
+    @Inject(method={"resetTicksSince"}, at={@At(value="HEAD")}, cancellable=true)
     void resetLastAttackedTicks(CallbackInfo callbackInfo) {
         if (Prestige.Companion.getSelfDestructed()) {
             return;

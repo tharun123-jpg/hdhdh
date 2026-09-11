@@ -32,7 +32,7 @@ public class MixinRaycastContext implements IRaycastContext {
     @Shadow
     @Final
     @Mutable
-    public ShapeContext entityPosition;
+    public ShapeContext shapeContext;
 
     @Override
     public void set(Vec3d start, Vec3d end, RaycastContext.ShapeType shapeType, RaycastContext.FluidHandling fluid, Entity entity) {
@@ -40,6 +40,6 @@ public class MixinRaycastContext implements IRaycastContext {
         this.end = end;
         this.shapeType = shapeType;
         this.fluid = fluid;
-        this.entityPosition = ShapeContext.of(entity);
+        this.shapeContext = ShapeContext.of(entity);
     }
 }

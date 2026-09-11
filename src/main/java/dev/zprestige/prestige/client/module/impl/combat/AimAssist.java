@@ -120,7 +120,7 @@ public class AimAssist extends Module {
         Entity entity = null;
         double d = Double.MAX_VALUE;
         for (Entity entity2 : getMc().world.getEntities()) {
-            if (isEntityValid(entity2) && Prestige.Companion.getAntiBotManager().isNotBot(entity2) && (entity2 instanceof PlayerEntity player && !Prestige.Companion.getSocialsManager().isFriend(player.getEntityName()))) {
+            if (isEntityValid(entity2) && Prestige.Companion.getAntiBotManager().isNotBot(entity2) && (entity2 instanceof PlayerEntity player && !Prestige.Companion.getSocialsManager().isFriend(player.getNameForScoreboard()))) {
                 Vec3d vec3d = entity2.getEyePos();
                 double d2 = vec3d.y - getHeight(entity2.getHeight());
                 double d3 = getMc().player.squaredDistanceTo(vec3d.x, d2, vec3d.z);
@@ -153,7 +153,7 @@ public class AimAssist extends Module {
         if (target == null) {
             string = "";
         } else if (target instanceof PlayerEntity) {
-            string = target.getEntityName();
+            string = target.getNameForScoreboard();
         } else {
             string = "Crystal";
         }

@@ -38,9 +38,9 @@ extends Module {
         for (PlayerEntity player : getMc().world.getPlayers()) {
             AntiBotManager antiBotManager = Prestige.Companion.getAntiBotManager();
             if (antiBotManager.isNotBot(player)) {
-                double d = player.prevX + (player.getX() - player.prevX) * getMc().getTickDelta();
-                double d2 = player.prevY + (player.getY() - player.prevY) * getMc().getTickDelta();
-                double d3 = player.prevZ + (player.getZ() - player.prevZ) * getMc().getTickDelta();
+                double d = player.lastX + (player.getX() - player.lastX) * getMc().getTickDelta();
+                double d2 = player.lastY + (player.getY() - player.lastY) * getMc().getTickDelta();
+                double d3 = player.lastZ + (player.getZ() - player.lastZ) * getMc().getTickDelta();
                 Vec3d vec3d = new Vec3d(d, d2 + 2, d3);
                 Vector4d vector4d = null;
                 vec3d = RenderUtil.worldSpaceToScreenSpace(new Vec3d(vec3d.x, vec3d.y, vec3d.z));
@@ -79,12 +79,12 @@ extends Module {
                 String string = String.valueOf((float) Math.ceil(player.getHealth() + player.getAbsorptionAmount()));
                 font.drawString(string, f7 + f - font.getStringWidth(string) - 2.5f, f4 + 6, Color.WHITE);
                 Color color;
-                if (Prestige.Companion.getSocialsManager().isFriend(player.getEntityName())) {
+                if (Prestige.Companion.getSocialsManager().isFriend(player.getNameForScoreboard())) {
                     color = new Color(0, 255, 255);
                 } else {
-                    color = Prestige.Companion.getSocialsManager().isEnemy(player.getEntityName()) ? new Color(255, 0, 0) : Color.WHITE;
+                    color = Prestige.Companion.getSocialsManager().isEnemy(player.getNameForScoreboard()) ? new Color(255, 0, 0) : Color.WHITE;
                 }
-                font.drawString(player.getEntityName(), f7 + 20, f4 - 1, color);
+                font.drawString(player.getNameForScoreboard(), f7 + 20, f4 - 1, color);
             }
         }
     }

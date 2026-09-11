@@ -75,7 +75,7 @@ public class FakeLag extends Module {
             choke.setValue();
         }
         if (event.getPacket() instanceof EntityVelocityUpdateS2CPacket packet) {
-            if (packet.getId() == getMc().player.getId() && unusedList.isEmpty() && holdOnKB.getObject()) {
+            if (packet.getEntityId() == getMc().player.getId() && unusedList.isEmpty() && holdOnKB.getObject()) {
                 reset();
                 choke.setValue(kbHoldTime.getObject());
             }

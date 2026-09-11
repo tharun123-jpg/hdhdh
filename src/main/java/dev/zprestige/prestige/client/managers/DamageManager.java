@@ -65,7 +65,7 @@ public class DamageManager implements MC {
         double damage = ((impact * impact + impact) / 2 * 7 * (6 * 2) + 1);
 
         damage = getDamageForDifficulty(damage);
-        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).getValue());
+        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
         damage = resistanceReduction(player, damage);
 
         ((IExplosion) explosion).set(crystal, 6, false);
@@ -200,7 +200,7 @@ public class DamageManager implements MC {
         damage = resistanceReduction(player, damage);
 
         // Reduce by armour
-        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS).getValue());
+        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
 
         // Reduce by enchants
         ((IExplosion)explosion).set(bed, 5, true);

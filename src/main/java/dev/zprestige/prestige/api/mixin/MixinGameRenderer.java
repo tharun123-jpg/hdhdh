@@ -60,7 +60,7 @@ public class MixinGameRenderer
      * @reason
      */
     @Overwrite
-    public void updateTargetedEntity(float tickDelta) {
+    public void updateCrosshairTarget(float tickDelta) {
         Entity entity = client.getCameraEntity();
         if (entity == null || client.world == null) {
             return;

@@ -58,7 +58,7 @@ public class TargetManager implements MC {
 
     public void setTarget(PlayerEntity player) {
         SocialsManager socialsManager = Prestige.Companion.getSocialsManager();
-        if (socialsManager.isFriend(player.getEntityName())) {
+        if (socialsManager.isFriend(player.getNameForScoreboard())) {
             return;
         }
         this.target = player;

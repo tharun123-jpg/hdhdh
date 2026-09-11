@@ -23,11 +23,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.client.render.BlockBreakingInfo;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.player.BlockBreakingInfo;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
 import net.minecraft.item.ArmorItem;
@@ -122,13 +122,13 @@ public class ESP extends Module {
                 if (this.frustrum != null) {
                     if (!frustrum.isVisible(player.getVisibilityBoundingBox())) continue;
                 }
-                String string = player.getEntityName();
+                String string = player.getNameForScoreboard();
                 Color color;
                 if (Prestige.Companion.getSocialsManager().isFriend(string)) {
                     color = new Color(0, 255, 255);
                 } else {
                     Color themeColor = Prestige.Companion.getModuleManager().getMenu().getColor().getObject();
-                    color = Prestige.Companion.getSocialsManager().isEnemy(player.getEntityName()) ? new Color(255, 0, 0) : new Color(themeColor.getRed(), themeColor.getGreen(), themeColor.getBlue(), 100);
+                    color = Prestige.Companion.getSocialsManager().isEnemy(player.getNameForScoreboard()) ? new Color(255, 0, 0) : new Color(themeColor.getRed(), themeColor.getGreen(), themeColor.getBlue(), 100);
                 }
                 Vec3d pos = RenderUtil.getEntityPos(player);
                 RenderUtil.setCameraAction();
@@ -200,10 +200,10 @@ public class ESP extends Module {
                         Entity entity = getMc().world.getEntityById(entry.getValue().getActorId());
                         if (entity != null) {
                             FontRenderer font = Prestige.Companion.getFontManager().getFontRenderer();
-                            String string = entity.getEntityName() + " " + (int) (f * 100) + "%";
-                            font.drawString(entity.getEntityName(), -font.getStringWidth(string) / 2, -font.getStringHeight() / 2, themeColor);
+                            String string = entity.getNameForScoreboard() + " " + (int) (f * 100) + "%";
+                            font.drawString(entity.getNameForScoreboard(), -font.getStringWidth(string) / 2, -font.getStringHeight() / 2, themeColor);
                             String string2 = (int) (f * 100) + "%";
-                            font.drawString(string2, -font.getStringWidth(string) / 2 + font.getStringWidth(entity.getEntityName()) / 2 - font.getStringWidth(string2) / 2, font.getStringHeight() / 2, themeColor);
+                            font.drawString(string2, -font.getStringWidth(string) / 2 + font.getStringWidth(entity.getNameForScoreboard()) / 2 - font.getStringWidth(string2) / 2, font.getStringHeight() / 2, themeColor);
                         }
                         RenderSystem.enableDepthTest();
                         matrixStack.pop();
