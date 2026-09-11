@@ -47,9 +47,8 @@ public class MixinGameRenderer
         if (entity == null || client.world == null) {
             return;
         }
-        client.getProfiler().push("pick");
         client.targetedEntity = null;
-        double n2 = entity.getAttributeValue(EntityAttributes.ENTITY_INTERACTION_RANGE);
+        double n2 = entity instanceof LivingEntity livingEntity ? livingEntity.getAttributeValue(EntityAttributes.ENTITY_INTERACTION_RANGE) : 3.0;
         boolean invoke = false;
         if (!Prestige.Companion.getSelfDestructed()) {
             ReachEvent event = new ReachEvent(0);
@@ -87,15 +86,17 @@ public class MixinGameRenderer
                 }
             }
         }
-        client.getProfiler().pop();
     }
+
+    @Shadow
+    public abstract Matrix4f getBasicProjectionMatrix(float f);
 
     @Unique
     private MatrixStack prestige$cameraStack(RenderTickCounter tickCounter) {
         MatrixStack matrixStack = new MatrixStack();
         var camera = client.gameRenderer.getCamera();
         matrixStack.multiply(camera.getRotation());
-        Vec3d pos = camera.getPos();
+        Vec3d pos = camera.getCameraPos();
         matrixStack.translate(-pos.x, -pos.y, -pos.z);
         return matrixStack;
     }

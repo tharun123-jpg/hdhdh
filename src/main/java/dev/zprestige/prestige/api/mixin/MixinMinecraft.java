@@ -46,14 +46,6 @@ public class MixinMinecraft {
         }
     }
 
-    @Inject(method={"getFramerateLimit"}, at={@At(value="RETURN")}, cancellable=true)
-    void getFramerateLimit(CallbackInfoReturnable callbackInfoReturnable) {
-        if (Prestige.Companion.getSelfDestructed()) {
-            return;
-        }
-        callbackInfoReturnable.setReturnValue(window.getFramerateLimit());
-    }
-
     @Inject(method={"tick"}, at={@At(value="HEAD")})
     void run(CallbackInfo callbackInfo) {
         if (Prestige.Companion.getSelfDestructed()) {

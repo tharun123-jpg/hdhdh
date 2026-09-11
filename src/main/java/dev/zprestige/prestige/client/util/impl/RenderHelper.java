@@ -3,7 +3,6 @@ https://doxbin.com/upload/browniexcodez
 */
 package dev.zprestige.prestige.client.util.impl;
 
-import com.mojang.blaze3d.vertex.MeshData;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.util.BufferAllocator;

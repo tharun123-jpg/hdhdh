@@ -53,14 +53,14 @@ extends AbstractClientPlayerEntity {
         super(clientWorld, gameProfile);
     }
 
-    public void setVelocityClient(double x, double y, double z) {
+    public void setVelocityClient(net.minecraft.util.math.Vec3d velocity) {
         if (Prestige.Companion.getSelfDestructed()) {
-            super.setVelocityClient(x, y, z);
+            super.setVelocityClient(velocity);
             return;
         }
-        KnockbackEvent event = new KnockbackEvent(x, y, z);
+        KnockbackEvent event = new KnockbackEvent(velocity.x, velocity.y, velocity.z);
         event.invoke();
-        super.setVelocityClient(event.getX(), event.getY(), event.getZ());
+        super.setVelocityClient(new net.minecraft.util.math.Vec3d(event.getX(), event.getY(), event.getZ()));
     }
 
     @Inject(at={@At(value="HEAD")}, method={"sendMovementPackets"})

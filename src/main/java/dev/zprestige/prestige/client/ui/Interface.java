@@ -139,21 +139,26 @@ public class Interface extends DrawableScreen implements MC {
     }
 
     @Override
-    public boolean charTyped(char c, int n) {
+    public boolean charTyped(net.minecraft.client.input.CharInput input) {
+        String string = input.asString();
+        char c = string.isEmpty() ? '\u0000' : string.charAt(0);
         for (Drawable drawable : tabs) {
-            drawable.charTyped(c, n);
+            drawable.charTyped(c, 0);
         }
-        if (inSearch && c != '§' && c >= ' ' && c != '') {
+        if (inSearch && c != '\u00a7' && c >= ' ' && c != '\u007f') {
             search = search + c;
         }
         if (isSocial) {
-            field842.charTyped(c, n);
+            field842.charTyped(c, 0);
         }
-        return super.charTyped(c, n);
+        return super.charTyped(input);
     }
 
     @Override
-    public boolean mouseClicked(double d, double d2, int n) {
+    public boolean mouseClicked(net.minecraft.client.gui.Click click, boolean doubled) {
+        double d = click.x();
+        double d2 = click.y();
+        int n = click.button();
         for (Drawable drawable : tabs) {
             drawable.mouseClicked(d, d2, n);
         }
@@ -168,21 +173,22 @@ public class Interface extends DrawableScreen implements MC {
         if (isSocial) {
             this.field842.mouseClicked(d, d2, n);
         }
-        return super.mouseClicked(d, d2, n);
+        return super.mouseClicked(click, doubled);
     }
 
     @Override
-    public boolean mouseReleased(double d, double d2, int n) {
+    public boolean mouseReleased(net.minecraft.client.gui.Click click) {
         for (Drawable drawable : tabs) {
-            drawable.mouseReleased(d, d2, n);
+            drawable.mouseReleased(click.x(), click.y(), click.button());
         }
-        return super.mouseReleased(d, d2, n);
+        return super.mouseReleased(click);
     }
 
     @Override
-    public boolean keyPressed(int n, int n2, int n3) {
+    public boolean keyPressed(net.minecraft.client.input.KeyInput input) {
+        int n = input.key();
         for (Drawable drawable : tabs) {
-            drawable.keyPressed(n, n2, n3);
+            drawable.keyPressed(n, 0, 0);
         }
         if (inSearch) {
             switch (n) {
@@ -193,15 +199,15 @@ public class Interface extends DrawableScreen implements MC {
             }
         }
         if (this.isSocial) {
-            this.field842.keyPressed(n, n2, n3);
+            this.field842.keyPressed(n, 0, 0);
         }
-        return super.keyPressed(n, n2, n3);
+        return super.keyPressed(input);
     }
 
     @Override
-    public boolean mouseScrolled(double d, double d2, double d3) {
-        scroll += (float)d3 * 10;
-        return super.mouseScrolled(d, d2, d3);
+    public boolean mouseScrolled(double d, double d2, double d3, double d4) {
+        scroll += (float)d4 * 10;
+        return super.mouseScrolled(d, d2, d3, d4);
     }
 
     String typingIcon() {

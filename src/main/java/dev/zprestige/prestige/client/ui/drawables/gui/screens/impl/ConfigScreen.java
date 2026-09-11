@@ -188,21 +188,24 @@ public class ConfigScreen extends DrawableScreen {
         return false;
     }
 
-    public boolean mouseScrolled(double d, double d2, double d3) {
-        scroll += (float) (d3 * 20);
-        return super.mouseScrolled(d, d2, d3);
+    public boolean mouseScrolled(double d, double d2, double d3, double d4) {
+        scroll += (float) (d4 * 20);
+        return super.mouseScrolled(d, d2, d3, d4);
     }
 
-    public boolean charTyped(char c, int n) {
+    public boolean charTyped(net.minecraft.client.input.CharInput input) {
+        String string = input.asString();
+        char c = string.isEmpty() ? '\u0000' : string.charAt(0);
         name.charTyped(c);
         description.charTyped(c);
-        return super.charTyped(c, n);
+        return super.charTyped(input);
     }
 
-    public boolean keyPressed(int n, int n2, int n3) {
+    public boolean keyPressed(net.minecraft.client.input.KeyInput input) {
+        int n = input.key();
         name.keyPressed(n);
         description.keyPressed(n);
-        return super.keyPressed(n, n2, n3);
+        return super.keyPressed(input);
     }
 
     public boolean shouldPause() {

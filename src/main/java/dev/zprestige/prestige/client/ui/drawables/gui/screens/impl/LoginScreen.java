@@ -76,7 +76,10 @@ public class LoginScreen extends DrawableScreen {
         }
     }
 
-    public boolean mouseClicked(double d, double d2, int n) {
+    public boolean mouseClicked(net.minecraft.client.gui.Click click, boolean doubled) {
+        double d = click.x();
+        double d2 = click.y();
+        int n = click.button();
         username.mouseClicked(n, (int)d, (int)d2);
         password.mouseClicked(n, (int)d, (int)d2);
         if (n == 0) {
@@ -87,7 +90,7 @@ public class LoginScreen extends DrawableScreen {
                 active = !active;
             }
         }
-        return super.mouseClicked(d, d2, n);
+        return super.mouseClicked(click, doubled);
     }
 
     public void close() {
@@ -97,7 +100,8 @@ public class LoginScreen extends DrawableScreen {
         super.close();
     }
 
-    public boolean keyPressed(int n, int n2, int n3) {
+    public boolean keyPressed(net.minecraft.client.input.KeyInput input) {
+        int n = input.key();
         username.keyPressed(n);
         password.keyPressed(n);
         if (n == 258 && username.getActive()) {
@@ -107,13 +111,15 @@ public class LoginScreen extends DrawableScreen {
         if (n == 257) {
             login();
         }
-        return super.keyPressed(n, n2, n3);
+        return super.keyPressed(input);
     }
 
-    public boolean charTyped(char c, int n) {
+    public boolean charTyped(net.minecraft.client.input.CharInput input) {
+        String string = input.asString();
+        char c = string.isEmpty() ? '\u0000' : string.charAt(0);
         username.charTyped(c);
         password.charTyped(c);
-        return super.charTyped(c, n);
+        return super.charTyped(input);
     }
 
     void login() {
