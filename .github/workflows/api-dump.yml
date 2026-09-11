@@ -32,13 +32,7 @@ jobs:
       - name: Resolve remapped minecraft jar (named)
         run: |
           set -o pipefail
-          cat > /tmp/initcp.gradle <<'EOF'
-allprojects {
-    tasks.register('printCompileCp') {
-        doLast { println "CP=" + sourceSets.main.compileClasspath.asPath }
-    }
-}
-EOF
+          printf 'allprojects {\n tasks.register("printCompileCp") {\n  doLast { println "CP=" + sourceSets.main.compileClasspath.asPath }\n }\n}\n' > /tmp/initcp.gradle
           CP=$(gradle -I /tmp/initcp.gradle printCompileCp --no-daemon --console=plain -q 2>/dev/null | grep "^CP=" | head -1 | cut -d= -f2-)
           JAR=$(echo "$CP" | tr ':' '\n' | grep -E "minecraft.*\.jar$" | grep -vE "sources" | head -1)
           echo "JAR=$JAR" | tee jar.path
