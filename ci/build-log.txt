@@ -16,24 +16,6 @@ Fabric Loom: 1.17.20
 Cannot remap modifiers because it does not exist in any of the targets [] or their parents.
 
 > Task :compileJava
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:79: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                    RenderUtil.renderShaderRect(event.getMatrixStack(), RenderUtil.getThemeColor(color, 10, 1), RenderUtil.getThemeColor(color, 10, 2), RenderUtil.getThemeColor(color, 10, 3), RenderUtil.getThemeColor(color, 10, 4), f3, f4, f, f2, 5, 10);
-                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:81: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f3, f4, f3 + f, f4 + f2, new Color(14, 14, 14), 5);
-                                                                      ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:102: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f3 + 40, f4 + 29, f3 + 40 + (f - 65) * idk, f4 + 34, new Color(MathUtil.findMiddleValue(1 - idk, 0, 1), MathUtil.findMiddleValue(idk, 0, 1), 0), 2);
-                                                                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:61: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                    RenderUtil.renderShaderRect(render2DEvent.getMatrixStack(), themeColor, themeColor, themeColor, themeColor, f7, f4, 125, f2, 4, 10);
-                                                                            ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:63: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f7, f4, f7 + f, f4 + f2, new Color(12, 12, 12), 4);
-                                                                      ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:77: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f7 + 20, f4 + f2 - 7.5f, f7 + f - 25 - (f - 25) * (1 - f8), f4 + f2 - 2.5f, new Color(f10, f9, 0), f11);
-                                                                                                                         ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:27: warning: [removal] runFinalization() in System has been deprecated and marked for removal
             System.runFinalization();
                   ^
@@ -47,165 +29,50 @@ Cannot remap modifiers because it does not exist in any of the targets [] or the
             System.runFinalization();
                   ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                     ^
+            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                            ^
   symbol:   variable player
   location: class FastBridge
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                    ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                   ^
+            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                                           ^
   symbol:   variable player
   location: class FastBridge
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                            ^
+            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
+                                                                                   ^
   symbol:   variable player
   location: class Freecam
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                           ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                                          ^
+            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
+                                                                                                  ^
   symbol:   variable player
   location: class Freecam
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                       ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                               ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                              ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                      ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                       ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                               ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                      ^
   symbol:   variable player
   location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                              ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:87: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect((float)width / 2 - 100, (float)height - 30, (float)width / 2 + 100, (float)height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:128: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(width / 2 + 105, height - 30, width / 2 + 125f, height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:31: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(0, f2), 7);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:33: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + 5, getY() + 5, getX() + getWidth() - 65, getY() + 20, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:35: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 60, getY() + 5, getX() + getWidth() - 45, getY() + 20, RenderUtil.getColor(fuckoff == 0 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:38: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 40, getY() + 5, getX() + getWidth() - 25, getY() + 20, RenderUtil.getColor(fuckoff == 1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:42: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 5, getX() + getWidth() - 5, getY() + 20, RenderUtil.getColor(fuckoff == -1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:63: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + 5, getY() + 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:143: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f, f2, f + f3, f2 + f5, RenderUtil.getColor(1, f4), 5);
-                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:147: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 12.5f, f2 + 2.5f, f + f3 - 2.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:149: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 25, f2 + 2.5f, f + f3 - 15, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                             ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:151: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 37.5f, f2 + 2.5f, f + f3 - 27.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/LoginScreen.java:40: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4, f5, f4 + f2, f5 + f3, new Color(13, 13, 13), 10);
-                                                               ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:57: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 0.8f), 9);
-                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:58: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 1), 10);
-                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:63: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20,RenderUtil.getColor(1, 1), 5);
-                                                                                          ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:64: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(1, 1), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:65: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? (isInsidePublic(n, n2) ? 0.3f : 0) : 1), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:66: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? 1 : (isInsidePersonal(n, n2) ? 0.3f : 0)), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:88: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2 + 525, f3 + screenHeight - 20, f2 + screenWidth - 5, f3 + screenHeight - 5, RenderUtil.getColor(-1, 1), 5);
-                                                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:183: error: method mouseClicked in interface ParentElement cannot be applied to given types;
-        return super.mouseClicked(d, d2, n);
-                    ^
-  required: Click,boolean
-  found:    double,double,int
-  reason: actual and formal argument lists differ in length
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:38: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() - 0.5f, getY() - 0.5f, getX() + getWidth() + 0.5f, getY() + getHeight() + 0.5f, RenderUtil.getColor(0, 0.2f), 10);
-                                                                                                                                               ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:39: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(3, 1), 10);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:75: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(getX() + getWidth() - 50, getY() + getHeight() - 25, getX() + getWidth() - 30, getY() + getHeight() - 5,RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                        ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:80: error: incompatible types: Color cannot be converted to float
-            RenderUtil.renderRoundedRect(getX() + getWidth() - 25, getY() + getHeight() - 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:40: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(3, f2), 4.5f);
-                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:42: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), f2 * 0.5f), 4.5f);
-                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:64: error: incompatible types: possible lossy conversion from double to float
-        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:198: error: incompatible types: possible lossy conversion from double to float
-        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                  ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
-                                                                                            ^
-  symbol:   method get(RegistryKey<Registry<Enchantment>>)
-  location: interface DynamicRegistryManager
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:71: error: cannot find symbol
-            RenderHelper.getContext().drawItemInSlot(MinecraftClient.getInstance().textRenderer, itemStack, (int) (f / f3), (int) (f2 / f3));
-                                     ^
-  symbol:   method drawItemInSlot(TextRenderer,ItemStack,int,int)
-  location: class DrawContext
+        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
+                                                                                                                                                        ^
+  symbol:   method entryOf(RegistryKey<Enchantment>)
+  location: interface Registry<Enchantment>
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
             Vec3d vec3d = camera.getPos();
                                 ^
@@ -230,12 +97,11 @@ Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
-53 errors
+13 errors
 4 warnings
 
 > Task :compileJava FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789156513361.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789156616219.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/hdhdh/hdhdh/build/reports/problems/problems-report.html
 
@@ -244,173 +110,45 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
 > Compilation failed; see the compiler output below.
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:183: error: method mouseClicked in interface ParentElement cannot be applied to given types;
-          return super.mouseClicked(d, d2, n);
-                      ^
-    required: Click,boolean
-    found:    double,double,int
-    reason: actual and formal argument lists differ in length
   Note: Recompile with -Xlint:deprecation for details.
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:79: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                      RenderUtil.renderShaderRect(event.getMatrixStack(), RenderUtil.getThemeColor(color, 10, 1), RenderUtil.getThemeColor(color, 10, 2), RenderUtil.getThemeColor(color, 10, 3), RenderUtil.getThemeColor(color, 10, 4), f3, f4, f, f2, 5, 10);
-                                                                      ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:81: error: incompatible types: Color cannot be converted to float
-                  RenderUtil.renderRoundedRect(f3, f4, f3 + f, f4 + f2, new Color(14, 14, 14), 5);
-                                                                        ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:102: error: incompatible types: Color cannot be converted to float
-                  RenderUtil.renderRoundedRect(f3 + 40, f4 + 29, f3 + 40 + (f - 65) * idk, f4 + 34, new Color(MathUtil.findMiddleValue(1 - idk, 0, 1), MathUtil.findMiddleValue(idk, 0, 1), 0), 2);
+  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
+              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                              ^
+    symbol:   variable player
+    location: class FastBridge
+  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
+              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                                             ^
+    symbol:   variable player
+    location: class FastBridge
+  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
+              arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
+                                                                                     ^
+    symbol:   variable player
+    location: class Freecam
+  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
+              arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
                                                                                                     ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:61: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                      RenderUtil.renderShaderRect(render2DEvent.getMatrixStack(), themeColor, themeColor, themeColor, themeColor, f7, f4, 125, f2, 4, 10);
-                                                                              ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:63: error: incompatible types: Color cannot be converted to float
-                  RenderUtil.renderRoundedRect(f7, f4, f7 + f, f4 + f2, new Color(12, 12, 12), 4);
-                                                                        ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:77: error: incompatible types: Color cannot be converted to float
-                  RenderUtil.renderRoundedRect(f7 + 20, f4 + f2 - 7.5f, f7 + f - 25 - (f - 25) * (1 - f8), f4 + f2 - 2.5f, new Color(f10, f9, 0), f11);
-                                                                                                                           ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:87: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect((float)width / 2 - 100, (float)height - 30, (float)width / 2 + 100, (float)height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                                                  ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:128: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(width / 2 + 105, height - 30, width / 2 + 125f, height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                       ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:31: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(0, f2), 7);
-                                                                                                                     ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:33: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + 5, getY() + 5, getX() + getWidth() - 65, getY() + 20, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                         ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:35: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + getWidth() - 60, getY() + 5, getX() + getWidth() - 45, getY() + 20, RenderUtil.getColor(fuckoff == 0 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                       ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:38: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + getWidth() - 40, getY() + 5, getX() + getWidth() - 25, getY() + 20, RenderUtil.getColor(fuckoff == 1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                       ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:42: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 5, getX() + getWidth() - 5, getY() + 20, RenderUtil.getColor(fuckoff == -1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                      ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:63: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + 5, getY() + 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                                      ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:143: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f, f2, f + f3, f2 + f5, RenderUtil.getColor(1, f4), 5);
-                                                                                  ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:147: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f + f3 - 12.5f, f2 + 2.5f, f + f3 - 2.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                    ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:149: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f + f3 - 25, f2 + 2.5f, f + f3 - 15, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                               ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:151: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f + f3 - 37.5f, f2 + 2.5f, f + f3 - 27.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                     ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/LoginScreen.java:40: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f4, f5, f4 + f2, f5 + f3, new Color(13, 13, 13), 10);
-                                                                 ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:57: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 0.8f), 9);
-                                                                                                       ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:58: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 1), 10);
-                                                                                                       ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:63: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20,RenderUtil.getColor(1, 1), 5);
-                                                                                            ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:64: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(1, 1), 5);
-                                                                                             ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:65: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? (isInsidePublic(n, n2) ? 0.3f : 0) : 1), 5);
-                                                                                             ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:66: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? 1 : (isInsidePersonal(n, n2) ? 0.3f : 0)), 5);
-                                                                                             ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:88: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(f2 + 525, f3 + screenHeight - 20, f2 + screenWidth - 5, f3 + screenHeight - 5, RenderUtil.getColor(-1, 1), 5);
-                                                                                                                                         ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:38: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() - 0.5f, getY() - 0.5f, getX() + getWidth() + 0.5f, getY() + getHeight() + 0.5f, RenderUtil.getColor(0, 0.2f), 10);
-                                                                                                                                                 ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:39: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(3, 1), 10);
-                                                                                                                     ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:75: error: incompatible types: Color cannot be converted to float
-                  RenderUtil.renderRoundedRect(getX() + getWidth() - 50, getY() + getHeight() - 25, getX() + getWidth() - 30, getY() + getHeight() - 5,RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                          ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:80: error: incompatible types: Color cannot be converted to float
-              RenderUtil.renderRoundedRect(getX() + getWidth() - 25, getY() + getHeight() - 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                      ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:40: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(3, f2), 4.5f);
-                                                                                                                                  ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:42: error: incompatible types: Color cannot be converted to float
-          RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), f2 * 0.5f), 4.5f);
-                                                                                                                                  ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:64: error: incompatible types: possible lossy conversion from double to float
-          damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                    ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:198: error: incompatible types: possible lossy conversion from double to float
-          damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                    ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                       ^
-    symbol:   variable player
-    location: class FastBridge
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                      ^
-    symbol:   variable player
-    location: class FastBridge
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-              BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                     ^
-    symbol:   variable player
-    location: class FastBridge
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-              arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                              ^
-    symbol:   variable player
-    location: class Freecam
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-              arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                             ^
-    symbol:   variable player
-    location: class Freecam
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-              arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                                            ^
     symbol:   variable player
     location: class Freecam
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                  ^
+          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                         ^
     symbol:   variable player
     location: class FakeLag
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                 ^
-    symbol:   variable player
-    location: class FakeLag
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                                ^
+          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                        ^
     symbol:   variable player
     location: class FakeLag
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                  ^
+          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                         ^
     symbol:   variable player
     location: class FakeLag
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                 ^
-    symbol:   variable player
-    location: class FakeLag
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-          pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                                ^
+          pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                        ^
     symbol:   variable player
     location: class FakeLag
   Note: Recompile with -Xlint:unchecked for details.
@@ -427,18 +165,12 @@ Execution failed for task ':compileJava' (registered by plugin class 'org.gradle
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:37: warning: [removal] runFinalization() in System has been deprecated and marked for removal
               System.runFinalization();
                     ^
-  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
   Note: Some input files use unchecked or unsafe operations.
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-          return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
-                                                                                              ^
-    symbol:   method get(RegistryKey<Registry<Enchantment>>)
-    location: interface DynamicRegistryManager
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:71: error: cannot find symbol
-              RenderHelper.getContext().drawItemInSlot(MinecraftClient.getInstance().textRenderer, itemStack, (int) (f / f3), (int) (f2 / f3));
-                                       ^
-    symbol:   method drawItemInSlot(TextRenderer,ItemStack,int,int)
-    location: class DrawContext
+          return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
+                                                                                                                                                          ^
+    symbol:   method entryOf(RegistryKey<Enchantment>)
+    location: interface Registry<Enchantment>
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
               Vec3d vec3d = camera.getPos();
                                   ^
@@ -459,7 +191,7 @@ Execution failed for task ':compileJava' (registered by plugin class 'org.gradle
                                         ^
     symbol:   method getPos()
     location: variable camera of type Camera
-  53 errors
+  13 errors
   4 warnings
 
 * Try:
@@ -502,24 +234,6 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler output below.
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:79: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                    RenderUtil.renderShaderRect(event.getMatrixStack(), RenderUtil.getThemeColor(color, 10, 1), RenderUtil.getThemeColor(color, 10, 2), RenderUtil.getThemeColor(color, 10, 3), RenderUtil.getThemeColor(color, 10, 4), f3, f4, f, f2, 5, 10);
-                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:81: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f3, f4, f3 + f, f4 + f2, new Color(14, 14, 14), 5);
-                                                                      ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/Hud.java:102: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f3 + 40, f4 + 29, f3 + 40 + (f - 65) * idk, f4 + 34, new Color(MathUtil.findMiddleValue(1 - idk, 0, 1), MathUtil.findMiddleValue(idk, 0, 1), 0), 2);
-                                                                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:61: error: incompatible types: Matrix3x2fStack cannot be converted to MatrixStack
-                    RenderUtil.renderShaderRect(render2DEvent.getMatrixStack(), themeColor, themeColor, themeColor, themeColor, f7, f4, 125, f2, 4, 10);
-                                                                            ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:63: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f7, f4, f7 + f, f4 + f2, new Color(12, 12, 12), 4);
-                                                                      ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/visuals/NameTags.java:77: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(f7 + 20, f4 + f2 - 7.5f, f7 + f - 25 - (f - 25) * (1 - f8), f4 + f2 - 2.5f, new Color(f10, f9, 0), f11);
-                                                                                                                         ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/SelfDestruct.java:27: warning: [removal] runFinalization() in System has been deprecated and marked for removal
             System.runFinalization();
                   ^
@@ -533,165 +247,50 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
             System.runFinalization();
                   ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                     ^
+            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                            ^
   symbol:   variable player
   location: class FastBridge
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                    ^
-  symbol:   variable player
-  location: class FastBridge
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FastBridge.java:28: error: cannot find symbol
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
-                                                                                                                   ^
+            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
+                                                                                                                           ^
   symbol:   variable player
   location: class FastBridge
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                            ^
+            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
+                                                                                   ^
   symbol:   variable player
   location: class Freecam
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                           ^
-  symbol:   variable player
-  location: class Freecam
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/Freecam.java:99: error: cannot find symbol
-            arrayList.add(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
-                                                                                          ^
+            arrayList.add(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ()));
+                                                                                                  ^
   symbol:   variable player
   location: class Freecam
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                       ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                               ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:60: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                              ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                      ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                       ^
   symbol:   variable player
   location: class FakeLag
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                               ^
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+                                                                                      ^
   symbol:   variable player
   location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/movement/FakeLag.java:130: error: cannot find symbol
-        pos = new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ());
-                                                                              ^
-  symbol:   variable player
-  location: class FakeLag
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:87: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect((float)width / 2 - 100, (float)height - 30, (float)width / 2 + 100, (float)height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/Interface.java:128: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(width / 2 + 105, height - 30, width / 2 + 125f, height - 10, RenderUtil.getColor(0, idk), 7);
-                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:31: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(0, f2), 7);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:33: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + 5, getY() + 5, getX() + getWidth() - 65, getY() + 20, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:35: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 60, getY() + 5, getX() + getWidth() - 45, getY() + 20, RenderUtil.getColor(fuckoff == 0 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:38: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 40, getY() + 5, getX() + getWidth() - 25, getY() + 20, RenderUtil.getColor(fuckoff == 1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:42: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 5, getX() + getWidth() - 5, getY() + 20, RenderUtil.getColor(fuckoff == -1 ? Prestige.Companion.getModuleManager().getMenu().getColor().getObject() : RenderUtil.getColor(-2, 1), f2), 5);
-                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:63: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + 5, getY() + 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(-2, f2), 5);
-                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:143: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f, f2, f + f3, f2 + f5, RenderUtil.getColor(1, f4), 5);
-                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:147: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 12.5f, f2 + 2.5f, f + f3 - 2.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:149: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 25, f2 + 2.5f, f + f3 - 15, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                             ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/tab/TabSocial.java:151: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f + f3 - 37.5f, f2 + 2.5f, f + f3 - 27.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/LoginScreen.java:40: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4, f5, f4 + f2, f5 + f3, new Color(13, 13, 13), 10);
-                                                               ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:57: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 0.8f), 9);
-                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:58: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2, f3, f2 + screenWidth, f3 + screenHeight, RenderUtil.getColor(0, 1), 10);
-                                                                                                     ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:63: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20,RenderUtil.getColor(1, 1), 5);
-                                                                                          ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:64: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(1, 1), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:65: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 - 105, f3 + 5, f4 - 5, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? (isInsidePublic(n, n2) ? 0.3f : 0) : 1), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:66: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f4 + 5, f3 + 5, f4 + 105, f3 + 20, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), currentMode.equals("Personal") ? 1 : (isInsidePersonal(n, n2) ? 0.3f : 0)), 5);
-                                                                                           ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:88: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(f2 + 525, f3 + screenHeight - 20, f2 + screenWidth - 5, f3 + screenHeight - 5, RenderUtil.getColor(-1, 1), 5);
-                                                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/screens/impl/ConfigScreen.java:183: error: method mouseClicked in interface ParentElement cannot be applied to given types;
-        return super.mouseClicked(d, d2, n);
-                    ^
-  required: Click,boolean
-  found:    double,double,int
-  reason: actual and formal argument lists differ in length
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:38: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() - 0.5f, getY() - 0.5f, getX() + getWidth() + 0.5f, getY() + getHeight() + 0.5f, RenderUtil.getColor(0, 0.2f), 10);
-                                                                                                                                               ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:39: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX(), getY(), getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(3, 1), 10);
-                                                                                                                   ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:75: error: incompatible types: Color cannot be converted to float
-                RenderUtil.renderRoundedRect(getX() + getWidth() - 50, getY() + getHeight() - 25, getX() + getWidth() - 30, getY() + getHeight() - 5,RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                        ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/buttons/ConfigButton.java:80: error: incompatible types: Color cannot be converted to float
-            RenderUtil.renderRoundedRect(getX() + getWidth() - 25, getY() + getHeight() - 25, getX() + getWidth() - 5, getY() + getHeight() - 5, RenderUtil.getColor(0, 0.3f), 4);
-                                                                                                                                                                    ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:40: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(3, f2), 4.5f);
-                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/ui/drawables/gui/settings/impl/BooleanButton.java:42: error: incompatible types: Color cannot be converted to float
-        RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), f2 * 0.5f), 4.5f);
-                                                                                                                                ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:64: error: incompatible types: possible lossy conversion from double to float
-        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                  ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/managers/DamageManager.java:198: error: incompatible types: possible lossy conversion from double to float
-        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
-                                                  ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/ItemChecks.java:58: error: cannot find symbol
-        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
-                                                                                            ^
-  symbol:   method get(RegistryKey<Registry<Enchantment>>)
-  location: interface DynamicRegistryManager
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:71: error: cannot find symbol
-            RenderHelper.getContext().drawItemInSlot(MinecraftClient.getInstance().textRenderer, itemStack, (int) (f / f3), (int) (f2 / f3));
-                                     ^
-  symbol:   method drawItemInSlot(TextRenderer,ItemStack,int,int)
-  location: class DrawContext
+        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
+                                                                                                                                                        ^
+  symbol:   method entryOf(RegistryKey<Enchantment>)
+  location: interface Registry<Enchantment>
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/util/impl/RenderUtil.java:584: error: cannot find symbol
             Vec3d vec3d = camera.getPos();
                                 ^
@@ -716,8 +315,7 @@ Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
-Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
-53 errors
+13 errors
 4 warnings
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:89)
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:50)
@@ -859,5 +457,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 47s
+BUILD FAILED in 1m 3s
 1 actionable task: 1 executed
