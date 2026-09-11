@@ -55,13 +55,13 @@ public class AutoPickaxe extends Module {
             }
         }
         originalSlot = getMc().player.getInventory().getSelectedSlot();
-        getMc().player.getInventory().setSelectedSlot(slot;
+        getMc().player.getInventory().setSelectedSlot(slot);
     }
 
     boolean idk() {
         if (originalSlot != -1) {
             if (timer.delay(this.delay)) {
-                getMc().player.getInventory().setSelectedSlot(originalSlot;
+                getMc().player.getInventory().setSelectedSlot(originalSlot);
                 originalSlot = -1;
             }
             return true;

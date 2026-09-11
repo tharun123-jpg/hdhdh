@@ -134,11 +134,11 @@ public class AutoCrystal extends Module {
                     int n = getMc().player.getInventory().getSelectedSlot();
                     int n2 = InventoryUtil.INSTANCE.findItemInHotbar(Items.END_CRYSTAL);
                     if (n2 != -1 && silentSwap.getObject()) {
-                        getMc().player.getInventory().setSelectedSlot(n2;
+                        getMc().player.getInventory().setSelectedSlot(n2);
                     }
                     ClientPlayerInteractionManager clientPlayerInteractionManager = getMc().interactionManager;
                     clientPlayerInteractionManager.interactBlock(getMc().player, Hand.MAIN_HAND, blockHitResult);
-                    getMc().player.getInventory().setSelectedSlot(n;
+                    getMc().player.getInventory().setSelectedSlot(n);
                     pos = blockHitResult.getBlockPos();
                 }
             }

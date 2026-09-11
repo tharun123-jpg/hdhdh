@@ -43,7 +43,7 @@ public class SilentAim extends Module implements IRotatable {
         if (!preClick) {
             return null;
         }
-        if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
+        if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
             return null;
         }
         HitResult hitResult = getMc().crosshairTarget;
@@ -65,7 +65,7 @@ public class SilentAim extends Module implements IRotatable {
     @EventListener
     public void event(SwingHandEvent event) {
         if (!postClick) {
-            if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
+            if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
                 return;
             }
             HitResult hitResult = getMc().crosshairTarget;
