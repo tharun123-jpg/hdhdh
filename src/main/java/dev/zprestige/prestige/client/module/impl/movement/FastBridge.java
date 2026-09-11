@@ -25,7 +25,7 @@ public class FastBridge extends Module {
                     bridging = false;
                 }
             }
-            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ())).down();
+            BlockPos blockPos = BlockPos.ofFloored(new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ())).down();
             ClientWorld clientWorld = getMc().world;
             if (clientWorld.getBlockState(blockPos).isReplaceable() && clientWorld.getBlockState(blockPos.down()).isReplaceable() && clientWorld.getBlockState(blockPos.down().down()).isReplaceable()) {
                 getMc().options.sneakKey.setPressed(true);

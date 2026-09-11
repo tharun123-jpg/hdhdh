@@ -68,7 +68,7 @@ public class RenderUtil {
         matrices.scale(f3, f3);
         RenderHelper.getContext().drawItem(itemStack, (int) (f / f3), (int) (f2 / f3));
         if (bl) {
-            RenderHelper.getContext().drawItemInSlot(MinecraftClient.getInstance().textRenderer, itemStack, (int) (f / f3), (int) (f2 / f3));
+            RenderHelper.getContext().drawStackOverlay(MinecraftClient.getInstance().textRenderer, itemStack, (int) (f / f3), (int) (f2 / f3));
         }
         matrices.popMatrix();
     }
@@ -158,7 +158,7 @@ public class RenderUtil {
     /* ------------------------------------------------------------------ */
 
     public static void renderRoundedRectOutline(float f, float f2, float f3, float f4, Color color, float f5) {
-        renderRoundedRect(f, f2, f3, f4, f5, color);
+        renderRoundedRect(f, f2, f3, f4, color, f5);
     }
 
     private static void quadLine(Matrix3x2fStack m, net.minecraft.client.render.VertexConsumer vc, float x1, float y1, float x2, float y2, float width, int color) {
@@ -221,7 +221,7 @@ public class RenderUtil {
         quadLine(m, vc, px, py, f + f5, f2, width, color);
     }
 
-    public static void renderRoundedRect(float f, float f2, float f3, float f4, float f5, Color color) {
+    public static void renderRoundedRect(float f, float f2, float f3, float f4, Color color, float f5) {
         renderColoredRoundedRect(f, f2, f3, f4, f5, color, color, color, color);
     }
 
@@ -465,7 +465,7 @@ public class RenderUtil {
     /* shader rect (legacy entry point used by Interface)                  */
     /* ------------------------------------------------------------------ */
 
-    public static void renderShaderRect(MatrixStack matrixStack, Color color, Color color2, Color color3, Color color4, float f, float f2, float f3, float f4, float f5, float f6) {
+    public static void renderShaderRect(Matrix3x2fStack matrixStack, Color color, Color color2, Color color3, Color color4, float f, float f2, float f3, float f4, float f5, float f6) {
         if (shader == null) {
             return;
         }

@@ -124,7 +124,10 @@ public class ConfigScreen extends DrawableScreen {
         }
     }
 
-    public boolean mouseClicked(double d, double d2, int n) {
+    public boolean mouseClicked(net.minecraft.client.gui.Click click, boolean doubled) {
+        double d = click.x();
+        double d2 = click.y();
+        int n = click.button();
         if (n == 0) {
             if (isInsidePublic((int)d, (int)d2)) {
                 currentMode = "Public";
@@ -180,7 +183,7 @@ public class ConfigScreen extends DrawableScreen {
             }
             configButton.mouseClicked(d, d2, n);
         }
-        return super.mouseClicked(d, d2, n);
+        return super.mouseClicked(click, doubled);
     }
 
     public boolean shouldCloseOnEsc() {
