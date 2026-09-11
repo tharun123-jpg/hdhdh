@@ -29,10 +29,13 @@ jobs:
           gradle-version: '9.5.1'
 
       - name: Migrate sources (migrateMappings)
-        run: gradle migrateMappings --mappings "1.21.11+build.5" --input src/main/java --output migratedSrc --no-daemon --console=plain --stacktrace
+        run: |
+          set -o pipefail
+          gradle migrateMappings --mappings "1.21.11+build.5" --input src/main/java --output migratedSrc --no-daemon --console=plain --stacktrace 2>&1 | tee /tmp/gradle-migrate.log
 
       - name: Migrate access widener (best effort)
-        run: gradle migrateClassTweakerMappings --mappings "1.21.11+build.5" --no-daemon --console=plain || echo "AW migration failed, will fix manually"
+        run: |
+          gradle migrateClassTweakerMappings --mappings "1.21.11+build.5" --no-daemon --console=plain 2>&1 | tee -a /tmp/gradle-migrate.log || echo "AW migration failed, will fix manually" | tee -a /tmp/gradle-migrate.log
 
       - name: Replace sources with migrated output
         run: |
@@ -41,10 +44,16 @@ jobs:
           cp -r migratedSrc/* src/main/java/
           rm -rf migratedSrc
 
-      - name: Commit migrated sources
+      - name: Commit results and logs
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p ci
+          cp /tmp/gradle-migrate.log ci/migrate-log.txt || echo "no log captured" > ci/migrate-log.txt
           git add -A
-          git commit -m "Migrate sources to yarn 1.21.11+build.5 (loom migrateMappings)"
+          if [ "${{ job.status }}" = "success" ]; then
+            git rm -q --ignore-unmatch .migrate-trigger
+          fi
+          git commit -m "ci: mapping migration result [skip ci]" || echo "nothing to commit"
           git push

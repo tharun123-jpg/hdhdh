@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -35,11 +35,25 @@ jobs:
           gradle-version: '9.5.1'
 
       - name: Build
-        run: gradle build --no-daemon --console=plain --stacktrace
+        run: |
+          set -o pipefail
+          gradle build --no-daemon --console=plain --stacktrace 2>&1 | tee /tmp/gradle-build.log
 
       - name: Upload jar
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: Prestige-1.21.11
           path: build/libs/*.jar
           if-no-files-found: error
+
+      - name: Commit build log
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p ci
+          cp /tmp/gradle-build.log ci/build-log.txt || echo "no log captured" > ci/build-log.txt
+          git add ci/build-log.txt
+          git commit -m "ci: build log [skip ci]" || echo "nothing to commit"
+          git push
