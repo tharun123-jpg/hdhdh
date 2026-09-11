@@ -32,12 +32,17 @@ jobs:
       - name: Resolve remapped minecraft jar (named)
         run: |
           set -o pipefail
-          gradle downloadAssets --no-daemon --console=plain -q || true
-          gradle configureClientLaunch --no-daemon --console=plain -q || true
-          gradle dependencies --configuration runtimeClasspath --no-daemon --console=plain -q || true
-          JAR=$(find ~/.gradle/caches/fabric-loom -name "*minecraft*merged*.jar" -o -name "*minecraft*named*.jar" 2>/dev/null | grep -v sources | grep -v intermediar | head -1)
+          cat > /tmp/initcp.gradle <<'EOF'
+allprojects {
+    tasks.register('printCompileCp') {
+        doLast { println "CP=" + sourceSets.main.compileClasspath.asPath }
+    }
+}
+EOF
+          CP=$(gradle -I /tmp/initcp.gradle printCompileCp --no-daemon --console=plain -q 2>/dev/null | grep "^CP=" | head -1 | cut -d= -f2-)
+          JAR=$(echo "$CP" | tr ':' '\n' | grep -E "minecraft.*\.jar$" | grep -vE "sources" | head -1)
           echo "JAR=$JAR" | tee jar.path
-          [ -n "$JAR" ] || (find ~/.gradle/caches/fabric-loom -name "*.jar" | head -50)
+          [ -n "$JAR" ] || (echo "CP=$CP" && find ~/.gradle/caches/fabric-loom -name "*.jar" | head -50)
 
       - name: Dump signatures
         run: |
