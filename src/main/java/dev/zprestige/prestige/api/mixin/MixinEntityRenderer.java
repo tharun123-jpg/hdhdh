@@ -35,14 +35,13 @@ public abstract class MixinEntityRenderer<T extends Entity, S extends EntityRend
                 }
             }
         }
-        if (state.id != 0) {
-            ClientWorld world = (ClientWorld) net.minecraft.client.MinecraftClient.getInstance().world;
-            if (world != null) {
-                Entity entity = world.getEntityById(state.id);
-                if (entity != null) {
-                    new dev.zprestige.prestige.client.event.impl.RenderHitboxEvent(entity).invoke();
-                }
-            }
+    }
+
+    @Inject(method={"getAndUpdateRenderState"}, at={@At(value="HEAD")})
+    void updateRenderState(T entity, float f, CallbackInfo callbackInfo) {
+        if (Prestige.Companion.getSelfDestructed()) {
+            return;
         }
+        new dev.zprestige.prestige.client.event.impl.RenderHitboxEvent(entity).invoke();
     }
 }
