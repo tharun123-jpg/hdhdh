@@ -70,7 +70,7 @@ public class AimAssist extends Module {
             }
         }
         if (weaponOnly.getObject()) {
-            if (!ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+            if (!ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
                 return;
             }
         }
