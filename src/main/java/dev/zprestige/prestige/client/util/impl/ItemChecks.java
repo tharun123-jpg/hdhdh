@@ -54,8 +54,12 @@ public class ItemChecks {
         return stack != null && stack.contains(DataComponentTypes.FOOD);
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public static RegistryEntry<Enchantment> entry(net.minecraft.registry.RegistryKey<Enchantment> key) {
-        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENCHANTMENT).getEntry(key).orElseThrow();
+        net.minecraft.registry.RegistryWrapper.Impl<net.minecraft.enchantment.Enchantment> lookup =
+            (net.minecraft.registry.RegistryWrapper.Impl) net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager()
+                .getOrThrow((net.minecraft.registry.RegistryKey) (Object) net.minecraft.registry.RegistryKeys.ENCHANTMENT);
+        return lookup.entryOf(key);
     }
 
     /**
