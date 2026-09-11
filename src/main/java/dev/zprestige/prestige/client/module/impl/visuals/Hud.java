@@ -52,13 +52,13 @@ public class Hud extends Module {
         prevHealth = health;
         idk = healthval;
         animation = new Animation(500, false, Easing.BACK_IN_OUT);
-        watermarkTexture = new Identifier("prestige", "icons/logo.png");
+        watermarkTexture = Identifier.of("prestige", "icons/logo.png");
     }
 
     @EventListener
     public void event(Render2DEvent event) {;
         Prestige.Companion.getFontManager().setMatrixStack(event.getMatrixStack());
-        RenderHelper.setMatrixStack(event.getMatrixStack());
+        RenderHelper.setGuiMatrices(event.getMatrixStack());
         Color color = Prestige.Companion.getModuleManager().getMenu().getColor().getObject();
         deltaTime = System.currentTimeMillis() - time;
         time = System.currentTimeMillis();
@@ -71,20 +71,24 @@ public class Hud extends Module {
             float f4 = (float)event.getScaledHeight() / 2 - f2 / 2 + 100;
             float f5 = animation.getAnimationFactor();
             if (f5 > 0.1f) {
-                event.getMatrixStack().push();
+                event.getMatrixStack().pushMatrix();
                 event.getMatrixStack().translate(f3 + f / 2, f4 + f2 / 2, 0);
-                event.getMatrixStack().scale(f5, f5, f5);
+                event.getMatrixStack().scale(f5, f5);
                 event.getMatrixStack().translate(-f3 - f / 2, -f4 - f2 / 2, 0);
                 if (glow.getObject()) {
                     RenderUtil.renderShaderRect(event.getMatrixStack(), RenderUtil.getThemeColor(color, 10, 1), RenderUtil.getThemeColor(color, 10, 2), RenderUtil.getThemeColor(color, 10, 3), RenderUtil.getThemeColor(color, 10, 4), f3, f4, f, f2, 5, 10);
                 }
                 RenderUtil.renderRoundedRect(f3, f4, f3 + f, f4 + f2, new Color(14, 14, 14), 5);
                 if (player != null) {
-                    playerTexture = this.getMc().getNetworkHandler().getPlayerListEntry(player.getUuid()).getSkinTexture();
+                    playerTexture = this.getMc().getNetworkHandler().getPlayerListEntry(player.getUuid()).getSkinTextures().body().texturePath();
                     name = player.getNameForScoreboard();
                     health = (float)Math.ceil(player.getHealth() + player.getAbsorptionAmount());
                     healthval = MathUtil.findMiddleValue((player.getHealth() + player.getAbsorptionAmount()) / 24, 0, 1);
-                    items = player.getArmorItems();
+                    items = java.util.List.of(
+                            player.getEquippedStack(net.minecraft.entity.EquipmentSlot.HEAD),
+                            player.getEquippedStack(net.minecraft.entity.EquipmentSlot.CHEST),
+                            player.getEquippedStack(net.minecraft.entity.EquipmentSlot.LEGS),
+                            player.getEquippedStack(net.minecraft.entity.EquipmentSlot.FEET));
                 }
                 if (playerTexture != null) {
                     RenderUtil.renderTexturedQuad(playerTexture, f3 + 5, f4 + 5, 0, 30, 30, 30, 30, 240, 240);
@@ -110,7 +114,7 @@ public class Hud extends Module {
                         f8 += 18;
                     }
                 }
-                event.getMatrixStack().pop();
+                event.getMatrixStack().popMatrix();
             }
         }
         if (watermark.getObject()) {

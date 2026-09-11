@@ -50,10 +50,10 @@ public class AutoPot extends Module {
             }
             slot = n2;
         } else {
-            slot = getMc().player.getInventory().selectedSlot;
+            slot = getMc().player.getInventory().getSelectedSlot();
         }
         float pitch = getMc().player.getPitch();
-        int prevSlot = getMc().player.getInventory().selectedSlot;
+        int prevSlot = getMc().player.getInventory().getSelectedSlot();
         InventoryUtil.INSTANCE.setCurrentSlot(slot);
         getMc().player.setPitch(this.pitch.getObject() - 1.0f + RandomUtil.INSTANCE.getRandom().nextFloat());
         getMc().interactionManager.interactItem(getMc().player, Hand.MAIN_HAND);

@@ -26,7 +26,6 @@ public class KeybindHanlder implements MC, Handler {
             if (event.getKey() == ((Number)Prestige.Companion.getModuleManager().getMenu().getBind().getObject()).intValue()) {
                 Prestige.Companion.getClickGUI().setInitPos(true);
                 scale = this.getMc().getWindow().getScaleFactor();
-                this.getMc().getWindow().setScaleFactor(2.0);
                 this.getMc().setScreen(Prestige.Companion.getClickGUI());
             }
         }

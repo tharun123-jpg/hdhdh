@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.misc;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
+
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.MoveEvent;
 import dev.zprestige.prestige.client.module.Category;
@@ -24,7 +26,7 @@ public class AutoTool extends Module {
         if (getMc().crosshairTarget instanceof BlockHitResult blockHitResult && !getMc().world.getBlockState(blockHitResult.getBlockPos()).isAir()) {
             int n = getTool(blockHitResult.getBlockPos());
             if (n != -1 && getMc().options.attackKey.isPressed()) {
-                slot = getMc().player.getInventory().selectedSlot;
+                slot = getMc().player.getInventory().getSelectedSlot();
                 InventoryUtil.INSTANCE.setCurrentSlot(n);
             } else {
                 InventoryUtil.INSTANCE.setCurrentSlot(slot);
@@ -36,7 +38,7 @@ public class AutoTool extends Module {
         for (int i = 0; i < 9; i++) {
             ItemStack itemStack = getMc().player.getInventory().getStack(i);
             if (!itemStack.isEmpty() && itemStack.getMaxDamage() - itemStack.getDamage() > 10) {
-                float f = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
+                float f = EnchantmentHelper.getLevel(ItemChecks.entry(Enchantments.EFFICIENCY), itemStack);
                 float f2 = itemStack.getMiningSpeedMultiplier(getMc().world.getBlockState(blockPos));
                 if (getMc().world.getBlockState(blockPos).getBlock() instanceof AirBlock) {
                     return -1;

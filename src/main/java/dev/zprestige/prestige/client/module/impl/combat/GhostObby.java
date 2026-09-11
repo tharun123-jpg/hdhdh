@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
+
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.MoveEvent;
 import dev.zprestige.prestige.client.module.Category;
@@ -28,7 +30,7 @@ public class GhostObby extends Module {
         if (!field559.delay(200)) {
             return;
         }
-        if (getMc().player.getMainHandStack().isFood() || getMc().player.getMainHandStack().isStackable()) {
+        if (ItemChecks.isFood(getMc().player.getMainHandStack()) || getMc().player.getMainHandStack().isStackable()) {
             return;
         }
         if (GLFW.glfwGetMouseButton(getMc().getWindow().getHandle(), 1) != 1) {
@@ -40,7 +42,7 @@ public class GhostObby extends Module {
         }
         BlockPos blockPos = ((BlockHitResult)hitResult).getBlockPos();
         if (getMc().world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN && getMc().world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && !BlockUtil.INSTANCE.isCollidesEntity(blockPos)) {
-            int slot = getMc().player.getInventory().selectedSlot;
+            int slot = getMc().player.getInventory().getSelectedSlot();
             if (InventoryUtil.INSTANCE.findBlockSlot(Blocks.OBSIDIAN) != null) {
                 InventoryUtil.INSTANCE.setCurrentSlot(InventoryUtil.INSTANCE.findBlockSlot(Blocks.OBSIDIAN));
                 getMc().interactionManager.interactBlock(getMc().player, getMc().player.getActiveHand(), (BlockHitResult) hitResult);

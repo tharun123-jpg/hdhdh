@@ -56,7 +56,7 @@ public class KeyPearl extends Module {
             reset();
             return;
         }
-        PacketUtil.INSTANCE.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0));
+        PacketUtil.INSTANCE.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0, getMc().player.getYaw(), getMc().player.getPitch()));
         getMc().player.swingHand(Hand.MAIN_HAND);
         throwPearl = true;
         reset();

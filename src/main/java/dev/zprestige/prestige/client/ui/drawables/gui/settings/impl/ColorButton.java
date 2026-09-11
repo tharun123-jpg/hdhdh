@@ -18,7 +18,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.Arrays;
 
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import org.lwjgl.opengl.GL11;
 
 public class ColorButton extends SettingsDrawable {
@@ -52,11 +52,11 @@ public class ColorButton extends SettingsDrawable {
         width = MathUtil.interpolate(width, isOver2(n, n2) ? 0.7f : 0.3f, Interface.getDeltaTime() * 0.005f);
         animation.setState(expanded);
         float f7 = 0.95f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f7, f7, f7);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f7, f7);
         font.drawString(color.getName(), getX() / f7, (getY() + 7.5f - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(width, f2));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         RenderUtil.renderFilledCircle(getX() + getWidth() - 7.5f, getY() + 7.5f, 4.5f, RenderUtil.getColor(-3, f2));
         RenderUtil.renderFilledCircle(getX() + getWidth() - 7.5f, getY() + 7.5f, 4.0f, RenderUtil.getColor(color.getObject(), f2 * color.getObject().getAlpha() / 255));
         if (animation.getAnimationFactor() > 0.001f) {
@@ -94,12 +94,12 @@ public class ColorButton extends SettingsDrawable {
         RenderUtil.renderColoredQuad(getX() + getWidth() / 2 + 2.5f, getY() + 125, getX() + getWidth() - 5, getY() + 135, RenderUtil.getColor(-1, f));
         RenderUtil.renderRoundedRectOutline(getX() + getWidth() / 2 + 2.5f, getY() + 125, getX() + getWidth() - 5, getY() + 135, RenderUtil.getColor(-3, f), 0);
         float f7 = 0.8f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f7, f7, f7);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f7, f7);
         font.drawString("Copy", (getX() + 5 + 21.25f - font.getStringWidth("Copy") * f7 / 2.0f) / f7, (getY() + 130 - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(isOver5(n, n2) ? 0.5f : 0.8f, f));
         font.drawString("Paste", (getX() + getWidth() / 2 + 2.5f + 21.25f - font.getStringWidth("Paste") * f7 / 2) / f7, (getY() + 130 - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(isOver6(n, n2) ? 0.5f : 0.8f, f));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         if (over2) {
             color.invokeValue(Color.getHSBColor(MathUtil.findMiddleValue(((float)n - (getX() + 5)) / (getWidth() - 10), 0, 1), hue2(color.getObject()), hue3(color.getObject())));
             color.invokeValue(new Color(color.getObject().getRed(), color.getObject().getGreen(), color.getObject().getBlue(), color.getObject().getAlpha()));

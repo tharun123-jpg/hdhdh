@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.RenderUtil;
+
 import dev.zprestige.prestige.client.Prestige;
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.Render2DEvent;
@@ -18,8 +20,6 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
@@ -70,13 +70,13 @@ public class AimAssist extends Module {
             }
         }
         if (weaponOnly.getObject()) {
-            if (!(getMc().player.getMainHandStack().getItem() instanceof SwordItem) && !(getMc().player.getMainHandStack().getItem() instanceof AxeItem)) {
+            if (!(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
                 return;
             }
         }
         Rotation rotation = new Rotation(getMc().player.getYaw(), getMc().player.getPitch());
         if (target != null) {
-            Vec3d vec3d = target.getPos();
+            Vec3d vec3d = RenderUtil.getEntityPos(target);
             ClientPlayerEntity clientPlayerEntity3 = getMc().player;
             if (Math.sqrt(clientPlayerEntity3.squaredDistanceTo(vec3d.x, vec3d.y, vec3d.z)) > range.getObject()) {
                 target = null;
@@ -95,7 +95,7 @@ public class AimAssist extends Module {
         }
         Vec3d vec3d = target.getEyePos();
         double d = vec3d.y - getHeight(target.getHeight());
-        BlockHitResult raycast = getMc().world.raycast(new RaycastContext(getMc().player.getCameraPosVec(getMc().getTickDelta()), new Vec3d(vec3d.x, d, vec3d.z), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.ANY, getMc().player));
+        BlockHitResult raycast = getMc().world.raycast(new RaycastContext(getMc().player.getCameraPosVec(RenderUtil.getTickDelta()), new Vec3d(vec3d.x, d, vec3d.z), RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.ANY, getMc().player));
         if (raycast.getType() == HitResult.Type.BLOCK) {
             visibleTime.setValue();
             visibleTimer.reset();

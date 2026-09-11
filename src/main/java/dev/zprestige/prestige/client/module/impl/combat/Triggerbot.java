@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
+
 import dev.zprestige.prestige.client.Prestige;
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.Phase;
@@ -25,7 +27,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
 import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
@@ -76,7 +77,7 @@ public class Triggerbot extends Module {
                     }
                 }
                 if (getMc().player != null) {
-                    if (getMc().player.getMainHandStack().getItem() instanceof SwordItem) {
+                    if (ItemChecks.isSword(getMc().player.getMainHandStack())) {
                         if (getMc().player != null && getMc().player.getAttackCooldownProgress(0.5f) < cooldown.getObject().floatValue() / 100) {
                             return;
                         }

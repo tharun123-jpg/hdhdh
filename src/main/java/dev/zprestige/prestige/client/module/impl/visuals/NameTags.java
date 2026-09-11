@@ -32,15 +32,15 @@ extends Module {
     @EventListener
     public void method304(Render2DEvent render2DEvent) {
         Prestige.Companion.getFontManager().setMatrixStack(render2DEvent.getMatrixStack());
-        RenderHelper.setMatrixStack(render2DEvent.getMatrixStack());
+        RenderHelper.setGuiMatrices(render2DEvent.getMatrixStack());
         float f = 125;
         float f2 = 20;
         for (PlayerEntity player : getMc().world.getPlayers()) {
             AntiBotManager antiBotManager = Prestige.Companion.getAntiBotManager();
             if (antiBotManager.isNotBot(player)) {
-                double d = player.lastX + (player.getX() - player.lastX) * getMc().getTickDelta();
-                double d2 = player.lastY + (player.getY() - player.lastY) * getMc().getTickDelta();
-                double d3 = player.lastZ + (player.getZ() - player.lastZ) * getMc().getTickDelta();
+                double d = player.lastX + (player.getX() - player.lastX) * RenderUtil.getTickDelta();
+                double d2 = player.lastY + (player.getY() - player.lastY) * RenderUtil.getTickDelta();
+                double d3 = player.lastZ + (player.getZ() - player.lastZ) * RenderUtil.getTickDelta();
                 Vec3d vec3d = new Vec3d(d, d2 + 2, d3);
                 Vector4d vector4d = null;
                 vec3d = RenderUtil.worldSpaceToScreenSpace(new Vec3d(vec3d.x, vec3d.y, vec3d.z));
@@ -63,7 +63,7 @@ extends Module {
                 RenderUtil.renderRoundedRect(f7, f4, f7 + f, f4 + f2, new Color(12, 12, 12), 4);
                 PlayerListEntry playerListEntry = getMc().getNetworkHandler().getPlayerListEntry(player.getUuid());
                 if (getMc().getNetworkHandler().getPlayerListEntry(player.getUuid()) == null) continue;
-                RenderUtil.renderTexturedQuad(playerListEntry.getSkinTexture(), f7 + 2.5f, f4 + 2.5f, 0, 15, 15, 15, 15, 120, 120);
+                RenderUtil.renderTexturedQuad(playerListEntry.getSkinTextures().body().texturePath(), f7 + 2.5f, f4 + 2.5f, 0, 15, 15, 15, 15, 120, 120);
                 float f8 = MathUtil.findMiddleValue((player.getHealth() + player.getAbsorptionAmount()) / 20, 0, 1);
                 float f9 = MathUtil.findMiddleValue(f8, 0, 1);
                 float f10 = MathUtil.findMiddleValue(1 - f8, 0, 1);

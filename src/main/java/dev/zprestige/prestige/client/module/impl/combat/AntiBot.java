@@ -29,7 +29,7 @@ public class AntiBot extends Module {
     @EventListener
     public void event(PacketReceiveEvent event) {
         if (setting.getValue("Packet") && event.getPacket() instanceof EntityPositionS2CPacket && getMc().world != null) {
-            Entity entity = getMc().world.getEntityById(((EntityPositionS2CPacket)event.getPacket()).getId());
+            Entity entity = getMc().world.getEntityById(((EntityPositionS2CPacket)event.getPacket()).entityId());
             if (entity == null) {
                 return;
             }

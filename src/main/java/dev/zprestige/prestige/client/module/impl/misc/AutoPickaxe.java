@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.misc;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
+
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.Render2DEvent;
 import dev.zprestige.prestige.client.module.Category;
@@ -9,7 +11,6 @@ import dev.zprestige.prestige.client.util.impl.InventoryUtil;
 import dev.zprestige.prestige.client.util.impl.TimerUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
 import net.minecraft.util.hit.BlockHitResult;
 
 public class AutoPickaxe extends Module {
@@ -39,7 +40,7 @@ public class AutoPickaxe extends Module {
             }
             return;
         }
-        if (getMc().player.getMainHandStack().getItem() instanceof PickaxeItem) {
+        if (ItemChecks.isPickaxe(getMc().player.getMainHandStack())) {
             reset();
             return;
         }
@@ -53,14 +54,14 @@ public class AutoPickaxe extends Module {
                 return;
             }
         }
-        originalSlot = getMc().player.getInventory().selectedSlot;
-        getMc().player.getInventory().selectedSlot = slot;
+        originalSlot = getMc().player.getInventory().getSelectedSlot();
+        getMc().player.getInventory().setSelectedSlot(slot;
     }
 
     boolean idk() {
         if (originalSlot != -1) {
             if (timer.delay(this.delay)) {
-                getMc().player.getInventory().selectedSlot = originalSlot;
+                getMc().player.getInventory().setSelectedSlot(originalSlot;
                 originalSlot = -1;
             }
             return true;

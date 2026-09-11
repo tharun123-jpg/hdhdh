@@ -16,7 +16,7 @@ import dev.zprestige.prestige.client.util.impl.RenderHelper;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import net.minecraft.util.Identifier;
 import org.lwjgl.opengl.GL11;
 
@@ -26,8 +26,8 @@ import java.util.ArrayList;
 public class Interface extends DrawableScreen implements MC {
 
     public ArrayList<Drawable> tabs = new ArrayList<>();
-    public Identifier socialImage = new Identifier("prestige", "icons/other/social.png");
-    public Identifier searchImage = new Identifier("prestige", "icons/search.png");
+    public Identifier socialImage = Identifier.of("prestige", "icons/other/social.png");
+    public Identifier searchImage = Identifier.of("prestige", "icons/search.png");
     public TabSocial field842;
     public static String search = "";
     public boolean notLoaded = true;
@@ -76,7 +76,7 @@ public class Interface extends DrawableScreen implements MC {
         }
         Prestige.Companion.getFontManager().setMatrixStack(drawContext.getMatrices());
         FontRenderer font = Prestige.Companion.getFontManager().getFontRenderer();
-        RenderHelper.setMatrixStack(drawContext.getMatrices());
+        RenderHelper.setGuiMatrices(drawContext.getMatrices());
         deltaTime = System.currentTimeMillis() - time;
         time = System.currentTimeMillis();
         if (Interface.getDeltaTime() * 0.005f > 1.0f) {
@@ -97,11 +97,11 @@ public class Interface extends DrawableScreen implements MC {
             string = search;
         }
         float f9 = 0.9f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f9, f9, f9);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f9, f9);
         font.drawString(string + (inSearch ? typingIcon() : ""), ((float)width / 2 - 90) / f9, ((float)height - 27.6f) / f9, RenderUtil.getColor(search.isEmpty() ? 0.6f : 1.0f, idk));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         GL11.glDisable(3089);
         renderSocialsButton();
         if (isSocial) {
@@ -135,7 +135,6 @@ public class Interface extends DrawableScreen implements MC {
     @Override
     public void close() {
         idk = 0.0f;
-        getMc().getWindow().setScaleFactor(KeybindHanlder.getScale());
         super.close();
     }
 

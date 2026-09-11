@@ -17,6 +17,7 @@ import dev.zprestige.prestige.client.setting.impl.IntSetting;
 import dev.zprestige.prestige.client.setting.impl.MultipleSetting;
 import dev.zprestige.prestige.client.ui.font.FontRenderer;
 import dev.zprestige.prestige.client.util.impl.RenderHelper;
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import java.awt.Color;
@@ -30,7 +31,6 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.BlockBreakingInfo;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.s2c.play.ChunkDeltaUpdateS2CPacket;
@@ -84,7 +84,7 @@ public class ESP extends Module {
     public void event(Render3DEvent event) {
         MatrixStack matrixStack = event.getMatrixStack();
         RenderHelper.setMatrixStack(matrixStack);
-        Prestige.Companion.getFontManager().setMatrixStack(matrixStack);
+        Prestige.Companion.getFontManager().setWorldMatrix(matrixStack);
         Vec3d vec3d = this.getRenderPosition();
         if (players.getObject()) {
             renderPlayers(vec3d);
@@ -120,7 +120,7 @@ public class ESP extends Module {
             AntiBotManager antiBotManager = Prestige.Companion.getAntiBotManager();
             if (antiBotManager.isNotBot(player)) {
                 if (this.frustrum != null) {
-                    if (!frustrum.isVisible(player.getVisibilityBoundingBox())) continue;
+                    if (!frustrum.isVisible(player.getBoundingBox())) continue;
                 }
                 String string = player.getNameForScoreboard();
                 Color color;
@@ -139,7 +139,7 @@ public class ESP extends Module {
                 if (tracers.getValue("Players")) {
                     ArrayList<Vec3d> arrayList = new ArrayList<>();
                     arrayList.add(vec3d);
-                    arrayList.add(player.getPos());
+                    arrayList.add(RenderUtil.getEntityPos(player));
                     RenderUtil.setCameraAction();
                     RenderUtil.renderLines(arrayList, color);
                     matrixStack.pop();
@@ -154,7 +154,7 @@ public class ESP extends Module {
             if (entity instanceof ItemEntity itemEntity) {
                 Item item = itemEntity.getStack().getItem();
                 Color themeColor = Prestige.Companion.getModuleManager().getMenu().getColor().getObject();
-                Color color = item == Items.TOTEM_OF_UNDYING ? new Color(255, 255, 0, 100) : item == Items.ENDER_PEARL ? new Color(45, 90, 60, 100) : (item instanceof ArmorItem ? new Color(63, 63, 63, 100) : new Color(themeColor.getRed(), themeColor.getGreen(), themeColor.getBlue(), 100));
+                Color color = item == Items.TOTEM_OF_UNDYING ? new Color(255, 255, 0, 100) : item == Items.ENDER_PEARL ? new Color(45, 90, 60, 100) : (ItemChecks.isArmor(itemEntity.getStack()) ? new Color(63, 63, 63, 100) : new Color(themeColor.getRed(), themeColor.getGreen(), themeColor.getBlue(), 100));
                 Vec3d itemPos = RenderUtil.getEntityPos(entity);
                 float f = entity.getWidth() / 2;
                 RenderUtil.renderFilledBox((float) itemPos.x - f, (float) itemPos.y - f, (float) itemPos.z - f, (float) itemPos.x + f, (float) itemPos.y + f, (float) itemPos.z + f, color);
@@ -162,7 +162,7 @@ public class ESP extends Module {
                 if (tracers.getValue("Drops")) {
                     ArrayList<Vec3d> arrayList = new ArrayList<>();
                     arrayList.add(vec3d);
-                    arrayList.add(itemEntity.getPos());
+                    arrayList.add(RenderUtil.getEntityPos(itemEntity));
                     RenderUtil.renderLines(arrayList, RenderUtil.getColor(color, 1));
                 }
             }
@@ -220,7 +220,7 @@ public class ESP extends Module {
                 if (!entities.containsKey(entity)) {
                     entities.put(entity, new HashMap());
                 }
-                entities.get(entity).put(System.currentTimeMillis(), entity.getPos());
+                entities.get(entity).put(System.currentTimeMillis(), RenderUtil.getEntityPos(entity));
             }
         }
         for (Map.Entry<Entity, Map<Long, Vec3d>> entry : entities.entrySet()) {
@@ -285,12 +285,11 @@ public class ESP extends Module {
     }
 
     private void setMatrix(MatrixStack matrixStack) {
-        Entity entity = getMc().cameraEntity;
+        Entity entity = getMc().getCameraEntity();
         if (entity instanceof PlayerEntity player) {
-            float f = getMc().getTickDelta();
-            float f2 = entity.horizontalSpeed - entity.prevHorizontalSpeed;
-            float f3 = -(entity.horizontalSpeed + f2 * f);
-            float f4 = MathHelper.lerp(f, player.prevStrideDistance, player.strideDistance);
+            float f = RenderUtil.getTickDelta();
+            float f3 = -player.limbAnimator.getSpeed();
+            float f4 = player.limbAnimator.getAnimationProgress(f);
             matrixStack.translate(-((MathHelper.sin(f3 * (float)Math.PI) * f4) * 0.5), Math.abs(MathHelper.cos(f3 * (float)Math.PI) * f4), 0.0);
             matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.sin(f3 * (float)Math.PI) * f4 * 3));
             matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(Math.abs(MathHelper.cos(f3 * (float)Math.PI - 0.2f) * f4) * 5));

@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
+
 import dev.zprestige.prestige.client.Prestige;
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.PacketSendEvent;
@@ -24,7 +26,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
 import net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
@@ -106,7 +107,7 @@ public class PredictDoubleHand extends Module {
                     }
                 }
             }
-            if (triggers.getValue("Sword Pop") && (playerEntity2.getMainHandStack().getItem() instanceof SwordItem || playerEntity2.getMainHandStack().getItem() instanceof AxeItem) && playerEntity2.getHealth() + this.getMc().player.getAbsorptionAmount() < 1.0f) {
+            if (triggers.getValue("Sword Pop") && ItemChecks.isSwordOrAxe(playerEntity2.getMainHandStack()) && playerEntity2.getHealth() + this.getMc().player.getAbsorptionAmount() < 1.0f) {
                 InventoryUtil.INSTANCE.setCurrentSlot(n);
             }
         }

@@ -26,7 +26,7 @@ public class TabCategory extends Drawable {
     public TabCategory(Category category, float f, float f2, float f3, float f4) {
         super(f, f2, f3, f4, null);
         dispatched = category;
-        categoryTexture = new Identifier("prestige", "icons/categories/" + dispatched.name().toLowerCase(Locale.ROOT) + ".png");
+        categoryTexture = Identifier.of("prestige", "icons/categories/" + dispatched.name().toLowerCase(Locale.ROOT) + ".png");
         for (Module module : Prestige.Companion.getModuleManager().getModules()) {
             if (module.getCategory() == dispatched) {
                 modules.add(new ModuleButton(module, f + 5, f2, f3 - 10, 15));

@@ -1,14 +1,13 @@
 package dev.zprestige.prestige.client.ui.font;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import dev.zprestige.prestige.client.Prestige;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.*;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import org.apache.commons.codec.binary.Base64;
+import org.joml.Matrix3x2fStack;
 import org.joml.Matrix4f;
 
 import javax.imageio.ImageIO;
@@ -122,26 +121,27 @@ public class FontRenderer {
         }
 
         image.close();
-        this.resourceLocation = new Identifier("prestige", "font/font.ttf");
+        this.resourceLocation = Identifier.of("prestige", "font/font.ttf");
         applyTexture(resourceLocation, imgNew);
     }
 
     private void applyTexture(Identifier identifier, NativeImage nativeImage) {
-        MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new NativeImageBackedTexture(nativeImage)));
+        MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, new NativeImageBackedTexture(() -> "prestige-font", nativeImage)));
     }
 
-    public void drawString(MatrixStack matrixStack, String text, float x, float y, Color color, Color color2, boolean idk) {
-        matrixStack.push();
-        RenderSystem.depthFunc((int)519);
-        RenderSystem.enableBlend();
-        matrixStack.scale(0.5f, 0.5f, 0.5f);
+    public void drawString(Matrix3x2fStack matrices, String text, float x, float y, Color color, Color color2, boolean idk) {
+        matrices.pushMatrix();
+        matrices.scale(0.5f, 0.5f);
         if (idk) {
-            this.drawer(matrixStack, text, x + 0.5f, y + 0.5f, color2);
+            this.drawer(matrices, text, x + 0.5f, y + 0.5f, color2);
         }
-        this.drawer(matrixStack, text, x, y, color);
-        matrixStack.scale(1.0f, 1.0f, 1.0f);
-        RenderSystem.disableBlend();
-        matrixStack.pop();
+        this.drawer(matrices, text, x, y, color);
+        matrices.popMatrix();
+    }
+
+    public void drawString(net.minecraft.client.util.math.MatrixStack matrixStack, String text, float x, float y, Color color, Color color2, boolean idk) {
+        // world-space text (3D matrices), used by ESP
+        this.drawer3D(matrixStack.peek().getPositionMatrix(), text, x, y, color);
     }
 
     public void drawString(String text, float x, float y, Color color) {
@@ -150,11 +150,11 @@ public class FontRenderer {
 
     private void drawString(String text, float x, float y, Color color, boolean idk) {
         int n = Math.min(187, color.getAlpha());
-        MatrixStack matrixStack = Prestige.Companion.getFontManager().getMatrixStack();
-        this.drawString(matrixStack, text, x, y, color, new Color(0, 0, 0, n == -1 ? color.getAlpha() : n), idk);
+        Matrix3x2fStack matrices = Prestige.Companion.getFontManager().getMatrixStack();
+        this.drawString(matrices, text, x, y, color, new Color(0, 0, 0, n == -1 ? color.getAlpha() : n), idk);
     }
 
-    private void drawer(MatrixStack matrixStack, String text, float x, float y, Color color) {
+    private void drawer(Matrix3x2fStack matrices, String text, float x, float y, Color color) {
         StringBuilder finalText = new StringBuilder();
 
         for (char c : text.toCharArray()) {
@@ -164,26 +164,40 @@ public class FontRenderer {
         text = finalText.toString();
         x *= 2.0F;
         y *= 2.0F;
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderTexture(0, this.resourceLocation);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferBuilder = tessellator.getBuffer();
-        RenderSystem.setShaderColor((float)color.getRed() / 255.0f, (float)color.getGreen() / 255.0f, (float)color.getBlue() / 255.0f, (float)color.getAlpha() / 255.0f);
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
+        org.joml.Matrix3x2f snapshot = new org.joml.Matrix3x2f(matrices);
+        var vc = dev.zprestige.prestige.client.util.impl.RenderHelper.immediate.getBuffer(RenderLayers.text(this.resourceLocation));
+        int argb = (color.getAlpha() & 0xFF) << 24 | (color.getRed() & 0xFF) << 16 | (color.getGreen() & 0xFF) << 8 | (color.getBlue() & 0xFF);
         for (int i = 0; i < text.length(); i++) {
             try {
                 char c = text.charAt(i);
-                drawChar(matrixStack, c, x, y);
+                drawChar(snapshot, vc, c, x, y, argb);
                 x += getStringWidth(Character.toString(c)) * 2.0F;
             } catch (ArrayIndexOutOfBoundsException ignored) {
 
             }
         }
-        //bufferBuilder.end();
-        tessellator.draw();
-        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+    }
+
+    private void drawer3D(Matrix4f matrix4f, String text, float x, float y, Color color) {
+        StringBuilder finalText = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            if (c >= this.startChar && c <= this.endChar) finalText.append(c);
+            else finalText.append("?");
+        }
+        text = finalText.toString();
+        x *= 2.0F;
+        y *= 2.0F;
+        var vc = dev.zprestige.prestige.client.util.impl.RenderHelper.immediate.getBuffer(RenderLayers.text(this.resourceLocation));
+        int argb = (color.getAlpha() & 0xFF) << 24 | (color.getRed() & 0xFF) << 16 | (color.getGreen() & 0xFF) << 8 | (color.getBlue() & 0xFF);
+        for (int i = 0; i < text.length(); i++) {
+            try {
+                char c = text.charAt(i);
+                drawChar3D(matrix4f, vc, c, x, y, argb);
+                x += getStringWidth(Character.toString(c)) * 2.0F;
+            } catch (ArrayIndexOutOfBoundsException ignored) {
+
+            }
+        }
     }
 
     public final float getStringWidth(String text) {
@@ -191,26 +205,37 @@ public class FontRenderer {
     }
 
     public float getStringHeight() {
-        return (float)this.getBounds("W").getHeight() / 2.0f;
+        return (float) this.getBounds("W").getHeight() / 2.0f;
     }
 
     private Rectangle2D getBounds(String text) {
         return this.metrics.getStringBounds(text, this.graphics);
     }
 
-    private void drawChar(MatrixStack matrixStack, char character, float x, float y) throws ArrayIndexOutOfBoundsException {
+    private void drawChar(org.joml.Matrix3x2f m, net.minecraft.client.render.VertexConsumer vc, char character, float x, float y, int argb) throws ArrayIndexOutOfBoundsException {
         Rectangle2D bounds = this.metrics.getStringBounds(Character.toString(character), this.graphics);
-        drawTexturedModalRect(matrixStack, x, y, this.xPos[(character - this.startChar)], this.yPos[(character - this.startChar)], (float) bounds.getWidth(), (float) bounds.getHeight() + this.metrics.getMaxDescent() + 1.0F);
+        drawTexturedModalRect(m, vc, x, y, this.xPos[(character - this.startChar)], this.yPos[(character - this.startChar)], (float) bounds.getWidth(), (float) bounds.getHeight() + this.metrics.getMaxDescent() + 1.0F, argb);
     }
 
-    private void drawTexturedModalRect(MatrixStack matrixStack, float x, float y, float u, float v, float width, float height) {
-        Matrix4f matrix4f = matrixStack.peek().getPositionMatrix();
+    private void drawChar3D(Matrix4f m, net.minecraft.client.render.VertexConsumer vc, char character, float x, float y, int argb) throws ArrayIndexOutOfBoundsException {
+        Rectangle2D bounds = this.metrics.getStringBounds(Character.toString(character), this.graphics);
+        drawTexturedModalRect3D(m, vc, x, y, this.xPos[(character - this.startChar)], this.yPos[(character - this.startChar)], (float) bounds.getWidth(), (float) bounds.getHeight() + this.metrics.getMaxDescent() + 1.0F, argb);
+    }
+
+    private void drawTexturedModalRect(org.joml.Matrix3x2f m, net.minecraft.client.render.VertexConsumer vc, float x, float y, float u, float v, float width, float height, int argb) {
         float scale = 0.0039063F;
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferBuilder = tessellator.getBuffer();
-        bufferBuilder.vertex(matrix4f, x + 0.0F, y + height, 0.0f).texture((u + 0.0F) * scale, (v + height) * scale).next();
-        bufferBuilder.vertex(matrix4f, x + width, y + height, 0.0f).texture((u + width) * scale, (v + height) * scale).next();
-        bufferBuilder.vertex(matrix4f, x + width, y + 0.0F, 0.0f).texture((u + width) * scale, (v + 0.0F) * scale).next();
-        bufferBuilder.vertex(matrix4f, x + 0.0F, y + 0.0F, 0.0f).texture((u + 0.0F) * scale, (v + 0.0F) * scale).next();
+        vc.vertex(m, x, y + height).color(argb).texture(u * scale, (v + height) * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x + width, y + height).color(argb).texture((u + width) * scale, (v + height) * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x + width, y).color(argb).texture((u + width) * scale, v * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x, y).color(argb).texture(u * scale, v * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+    }
+
+    private void drawTexturedModalRect3D(Matrix4f m, net.minecraft.client.render.VertexConsumer vc, float x, float y, float u, float v, float width, float height, int argb) {
+        float scale = 0.0039063F;
+        vc.vertex(m, x, y + height, 0.0f).color(argb).texture(u * scale, (v + height) * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x + width, y + height, 0.0f).color(argb).texture((u + width) * scale, (v + height) * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x + width, y, 0.0f).color(argb).texture((u + width) * scale, v * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
+        vc.vertex(m, x, y, 0.0f).color(argb).texture(u * scale, v * scale).light(dev.zprestige.prestige.client.util.impl.RenderUtil.FULL_LIGHT);
     }
 }
+

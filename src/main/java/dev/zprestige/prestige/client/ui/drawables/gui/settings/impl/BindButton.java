@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 
 public class BindButton extends SettingsDrawable {
     public BindSetting key;
@@ -32,9 +32,9 @@ public class BindButton extends SettingsDrawable {
         FontRenderer font = Prestige.Companion.getFontManager().getFontRenderer();
         anim = MathUtil.interpolate(anim, isInsideCross(n, n2) ? 0.7f : 0.3f, Interface.getDeltaTime() * 0.005f);
         float f7 = 0.95f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f7, f7, f7);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f7, f7);
         font.drawString(key.getName() + ":", getX() / f7, (getY() + getHeight() / 2 - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(anim, f2));
         String string;
         if (listening) {
@@ -45,16 +45,16 @@ public class BindButton extends SettingsDrawable {
             string = KeyEvent.getKeyText(key.getObject()).contains("Unknown") ? getKey(key.getObject()) : KeyEvent.getKeyText(key.getObject());
         }
         font.drawString(string + (listening ? getDots() : ""), (getX() + getWidth() - font.getStringWidth(string + (listening ? "..." : "")) * f7) / f7, (getY() + getHeight() / 2 - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(anim, f2));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         if (key.getObject() > 9996) {
             key.setListening(true);
         }
         if (key.isListening()) {
             f7 = 0.7f;
-            matrixStack.push();
-            matrixStack.scale(f7, f7, f7);
+            matrixStack.pushMatrix();
+            matrixStack.scale(f7, f7);
             font.drawString("(Hold)", (getX() + font.getStringWidth(key.getName() + ":") * 0.95f) / f7, (getY() + 0.1f + getHeight() / 1.1f - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(anim, f2));
-            matrixStack.pop();
+            matrixStack.popMatrix();
         }
         this.setHeight(15);
     }

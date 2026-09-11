@@ -30,7 +30,7 @@ public class InventoryUtil implements MC {
     }
 
     public void setCurrentSlot(int n) {
-        getMc().player.getInventory().selectedSlot = n;
+        getMc().player.getInventory().setSelectedSlot(n);
     }
 
     public boolean isHoldingItem(Item item) {

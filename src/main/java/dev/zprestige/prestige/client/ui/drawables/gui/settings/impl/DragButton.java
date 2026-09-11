@@ -8,7 +8,7 @@ import dev.zprestige.prestige.client.ui.font.FontRenderer;
 import dev.zprestige.prestige.client.util.impl.MathUtil;
 import dev.zprestige.prestige.client.util.impl.RenderHelper;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 
 public class DragButton extends SettingsDrawable {
     public DragSetting setting;
@@ -32,12 +32,12 @@ public class DragButton extends SettingsDrawable {
         FontRenderer font = Prestige.Companion.getFontManager().getFontRenderer();
         animX = MathUtil.interpolate(animX, isInsideCross(n, n2) ? 0.7f : 0.3f, Interface.getDeltaTime() * 0.005f);
         float f10 = 0.95f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f10, f10, f10);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f10, f10);
         font.drawString(setting.getName(), getX() / f10, (getY() - 5) / f10, RenderUtil.getColor(animX, f2));
         font.drawString(setting.getFirst() + " - " + setting.getSecond(), (getX() + getWidth() - 2.5f - font.getStringWidth(String.valueOf(setting.getMax())) * 2) / f10, (getY() - 5) / f10, RenderUtil.getColor(animX, f2));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         RenderUtil.renderColoredQuad(getX(), getY() + getHeight() - 2, getX() + getWidth(), getY() + getHeight(), RenderUtil.getColor(1, f2));
         RenderUtil.renderRoundedRectOutline(getX(), getY() + getHeight() - 2, getX() + getWidth(), getY() + getHeight(),RenderUtil.getColor(-3, f2), 0);
         first = MathUtil.interpolate(first, setting.getFirst(), Interface.getDeltaTime() * 0.005f);

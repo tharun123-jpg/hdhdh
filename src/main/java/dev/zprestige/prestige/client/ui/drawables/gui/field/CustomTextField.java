@@ -11,7 +11,7 @@ import java.io.IOException;
 import dev.zprestige.prestige.client.util.impl.RenderHelper;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
@@ -44,11 +44,11 @@ public class CustomTextField {
             RenderUtil.renderColoredQuad(x, y, x + width, y + height, RenderUtil.getColor(Color.BLACK, 0.1f * f));
         }
         RenderUtil.setScissorRegion(x, y, x + width - 2.5f, y + height);
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f2, f2, f2);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f2, f2);
         Prestige.Companion.getFontManager().getFontRenderer().drawString((value.isEmpty() ? text : value) + (active ? typeIndicator() : ""), (x + 2.5f - Math.max(Prestige.Companion.getFontManager().getFontRenderer().getStringWidth(value) * f2 + 5 - (width - 2.5f), 0)) / f2, (y + height / 2 - Prestige.Companion.getFontManager().getFontRenderer().getStringHeight() * f2 / 1.5f) / f2, value.isEmpty() ? new Color(0.5f, 0.5f, 0.5f, f) : new Color(1, 1, 1, f));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         GL11.glDisable(3089);
     }
 

@@ -105,7 +105,7 @@ public class Freecam extends Module {
 
     @EventListener
     public void event(@NotNull CameraOffsetEvent event) {
-        float f = this.getMc().getTickDelta();
+        float f = RenderUtil.getTickDelta();
         event.setX(MathHelper.lerp(f, pos.x, pos2.x));
         event.setY(MathHelper.lerp(f, pos.y, pos2.y));
         event.setZ(MathHelper.lerp(f, pos.z, pos2.z));

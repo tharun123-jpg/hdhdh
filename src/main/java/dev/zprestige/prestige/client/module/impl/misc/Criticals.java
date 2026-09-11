@@ -97,6 +97,6 @@ public class Criticals extends Module {
     }
 
     private void sendPacket(float f) {
-        PacketUtil.INSTANCE.sendPacket(new PlayerMoveC2SPacket.PositionAndOnGround(getMc().player.getX(), getMc().player.getY() + f, getMc().player.getZ(), false));
+        PacketUtil.INSTANCE.sendPacket(new net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket.PositionAndOnGround(getMc().player.getX(), getMc().player.getY() + f, getMc().player.getZ(), false, false));
     }
 }

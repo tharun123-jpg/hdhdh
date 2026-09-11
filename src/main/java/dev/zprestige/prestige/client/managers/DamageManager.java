@@ -1,6 +1,5 @@
 package dev.zprestige.prestige.client.managers;
 
-import dev.zprestige.prestige.api.interfaces.IExplosion;
 import dev.zprestige.prestige.api.interfaces.IRaycastContext;
 import dev.zprestige.prestige.api.interfaces.IVec3d;
 import dev.zprestige.prestige.client.Prestige;
@@ -27,12 +26,10 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.RaycastContext;
-import net.minecraft.world.explosion.Explosion;
 
 //#SKIDDED
 public class DamageManager implements MC {
     public Vec3d vec3d = new Vec3d(0.0, 0.0, 0.0);
-    public Explosion explosion;
     public RaycastContext raycastContext;
 
     public DamageManager() {
@@ -41,7 +38,6 @@ public class DamageManager implements MC {
 
     @EventListener
     public void event(OnJoinEvent event) {
-        explosion = new Explosion(getMc().world, null, 0, 0, 0, 6, false, Explosion.DestructionType.DESTROY);
         raycastContext = new RaycastContext(null, null, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.ANY, getMc().player);
         Prestige.Companion.getProtectionManager().method1788();
     }
@@ -68,8 +64,7 @@ public class DamageManager implements MC {
         damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
         damage = resistanceReduction(player, damage);
 
-        ((IExplosion) explosion).set(crystal, 6, false);
-        damage = blastProtReduction(player, damage, explosion);
+        damage = blastProtReduction(player, damage);
 
         return damage < 0 ? 0 : damage;
     }
@@ -159,8 +154,8 @@ public class DamageManager implements MC {
         return damage < 0 ? 0 : damage;
     }
 
-    private double blastProtReduction(Entity player, double damage, Explosion explosion) {
-        int protLevel = EnchantmentHelper.getProtectionAmount(player.getArmorItems(), getMc().world.getDamageSources().explosion(explosion));
+    private double blastProtReduction(Entity player, double damage) {
+        int protLevel = dev.zprestige.prestige.client.util.impl.ItemChecks.getProtectionLevel((LivingEntity) player);
         if (protLevel > 20) protLevel = 20;
 
         damage *= (1 - (protLevel / 25.0));
@@ -168,7 +163,7 @@ public class DamageManager implements MC {
     }
 
     private double normalProtReduction(Entity player, double damage) {
-        int protLevel = EnchantmentHelper.getProtectionAmount(player.getArmorItems(), getMc().world.getDamageSources().generic());
+        int protLevel = dev.zprestige.prestige.client.util.impl.ItemChecks.getProtectionLevel((LivingEntity) player);
         if (protLevel > 20) protLevel = 20;
 
         damage *= (1 - (protLevel / 25.0));
@@ -189,7 +184,7 @@ public class DamageManager implements MC {
         double modDistance = Math.sqrt(player.squaredDistanceTo(bed));
         if (modDistance > 10) return 0;
 
-        double exposure = Explosion.getExposure(bed, player);
+        double exposure = getExposure(bed, player, false, raycastContext, null, false);
         double impact = (1.0 - (modDistance / 10.0)) * exposure;
         double damage = (impact * impact + impact) / 2 * 7 * (5 * 2) + 1;
 
@@ -203,8 +198,7 @@ public class DamageManager implements MC {
         damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
 
         // Reduce by enchants
-        ((IExplosion)explosion).set(bed, 5, true);
-        damage = blastProtReduction(player, damage, explosion);
+        damage = blastProtReduction(player, damage);
 
         if (damage < 0) damage = 0;
         return damage;

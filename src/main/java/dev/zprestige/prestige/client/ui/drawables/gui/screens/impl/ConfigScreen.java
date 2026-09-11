@@ -28,7 +28,7 @@ public class ConfigScreen extends DrawableScreen {
     public CustomTextField description;
     public ModeSetting mode;
     public ModeButton modeButton;
-    public Identifier logo = new Identifier("prestige", "icons/logo.png");
+    public Identifier logo = Identifier.of("prestige", "icons/logo.png");
     public static ArrayList<ConfigButton> configComponents = new ArrayList<>();
     public static float maxY;
     public static float minY;
@@ -49,7 +49,7 @@ public class ConfigScreen extends DrawableScreen {
     }
 
     public void render(DrawContext drawContext, int n, int n2, float f) {
-        RenderHelper.setMatrixStack(drawContext.getMatrices());
+        RenderHelper.setGuiMatrices(drawContext.getMatrices());
         Prestige.Companion.getFontManager().setMatrixStack(drawContext.getMatrices());
         FontRenderer font = Prestige.Companion.getFontManager().getFontRenderer();
         float f2 = width / 2 - screenWidth / 2;

@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.RenderUtil;
+
 import dev.zprestige.prestige.api.interfaces.IRotatable;
 import dev.zprestige.prestige.client.Prestige;
 import dev.zprestige.prestige.client.event.EventListener;
@@ -12,7 +14,6 @@ import dev.zprestige.prestige.client.util.impl.Rotation;
 import dev.zprestige.prestige.client.util.impl.RotationUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.SwordItem;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.HitResult;
 
@@ -42,7 +43,7 @@ public class SilentAim extends Module implements IRotatable {
         if (!preClick) {
             return null;
         }
-        if (weaponOnly.getObject() && !(getMc().player.getMainHandStack().getItem() instanceof SwordItem) && !(getMc().player.getMainHandStack().getItem() instanceof AxeItem)) {
+        if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
             return null;
         }
         HitResult hitResult = getMc().crosshairTarget;
@@ -64,7 +65,7 @@ public class SilentAim extends Module implements IRotatable {
     @EventListener
     public void event(SwingHandEvent event) {
         if (!postClick) {
-            if (weaponOnly.getObject() && !(getMc().player.getMainHandStack().getItem() instanceof SwordItem) && !(getMc().player.getMainHandStack().getItem() instanceof AxeItem)) {
+            if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
                 return;
             }
             HitResult hitResult = getMc().crosshairTarget;

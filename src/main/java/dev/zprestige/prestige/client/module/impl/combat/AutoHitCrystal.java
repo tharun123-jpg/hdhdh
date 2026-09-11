@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.RenderUtil;
+
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.MoveEvent;
 import dev.zprestige.prestige.client.module.Category;
@@ -129,8 +131,8 @@ public class AutoHitCrystal extends Module {
 
                     if (blockPos != null && RaytraceUtil.isBlockAtPosition(blockPos, Blocks.OBSIDIAN)) {
                         for (Entity entity : getMc().world.getEntities()) {
-                            if (entity instanceof EndCrystalEntity && entity.getPos().distanceTo(blockPos.up().toCenterPos()) < 1.0 && getMc().player.distanceTo(entity) <= 4.5f) {
-                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (entity.getPos().x + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (entity.getPos().y + (double) RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (entity.getPos().z + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
+                            if (entity instanceof EndCrystalEntity && RenderUtil.getEntityPos(entity).distanceTo(blockPos.up().toCenterPos()) < 1.0 && getMc().player.distanceTo(entity) <= 4.5f) {
+                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (RenderUtil.getEntityPos(entity).x + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (RenderUtil.getEntityPos(entity).y + (double) RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (RenderUtil.getEntityPos(entity).z + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
                                 event.setPitch(rotation.getPitch());
                                 getMc().interactionManager.attackEntity(getMc().player, entity);
                                 getMc().player.swingHand(Hand.MAIN_HAND);
@@ -181,8 +183,8 @@ public class AutoHitCrystal extends Module {
 
                     if (blockPos != null && RaytraceUtil.isBlockAtPosition(blockPos, Blocks.OBSIDIAN)) {
                         for (Entity entity : getMc().world.getEntities()) {
-                            if (entity instanceof EndCrystalEntity && entity.getPos().distanceTo(blockPos.up().toCenterPos()) < 1.0 && getMc().player.distanceTo(entity) <= 4.5f) {
-                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (entity.getPos().x + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (entity.getPos().y + (double) RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (entity.getPos().z + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
+                            if (entity instanceof EndCrystalEntity && RenderUtil.getEntityPos(entity).distanceTo(blockPos.up().toCenterPos()) < 1.0 && getMc().player.distanceTo(entity) <= 4.5f) {
+                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (RenderUtil.getEntityPos(entity).x + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (RenderUtil.getEntityPos(entity).y + (double) RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (RenderUtil.getEntityPos(entity).z + (double) RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
                                 event.setPitch(rotation.getPitch());
                                 getMc().interactionManager.attackEntity(getMc().player, entity);
                                 getMc().player.swingHand(Hand.MAIN_HAND);

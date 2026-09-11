@@ -13,7 +13,7 @@ import java.util.Locale;
 
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import net.minecraft.util.Identifier;
 
 public class TabConfig extends Drawable {
@@ -27,7 +27,7 @@ public class TabConfig extends Drawable {
     public TabConfig(Category category, float f, float f2, float f3, float f4) {
         super(f, f2, f3, f4, null);
         this.category = category;
-        tabTexture = new Identifier("prestige", "icons/other/" + category.name().toLowerCase(Locale.ROOT) + ".png");
+        tabTexture = Identifier.of("prestige", "icons/other/" + category.name().toLowerCase(Locale.ROOT) + ".png");
     }
 
     @Override
@@ -52,11 +52,11 @@ public class TabConfig extends Drawable {
         if (isInsideButton(n, n2)) {
             RenderUtil.renderColoredQuad(getX() + 5, getY() + 25, getX() + getWidth() - 5, getY() + 40, RenderUtil.getColor(Color.BLACK, f2 * 0.2f));
         }
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(0.8f, 0.8f, 0.8f);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(0.8f, 0.8f);
         font.drawString("Browse Configs", (getX() + getWidth() / 2 - Prestige.Companion.getFontManager().getFontRenderer().getStringWidth("Browse Configs") / 2 * 0.8f) / 0.8f, (getY() + 35 - Prestige.Companion.getFontManager().getFontRenderer().getStringHeight() * 0.8f) / 0.8f, RenderUtil.getColor(Color.WHITE, f2));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         setHeight(45);
     }
 

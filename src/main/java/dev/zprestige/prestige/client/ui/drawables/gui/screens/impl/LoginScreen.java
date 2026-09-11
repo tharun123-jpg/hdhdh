@@ -15,7 +15,7 @@ import dev.zprestige.prestige.client.ui.font.FontRenderer;
 import dev.zprestige.prestige.client.util.impl.RenderHelper;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import net.minecraft.util.Identifier;
 
 import java.awt.*;
@@ -29,9 +29,9 @@ public class LoginScreen extends DrawableScreen {
     public String value = "";
 
     public void render(DrawContext drawContext, int n, int n2, float f) {
-        RenderHelper.setMatrixStack(drawContext.getMatrices());
+        RenderHelper.setGuiMatrices(drawContext.getMatrices());
         Prestige.Companion.getFontManager().setMatrixStack(drawContext.getMatrices());
-        MatrixStack matrixStack = Prestige.Companion.getFontManager().getMatrixStack();
+        Matrix3x2fStack matrixStack = Prestige.Companion.getFontManager().getMatrixStack();
         RenderUtil.renderColoredQuad(0, 0, width, height, new Color(14, 14, 14));
         float f2 = 200;
         float f3 = 120;
@@ -55,7 +55,7 @@ public class LoginScreen extends DrawableScreen {
         RenderUtil.renderColoredQuad(f4 + f2 / 2 + 60, f5 + 65, f4 + f2 / 2 + 80, f5 + 85, new Color(12, 12, 12));
         RenderUtil.renderColoredRectangleOutline(f4 + f2 / 2 + 60, f5 + 65, f4 + f2 / 2 + 80, f5 + 85, new Color(9, 9, 9));
         color = active ? Color.WHITE : new Color(50, 50, 50);
-        RenderUtil.renderTexturedRect(f4 + f2 / 2 + 62.5f, f5 + 67.5f, 15, 15, new Identifier("prestige", "icons/categories/visual.png"), color);
+        RenderUtil.renderTexturedRect(f4 + f2 / 2 + 62.5f, f5 + 67.5f, 15, 15, Identifier.of("prestige", "icons/categories/visual.png"), color);
         if (isInsideReveal(n, n2)) {
             RenderUtil.renderColoredQuad(f4 + f2 / 2 + 60, f5 + 65, f4 + f2 / 2 + 80, f5 + 85, new Color(0, 0, 0, 50));
         }
@@ -65,12 +65,12 @@ public class LoginScreen extends DrawableScreen {
             RenderUtil.renderColoredQuad(f4 + f2 / 2 - 80, f5 + 90, f4 + f2 / 2 + 80, f5 + 110, new Color(0, 0, 0, 50));
         }
         float f8 = 1;
-        matrixStack.push();
-        matrixStack.scale(f8, f8, f8);
+        matrixStack.pushMatrix();
+        matrixStack.scale(f8, f8);
         int n3 = isInside(n, n2) ? 50 : 0;
         font.drawString("Login", (f4 + f2 / 2 - font.getStringWidth("Login") * f8 / 2) / f8, (f5 + 90.1f) / f8, username.isValueNotEmpty() ? new Color(200 + n3, 200 + n3, 200 + n3) : new Color(100 + n3, 100 + n3, 100 + n3));
         font.drawString("Login", (f4 + f2 / 2 - font.getStringWidth("Login") * f8 / 2f) / f8, (f5 + 90.1f) / f8, username.isValueNotEmpty() ? new Color(200 + n3, 200 + n3, 200 + n3) : new Color(0.30980393f, 0.27450982f, 0.8980392f, 0.1f + (float)n3 / 400));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         if (Prestige.Companion.getSession() != null && System.currentTimeMillis() - time > 1000L) {
             close();
         }

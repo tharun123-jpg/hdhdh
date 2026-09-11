@@ -28,7 +28,7 @@ public class TabItem extends Drawable {
     public TabItem(Category category, float f, float f2, float f3, float f4) {
         super(f, f2, f3, f4, null);
         this.category = category;
-        itemTexture = new Identifier("prestige", "icons/other/" + category.name().toLowerCase(Locale.ROOT) + ".png");
+        itemTexture = Identifier.of("prestige", "icons/other/" + category.name().toLowerCase(Locale.ROOT) + ".png");
         color = new ColorButton(Prestige.Companion.getModuleManager().getMenu().getColor(), f + 5, f2, f3 - 10, 15);
         bindButton = new BindButton(Prestige.Companion.getModuleManager().getMenu().getBind(), f + 5, f2, f3 - 10, 15);
         mode = new ModeButton(Prestige.Companion.getModuleManager().getMenu().getMode(), f + 5, f2, f3 - 10, 15);

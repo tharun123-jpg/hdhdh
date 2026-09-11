@@ -21,7 +21,7 @@ public class CrystalOptimizer extends Module {
         if (event.getPacket() instanceof PlayerInteractEntityC2SPacket packet && ((IPlayerInteractEntityC2SPacket)packet).getType().getType() == PlayerInteractEntityC2SPacket.InteractType.ATTACK) {
             Entity entity = getMc().world.getEntityById(((IPlayerInteractEntityC2SPacket)packet).getEntityId());
             if (entity instanceof EndCrystalEntity && getMc().player.getStatusEffect(StatusEffects.WEAKNESS) == null) {
-                entity.kill();
+                entity.discard();
                 entity.setRemoved(Entity.RemovalReason.KILLED);
                 entity.onRemoved();
             }

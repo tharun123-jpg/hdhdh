@@ -10,7 +10,7 @@ import dev.zprestige.prestige.client.util.impl.RenderHelper;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 import dev.zprestige.prestige.client.util.impl.animation.Animation;
 import dev.zprestige.prestige.client.util.impl.animation.Easing;
-import net.minecraft.client.util.math.MatrixStack;
+import org.joml.Matrix3x2fStack;
 import org.lwjgl.opengl.GL11;
 
 public class BooleanButton extends SettingsDrawable {
@@ -32,11 +32,11 @@ public class BooleanButton extends SettingsDrawable {
         x = MathUtil.interpolate(x, setting.getObject() ? (isOver(n, n2) ? 0.8f : 1) : (isOver(n, n2) ? 0.7f : 0.3f), Interface.getDeltaTime() * 0.005f);
         anims.setState(setting.getObject());
         float f7 = 0.95f;
-        MatrixStack matrixStack = RenderHelper.getMatrixStack();
-        matrixStack.push();
-        matrixStack.scale(f7, f7, f7);
+        Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
+        matrixStack.pushMatrix();
+        matrixStack.scale(f7, f7);
         font.drawString(setting.getName(), getX() / f7, (getY() + getHeight() / 2.0f - font.getStringHeight() / 1.5f) / f7, RenderUtil.getColor(x, f2));
-        matrixStack.pop();
+        matrixStack.popMatrix();
         RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(3, f2), 4.5f);
         RenderUtil.setScissorRegion(f3, f4, Math.min(getX() + getWidth() - 20 * (1 - anims.getAnimationFactor()), f5), f6);
         RenderUtil.renderRoundedRect(getX() + getWidth() - 20, getY() + 3, getX() + getWidth(), getY() + 12, RenderUtil.getColor(Prestige.Companion.getModuleManager().getMenu().getColor().getObject(), f2 * 0.5f), 4.5f);

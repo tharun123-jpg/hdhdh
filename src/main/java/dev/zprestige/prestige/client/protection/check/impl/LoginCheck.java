@@ -15,7 +15,8 @@ public class LoginCheck extends Check {
     public void run() {
         LoginScreen.class.getName();
         try {
-            LoginScreen.isPaste(1);
+            net.minecraft.client.input.KeyInput.class.getName();
+            Class.forName("dev.zprestige.prestige.client.ui.drawables.gui.screens.impl.LoginScreen");
         }
         catch (Exception exception) {
             ProtectionManager.exit("A");

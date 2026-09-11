@@ -68,7 +68,7 @@ public class ShortPearl extends Module {
                         toggle();
                         return;
                     }
-                    slot = clientPlayerEntity.getInventory().selectedSlot;
+                    slot = clientPlayerEntity.getInventory().getSelectedSlot();
                     InventoryUtil.INSTANCE.setCurrentSlot(n);
                     reset();
                 }
@@ -107,7 +107,7 @@ public class ShortPearl extends Module {
                 return;
             }
             float pitch = getMc().player.getPitch();
-            int slot = getMc().player.getInventory().selectedSlot;
+            int slot = getMc().player.getInventory().getSelectedSlot();
             InventoryUtil.INSTANCE.setCurrentSlot(n);
             getMc().player.setPitch(this.pitchSetting.getObject() - 1 + RandomUtil.INSTANCE.getRandom().nextFloat() * 2);
             getMc().interactionManager.interactItem(getMc().player, Hand.MAIN_HAND);

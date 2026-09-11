@@ -1,5 +1,7 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.RenderUtil;
+
 import dev.zprestige.prestige.client.event.EventListener;
 import dev.zprestige.prestige.client.event.impl.MoveEvent;
 import dev.zprestige.prestige.client.module.Category;
@@ -105,8 +107,8 @@ public class AutoCrystal extends Module {
                     for (Object object : getMc().world.getEntities()) {
                         if (object instanceof EndCrystalEntity) {
                             EndCrystalEntity endCrystalEntity = (EndCrystalEntity) object;
-                            if (endCrystalEntity.getPos().distanceTo(blockPos.up().toCenterPos()) < 1 && getMc().player.distanceTo(endCrystalEntity) <= 4.5f) {
-                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (endCrystalEntity.getPos().x + RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (endCrystalEntity.getPos().y + RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (endCrystalEntity.getPos().z + RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
+                            if (RenderUtil.getEntityPos(endCrystalEntity).distanceTo(blockPos.up().toCenterPos()) < 1 && getMc().player.distanceTo(endCrystalEntity) <= 4.5f) {
+                                Rotation rotation = RotationUtil.INSTANCE.getNeededRotations((float) (RenderUtil.getEntityPos(endCrystalEntity).x + RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)), (float) (RenderUtil.getEntityPos(endCrystalEntity).y + RandomUtil.INSTANCE.randomInRange(0.3f, 0.6f)), (float) (RenderUtil.getEntityPos(endCrystalEntity).z + RandomUtil.INSTANCE.randomInRange(-0.25f, 0.25f)));
                                 event.setPitch(rotation.getPitch());
                                 ClientPlayerInteractionManager clientPlayerInteractionManager = getMc().interactionManager;
                                 clientPlayerInteractionManager.attackEntity(getMc().player, endCrystalEntity);
@@ -129,14 +131,14 @@ public class AutoCrystal extends Module {
                     return;
                 }
                 if (InventoryUtil.INSTANCE.isHoldingItem(Items.END_CRYSTAL) || silentSwap.getObject()) {
-                    int n = getMc().player.getInventory().selectedSlot;
+                    int n = getMc().player.getInventory().getSelectedSlot();
                     int n2 = InventoryUtil.INSTANCE.findItemInHotbar(Items.END_CRYSTAL);
                     if (n2 != -1 && silentSwap.getObject()) {
-                        getMc().player.getInventory().selectedSlot = n2;
+                        getMc().player.getInventory().setSelectedSlot(n2;
                     }
                     ClientPlayerInteractionManager clientPlayerInteractionManager = getMc().interactionManager;
                     clientPlayerInteractionManager.interactBlock(getMc().player, Hand.MAIN_HAND, blockHitResult);
-                    getMc().player.getInventory().selectedSlot = n;
+                    getMc().player.getInventory().setSelectedSlot(n;
                     pos = blockHitResult.getBlockPos();
                 }
             }

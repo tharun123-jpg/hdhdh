@@ -1,59 +1,41 @@
 package dev.zprestige.prestige.api.mixin;
 
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.client.gl.ShaderStage;
-import net.minecraft.util.hit.HitResult;
-import dev.zprestige.prestige.client.event.impl.TiltEvent;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import dev.zprestige.prestige.client.shader.GlProgram;
+import dev.zprestige.prestige.client.Prestige;
 import dev.zprestige.prestige.client.event.impl.FloatingItemEvent;
+import dev.zprestige.prestige.client.event.impl.ReachEvent;
 import dev.zprestige.prestige.client.event.impl.Render3DEvent;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.joml.Matrix4fc;
-import com.mojang.blaze3d.systems.RenderSystem;
+import dev.zprestige.prestige.client.event.impl.TiltEvent;
 import dev.zprestige.prestige.client.util.impl.RenderHelper;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.math.MatrixStack;
-import org.spongepowered.asm.mixin.Overwrite;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.Position;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import dev.zprestige.prestige.client.event.impl.ReachEvent;
-import dev.zprestige.prestige.client.Prestige;
-import java.util.function.Function;
-import net.minecraft.client.gl.ShaderProgram;
-import net.minecraft.resource.ResourceFactory;
-import java.util.List;
+import net.minecraft.util.math.Vec3d;
+import org.joml.Matrix4f;
 import org.spongepowered.asm.mixin.Final;
-import net.minecraft.client.MinecraftClient;
-import org.spongepowered.asm.mixin.Shadow;
-import net.minecraft.client.render.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.Overwrite;
 
 @Mixin(value = { GameRenderer.class }, priority = 999)
 public class MixinGameRenderer
 {
     @Shadow
-    public int floatingItemTimeLeft;
-    @Shadow
     @Final
     public MinecraftClient client;
-    public MinecraftClient mc;
-
-    public MixinGameRenderer() {
-        mc = MinecraftClient.getInstance();
-    }
 
     /**
      * @author
@@ -67,7 +49,7 @@ public class MixinGameRenderer
         }
         client.getProfiler().push("pick");
         client.targetedEntity = null;
-        double n2 = client.interactionManager.getReachDistance();
+        double n2 = entity.getAttributeValue(EntityAttributes.ENTITY_INTERACTION_RANGE);
         boolean invoke = false;
         if (!Prestige.Companion.getSelfDestructed()) {
             ReachEvent event = new ReachEvent(0);
@@ -80,7 +62,7 @@ public class MixinGameRenderer
         boolean b = false;
         double n3 = n2;
         double n4;
-        if (!client.interactionManager.hasExtendedReach()) {
+        if (!client.player.isCreative()) {
             if (n3 > 3.0 && !invoke) {
                 b = true;
             }
@@ -107,37 +89,50 @@ public class MixinGameRenderer
         }
         client.getProfiler().pop();
     }
-    
-    @Inject(at = { @At(value = "FIELD", target = "Lnet/minecraft/client/render/GameRenderer;renderHand:Z", opcode = 180, ordinal = 0) }, method = { "renderWorld" })
-    void render3dHook(float n, long n2, MatrixStack matrixStack, CallbackInfo callbackInfo) {
-        if (!Prestige.Companion.getSelfDestructed()) {
-            RenderHelper.getProjectionMatrix().set(RenderSystem.getProjectionMatrix());
-            RenderHelper.getModelViewMatrix().set(RenderSystem.getModelViewMatrix());
-            RenderHelper.getPositionMatrix().set(matrixStack.peek().getPositionMatrix());
-        }
+
+    @Unique
+    private MatrixStack prestige$cameraStack(RenderTickCounter tickCounter) {
+        MatrixStack matrixStack = new MatrixStack();
+        var camera = client.gameRenderer.getCamera();
+        matrixStack.multiply(camera.getRotation());
+        Vec3d pos = camera.getPos();
+        matrixStack.translate(-pos.x, -pos.y, -pos.z);
+        return matrixStack;
     }
-    
-    @Inject(at = { @At(value = "INVOKE", target = "Lnet/minecraft/util/profiler/Profiler;swap(Ljava/lang/String;)V", ordinal = 1) }, method = { "renderWorld" }, cancellable = true)
-    void renderWorld(float n, long n2, MatrixStack matrixStack, CallbackInfo callbackInfo) {
-        if (!Prestige.Companion.getSelfDestructed()) {
-            if (new Render3DEvent(matrixStack, n).invoke()) {
-                callbackInfo.cancel();
-            }
+
+    @Unique
+    private void prestige$captureMatrices(RenderTickCounter tickCounter, MatrixStack matrixStack) {
+        float tickDelta = tickCounter.getTickProgress(false);
+        RenderHelper.getModelViewMatrix().set(matrixStack.peek().getPositionMatrix());
+        RenderHelper.getPositionMatrix().set(matrixStack.peek().getPositionMatrix());
+        // rebuild an approximate vanilla projection matrix (fov * fov modifier)
+        float fov = client.options.getFov().getValue();
+        float modifier = 1.0f;
+        if (client.player != null) {
+            modifier = client.player.getFovMultiplier(true, tickDelta);
         }
+        Matrix4f projection = getBasicProjectionMatrix(fov * modifier);
+        RenderHelper.getProjectionMatrix().set(projection);
     }
-    
-    @Inject(at = { @At(value = "FIELD", target = "Lnet/minecraft/client/render/GameRenderer;floatingItemTimeLeft:I", ordinal = 1) }, method = { "tick" })
-    void adjustFloatingTimeLeft(CallbackInfo callbackInfo) {
+
+    @Inject(at = { @At("HEAD") }, method = { "renderWorld" })
+    void render3dHook(RenderTickCounter tickCounter, CallbackInfo callbackInfo) {
         if (!Prestige.Companion.getSelfDestructed()) {
-            FloatingItemEvent event = new FloatingItemEvent(0);
-            event.invoke();
-            floatingItemTimeLeft -= event.getSpeed();
+            MatrixStack matrixStack = prestige$cameraStack(tickCounter);
+            RenderHelper.setMatrixStack(matrixStack);
+            prestige$captureMatrices(tickCounter, matrixStack);
         }
     }
 
-    @Inject(method = "loadPrograms", at = @At(value = "INVOKE", target = "Ljava/util/List;add(Ljava/lang/Object;)Z", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
-    void loadAllTheShaders(ResourceFactory factory, CallbackInfo ci, List<ShaderStage> stages, List<Pair<ShaderProgram, Consumer<ShaderProgram>>> shadersToLoad) {
-        GlProgram.forEachProgram(loader -> shadersToLoad.add(new Pair<>(loader.getLeft().apply(factory), loader.getRight())));
+    @Inject(at = { @At("HEAD") }, method = { "renderWorld" }, cancellable = true)
+    void renderWorld(RenderTickCounter tickCounter, CallbackInfo callbackInfo) {
+        if (!Prestige.Companion.getSelfDestructed()) {
+            MatrixStack matrixStack = prestige$cameraStack(tickCounter);
+            if (new Render3DEvent(matrixStack, tickCounter.getTickProgress(false)).invoke()) {
+                dev.zprestige.prestige.client.util.impl.RenderUtil.flush();
+                callbackInfo.cancel();
+            }
+        }
     }
 
     @Inject(at = { @At("HEAD") }, method = { "tiltViewWhenHurt" }, cancellable = true)
