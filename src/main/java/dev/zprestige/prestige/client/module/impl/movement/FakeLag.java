@@ -57,7 +57,7 @@ public class FakeLag extends Module {
     @Override
     public void onEnable() {
         timer.reset();
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), getMc().player.getY(), getMc().player.getZ());
     }
 
     @Override
@@ -127,7 +127,7 @@ public class FakeLag extends Module {
         }
         bruh = false;
         timer.reset();
-        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), player.getY(), player.getZ());
+        pos = new net.minecraft.util.math.Vec3d(getMc().player.getX(), getMc().player.getY(), getMc().player.getZ());
     }
 
 

@@ -581,7 +581,7 @@ public class RenderUtil {
         if (camera != null) {
             MatrixStack matrixStack = RenderHelper.getMatrixStack();
             matrixStack.push();
-            Vec3d vec3d = camera.getPos();
+            Vec3d vec3d = camera.getCameraPos();
             matrixStack.translate(-vec3d.x, -vec3d.y, -vec3d.z);
         }
     }
@@ -614,9 +614,9 @@ public class RenderUtil {
         GL11.glGetIntegerv(GL11.GL_VIEWPORT, viewport);
         Vector3f target = new Vector3f();
 
-        double deltaX = pos.x - camera.getPos().x;
-        double deltaY = pos.y - camera.getPos().y;
-        double deltaZ = pos.z - camera.getPos().z;
+        double deltaX = pos.x - camera.getCameraPos().x;
+        double deltaY = pos.y - camera.getCameraPos().y;
+        double deltaZ = pos.z - camera.getCameraPos().z;
 
         Vector4f transformedCoordinates = new Vector4f((float) deltaX, (float) deltaY, (float) deltaZ, 1.f).mul(RenderHelper.getPositionMatrix());
 
