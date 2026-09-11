@@ -1,14 +1,27 @@
-name: Build (1.21.11)
+name: Build
 
 on:
+  push:
+    branches:
+      - 'arena/**'
   workflow_dispatch:
-  # push trigger is enabled once the 1.21.11 toolchain lands
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Skip until 1.21.11 toolchain lands
+        run: |
+          if ! grep -q "1.21.11" gradle.properties; then
+            echo "gradle.properties is not on 1.21.11 yet - skipping build"
+            exit 0
+          fi
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
