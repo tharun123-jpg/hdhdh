@@ -53,7 +53,12 @@ jobs:
           cp /tmp/gradle-migrate.log ci/migrate-log.txt || echo "no log captured" > ci/migrate-log.txt
           git add -A
           if [ "${{ job.status }}" = "success" ]; then
-            git rm -q --ignore-unmatch .migrate-trigger
+            git rm -q --ignore-unmatch .migrate-trigger || true
           fi
-          git commit -m "ci: mapping migration result [skip ci]" || echo "nothing to commit"
-          git push
+          git commit -m "ci: mapping migration result [skip ci]" || { echo "nothing to commit"; exit 0; }
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          for i in 1 2 3 4 5; do
+            git fetch origin "$BRANCH" && git rebase origin/"$BRANCH" && git push origin HEAD:"$BRANCH" && exit 0
+            echo "push race, retry $i"; sleep 10
+          done
+          exit 1
