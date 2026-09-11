@@ -1,139 +1,38 @@
 # yarn 1.21.11 javap dump (private members)
 
-===================== net.minecraft.client.gui.hud.InGameOverlayRenderer
-Compiled from "InGameOverlayRenderer.java"
-public class net.minecraft.client.gui.hud.InGameOverlayRenderer {
-  private static final net.minecraft.util.Identifier UNDERWATER_TEXTURE;
-  private final net.minecraft.client.MinecraftClient client;
-  private final net.minecraft.client.texture.SpriteHolder spriteHolder;
-  private final net.minecraft.client.render.VertexConsumerProvider vertexConsumers;
-  public static final int field_59969;
-  private net.minecraft.item.ItemStack floatingItem;
-  private int floatingItemTimer;
-  private float floatingItemOffsetX;
-  private float floatingItemOffsetY;
-  public net.minecraft.client.gui.hud.InGameOverlayRenderer(net.minecraft.client.MinecraftClient, net.minecraft.client.texture.SpriteHolder, net.minecraft.client.render.VertexConsumerProvider);
-  public void tickFloatingItemTimer();
-  public void renderOverlays(boolean, float, net.minecraft.client.render.command.OrderedRenderCommandQueue);
-  private void renderFloatingItem(net.minecraft.client.util.math.MatrixStack, float, net.minecraft.client.render.command.OrderedRenderCommandQueue);
-  public void clearFloatingItem();
-  public void setFloatingItem(net.minecraft.item.ItemStack, net.minecraft.util.math.random.Random);
-  private static net.minecraft.block.BlockState getInWallBlockState(net.minecraft.entity.player.PlayerEntity);
-  private static void renderInWallOverlay(net.minecraft.client.texture.Sprite, net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.VertexConsumerProvider);
-  private static void renderUnderwaterOverlay(net.minecraft.client.MinecraftClient, net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.VertexConsumerProvider);
-  private static void renderFireOverlay(net.minecraft.client.util.math.MatrixStack, net.minecraft.client.render.VertexConsumerProvider, net.minecraft.client.texture.Sprite);
+===================== net.minecraft.text.TextVisitFactory
+Compiled from "TextVisitFactory.java"
+public class net.minecraft.text.TextVisitFactory {
+  private static final char REPLACEMENT_CHARACTER;
+  private static final java.util.Optional<java.lang.Object> VISIT_TERMINATED;
+  public net.minecraft.text.TextVisitFactory();
+  private static boolean visitRegularCharacter(net.minecraft.text.Style, net.minecraft.text.CharacterVisitor, int, char);
+  public static boolean visitForwards(java.lang.String, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static boolean visitBackwards(java.lang.String, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static boolean visitFormatted(java.lang.String, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static boolean visitFormatted(java.lang.String, int, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static boolean visitFormatted(java.lang.String, int, net.minecraft.text.Style, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static boolean visitFormatted(net.minecraft.text.StringVisitable, net.minecraft.text.Style, net.minecraft.text.CharacterVisitor);
+  public static java.lang.String validateSurrogates(java.lang.String);
+  public static java.lang.String removeFormattingCodes(net.minecraft.text.StringVisitable);
+  private static boolean method_31401(java.lang.StringBuilder, int, net.minecraft.text.Style, int);
+  private static boolean method_27475(java.lang.StringBuilder, int, net.minecraft.text.Style, int);
+  private static java.util.Optional method_27470(net.minecraft.text.CharacterVisitor, net.minecraft.text.Style, java.lang.String);
   static {};
 }
 
-===================== net.minecraft.client.option.KeyBinding
-Compiled from "KeyBinding.java"
-public class net.minecraft.client.option.KeyBinding implements java.lang.Comparable<net.minecraft.client.option.KeyBinding> {
-  private static final java.util.Map<java.lang.String, net.minecraft.client.option.KeyBinding> KEYS_BY_ID;
-  private static final java.util.Map<net.minecraft.client.util.InputUtil$Key, java.util.List<net.minecraft.client.option.KeyBinding>> KEY_TO_BINDINGS;
-  private final java.lang.String id;
-  private final net.minecraft.client.util.InputUtil$Key defaultKey;
-  private final net.minecraft.client.option.KeyBinding$Category category;
-  protected net.minecraft.client.util.InputUtil$Key boundKey;
-  private boolean pressed;
-  private int timesPressed;
-  private final int field_63464;
-  public static void onKeyPressed(net.minecraft.client.util.InputUtil$Key);
-  public static void setKeyPressed(net.minecraft.client.util.InputUtil$Key, boolean);
-  private static void forAllKeyBinds(net.minecraft.client.util.InputUtil$Key, java.util.function.Consumer<net.minecraft.client.option.KeyBinding>);
-  public static void updatePressedStates();
-  public static void unpressAll();
-  public static void restoreToggleStates();
-  public static void untoggleStickyKeys();
-  public static void updateKeysByCode();
-  public net.minecraft.client.option.KeyBinding(java.lang.String, int, net.minecraft.client.option.KeyBinding$Category);
-  public net.minecraft.client.option.KeyBinding(java.lang.String, net.minecraft.client.util.InputUtil$Type, int, net.minecraft.client.option.KeyBinding$Category);
-  public net.minecraft.client.option.KeyBinding(java.lang.String, net.minecraft.client.util.InputUtil$Type, int, net.minecraft.client.option.KeyBinding$Category, int);
-  public boolean isPressed();
-  public net.minecraft.client.option.KeyBinding$Category getCategory();
-  public boolean wasPressed();
-  protected void reset();
-  protected boolean shouldSetOnGameFocus();
-  public java.lang.String getId();
-  public net.minecraft.client.util.InputUtil$Key getDefaultKey();
-  public void setBoundKey(net.minecraft.client.util.InputUtil$Key);
-  public int compareTo(net.minecraft.client.option.KeyBinding);
-  public static java.util.function.Supplier<net.minecraft.text.Text> getLocalizedName(java.lang.String);
-  public boolean equals(net.minecraft.client.option.KeyBinding);
-  public boolean isUnbound();
-  public boolean matchesKey(net.minecraft.client.input.KeyInput);
-  public boolean matchesMouse(net.minecraft.client.gui.Click);
-  public net.minecraft.text.Text getBoundKeyLocalizedText();
-  public boolean isDefault();
-  public java.lang.String getBoundKeyTranslationKey();
-  public void setPressed(boolean);
-  private void registerBinding(net.minecraft.client.util.InputUtil$Key);
-  public static net.minecraft.client.option.KeyBinding byId(java.lang.String);
-  public int compareTo(java.lang.Object);
-  private static java.util.List method_74183(net.minecraft.client.util.InputUtil$Key);
-  private static net.minecraft.text.Text method_27465(java.lang.String);
-  private static void method_74180(boolean, net.minecraft.client.option.KeyBinding);
-  private static void method_74182(net.minecraft.client.option.KeyBinding);
-  static {};
-}
-
-===================== net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket
-Compiled from "PlayerInteractEntityC2SPacket.java"
-public class net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket implements net.minecraft.network.packet.Packet<net.minecraft.network.listener.ServerPlayPacketListener> {
-  public static final net.minecraft.network.codec.PacketCodec<net.minecraft.network.PacketByteBuf, net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket> CODEC;
-  private final int entityId;
-  private final net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket$InteractTypeHandler type;
-  private final boolean playerSneaking;
-  static final net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket$InteractTypeHandler ATTACK;
-  private net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket(int, boolean, net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket$InteractTypeHandler);
-  public static net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket attack(net.minecraft.entity.Entity, boolean);
-  public static net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket interact(net.minecraft.entity.Entity, boolean, net.minecraft.util.Hand);
-  public static net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket interactAt(net.minecraft.entity.Entity, boolean, net.minecraft.util.Hand, net.minecraft.util.math.Vec3d);
-  private net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket(net.minecraft.network.PacketByteBuf);
-  private void write(net.minecraft.network.PacketByteBuf);
-  public net.minecraft.network.packet.PacketType<net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket> getPacketType();
-  public void apply(net.minecraft.network.listener.ServerPlayPacketListener);
-  public net.minecraft.entity.Entity getEntity(net.minecraft.server.world.ServerWorld);
-  public boolean isPlayerSneaking();
-  public boolean canInteractWithEntityIn(net.minecraft.server.network.ServerPlayerEntity, net.minecraft.util.math.Box, double);
-  public void handle(net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket$Handler);
-  public void apply(net.minecraft.network.listener.PacketListener);
-  static {};
-}
-
-===================== net.minecraft.client.font.TextVisitFactory
-Error: class not found: net.minecraft.client.font.TextVisitFactory
-
-===================== net.minecraft.client.render.LightmapTextureManager
-Compiled from "LightmapTextureManager.java"
-public class net.minecraft.client.render.LightmapTextureManager implements java.lang.AutoCloseable {
-  public static final int MAX_LIGHT_COORDINATE;
-  public static final int MAX_SKY_LIGHT_COORDINATE;
-  public static final int MAX_BLOCK_LIGHT_COORDINATE;
-  private static final int field_53098;
-  private static final int UBO_SIZE;
-  private final com.mojang.blaze3d.textures.GpuTexture glTexture;
-  private final com.mojang.blaze3d.textures.GpuTextureView glTextureView;
-  private boolean dirty;
-  private float flickerIntensity;
-  private final net.minecraft.client.render.GameRenderer renderer;
-  private final net.minecraft.client.MinecraftClient client;
-  private final net.minecraft.client.gl.MappableRingBuffer buffer;
-  private final net.minecraft.util.math.random.Random field_64675;
-  public net.minecraft.client.render.LightmapTextureManager(net.minecraft.client.render.GameRenderer, net.minecraft.client.MinecraftClient);
-  public com.mojang.blaze3d.textures.GpuTextureView getGlTextureView();
-  public void close();
-  public void tick();
-  private float getDarkness(net.minecraft.entity.LivingEntity, float, float);
-  public void update(float);
-  public static float getBrightness(net.minecraft.world.dimension.DimensionType, int);
-  public static float getBrightness(float, int);
-  public static int pack(int, int);
-  public static int getBlockLightCoordinates(int);
-  public static int getSkyLightCoordinates(int);
-  public static int applyEmission(int, int);
-  private static java.lang.String method_71310();
-  private static java.lang.String method_71311();
-  static {};
+===================== net.minecraft.client.input.MouseInput
+Compiled from "MouseInput.java"
+public final class net.minecraft.client.input.MouseInput extends java.lang.Record implements net.minecraft.client.input.AbstractInput {
+  private final int button;
+  private final int modifiers;
+  public net.minecraft.client.input.MouseInput(int, int);
+  public int getKeycode();
+  public final java.lang.String toString();
+  public final int hashCode();
+  public final boolean equals(java.lang.Object);
+  public int button();
+  public int modifiers();
 }
 
 ===================== net.minecraft.client.gui.hud.InGameHud
@@ -311,18 +210,18 @@ public class net.minecraft.client.gui.hud.InGameHud {
 }
 
 ===================== Search: misc classes
-      891  2026-09-11 20:11   net/minecraft/client/gl/SimpleFramebuffer.class
-     4180  2026-09-11 20:11   net/minecraft/client/gl/SimpleFramebufferFactory.class
-     2832  2026-09-11 20:11   net/minecraft/client/render/VertexFormats.class
-      850  2026-09-11 20:11   net/minecraft/client/render/RenderTickCounter.class
-      480  2026-09-11 20:11   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
-     3616  2026-09-11 20:11   net/minecraft/client/gl/DynamicUniforms.class
-     7300  2026-09-11 20:11   net/minecraft/client/gl/DynamicUniformStorage.class
-    22718  2026-09-11 20:11   net/minecraft/client/gl/RenderPipelines.class
-    12580  2026-09-11 20:11   net/minecraft/client/render/RenderLayer.class
-     3105  2026-09-11 20:11   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
-     3400  2026-09-11 20:11   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
-     2625  2026-09-11 20:11   net/minecraft/client/render/RenderTickCounter$Dynamic.class
-      970  2026-09-11 20:11   net/minecraft/client/render/RenderTickCounter$Constant.class
+      891  2026-09-11 20:13   net/minecraft/client/gl/SimpleFramebuffer.class
+     4180  2026-09-11 20:13   net/minecraft/client/gl/SimpleFramebufferFactory.class
+     2832  2026-09-11 20:13   net/minecraft/client/render/VertexFormats.class
+      850  2026-09-11 20:13   net/minecraft/client/render/RenderTickCounter.class
+      480  2026-09-11 20:13   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
+     3616  2026-09-11 20:13   net/minecraft/client/gl/DynamicUniforms.class
+     7300  2026-09-11 20:13   net/minecraft/client/gl/DynamicUniformStorage.class
+    22718  2026-09-11 20:13   net/minecraft/client/gl/RenderPipelines.class
+    12580  2026-09-11 20:13   net/minecraft/client/render/RenderLayer.class
+     3105  2026-09-11 20:13   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
+     3400  2026-09-11 20:13   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
+      970  2026-09-11 20:13   net/minecraft/client/render/RenderTickCounter$Constant.class
+     2625  2026-09-11 20:13   net/minecraft/client/render/RenderTickCounter$Dynamic.class
 ===================== Search: item classes
-    11326  2026-09-11 20:11   net/minecraft/item/AxeItem.class
+    11326  2026-09-11 20:13   net/minecraft/item/AxeItem.class
