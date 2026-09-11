@@ -1,0 +1,144 @@
+# yarn 1.21.11 javap dump
+
+===================== net.minecraft.entity.Entity
+Error: class not found: net.minecraft.entity.Entity
+
+===================== net.minecraft.entity.LivingEntity
+Error: class not found: net.minecraft.entity.LivingEntity
+
+===================== net.minecraft.entity.player.PlayerEntity
+Error: class not found: net.minecraft.entity.player.PlayerEntity
+
+===================== net.minecraft.entity.player.PlayerInventory
+Error: class not found: net.minecraft.entity.player.PlayerInventory
+
+===================== net.minecraft.entity.ItemEntity
+Error: class not found: net.minecraft.entity.ItemEntity
+
+===================== net.minecraft.entity.decoration.EndCrystalEntity
+Error: class not found: net.minecraft.entity.decoration.EndCrystalEntity
+
+===================== net.minecraft.item.ItemStack
+Error: class not found: net.minecraft.item.ItemStack
+
+===================== net.minecraft.item.Item
+Error: class not found: net.minecraft.item.Item
+
+===================== net.minecraft.item.Items
+Error: class not found: net.minecraft.item.Items
+
+===================== net.minecraft.component.DataComponentTypes
+Error: class not found: net.minecraft.component.DataComponentTypes
+
+===================== net.minecraft.client.MinecraftClient
+Error: class not found: net.minecraft.client.MinecraftClient
+
+===================== net.minecraft.client.network.ClientPlayerInteractionManager
+Error: class not found: net.minecraft.client.network.ClientPlayerInteractionManager
+
+===================== net.minecraft.client.network.PlayerListEntry
+Error: class not found: net.minecraft.client.network.PlayerListEntry
+
+===================== net.minecraft.client.option.KeyBinding
+Error: class not found: net.minecraft.client.option.KeyBinding
+
+===================== net.minecraft.client.render.Camera
+Error: class not found: net.minecraft.client.render.Camera
+
+===================== net.minecraft.client.render.EntityRenderDispatcher
+Error: class not found: net.minecraft.client.render.EntityRenderDispatcher
+
+===================== net.minecraft.client.render.Tessellator
+Error: class not found: net.minecraft.client.render.Tessellator
+
+===================== net.minecraft.client.render.BufferBuilder
+Error: class not found: net.minecraft.client.render.BufferBuilder
+
+===================== net.minecraft.client.render.RenderSystem
+Error: class not found: net.minecraft.client.render.RenderSystem
+
+===================== net.minecraft.client.render.VertexFormat
+Error: class not found: net.minecraft.client.render.VertexFormat
+
+===================== net.minecraft.client.render.VertexRendering
+Error: class not found: net.minecraft.client.render.VertexRendering
+
+===================== net.minecraft.client.render.WorldRenderer
+Error: class not found: net.minecraft.client.render.WorldRenderer
+
+===================== net.minecraft.client.gui.DrawContext
+Error: class not found: net.minecraft.client.gui.DrawContext
+
+===================== net.minecraft.client.gl.Framebuffer
+Error: class not found: net.minecraft.client.gl.Framebuffer
+
+===================== net.minecraft.client.gui.screen.DownloadingTerrainScreen
+Error: class not found: net.minecraft.client.gui.screen.DownloadingTerrainScreen
+
+===================== net.minecraft.network.packet.c2s.play.PlayerPositionC2SPacket
+Error: class not found: net.minecraft.network.packet.c2s.play.PlayerPositionC2SPacket
+
+===================== net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket
+Error: class not found: net.minecraft.network.packet.c2s.play.PlayerInteractItemC2SPacket
+
+===================== net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket
+Error: class not found: net.minecraft.network.packet.c2s.play.PlayerInteractEntityC2SPacket
+
+===================== net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket
+Error: class not found: net.minecraft.network.packet.s2c.play.EntityPositionS2CPacket
+
+===================== net.minecraft.enchantment.EnchantmentHelper
+Error: class not found: net.minecraft.enchantment.EnchantmentHelper
+
+===================== net.minecraft.entity.effect.StatusEffectInstance
+Error: class not found: net.minecraft.entity.effect.StatusEffectInstance
+
+===================== net.minecraft.client.render.entity.EntityRenderer
+Error: class not found: net.minecraft.client.render.entity.EntityRenderer
+
+===================== net.minecraft.client.render.item.HeldItemRenderer
+Error: class not found: net.minecraft.client.render.item.HeldItemRenderer
+
+===================== net.minecraft.client.texture.LightmapTextureManager
+Error: class not found: net.minecraft.client.texture.LightmapTextureManager
+
+===================== net.minecraft.client.particle.ParticleManager
+Error: class not found: net.minecraft.client.particle.ParticleManager
+
+===================== net.minecraft.world.explosion.Explosion
+Error: class not found: net.minecraft.world.explosion.Explosion
+
+===================== net.minecraft.client.gui.screen.Screen
+Error: class not found: net.minecraft.client.gui.screen.Screen
+
+===================== net.minecraft.text.TextVisitFactory
+Error: class not found: net.minecraft.text.TextVisitFactory
+
+===================== net.minecraft.client.render.GameRenderer
+Error: class not found: net.minecraft.client.render.GameRenderer
+
+===================== net.minecraft.client.render.RenderPipelines
+Error: class not found: net.minecraft.client.render.RenderPipelines
+
+===================== net.minecraft.client.render.RenderPipeline
+Error: class not found: net.minecraft.client.render.RenderPipeline
+
+===================== net.minecraft.client.util.SkinTextures
+Error: class not found: net.minecraft.client.util.SkinTextures
+
+===================== net.minecraft.client.util.math.MatrixStack
+Error: class not found: net.minecraft.client.util.math.MatrixStack
+
+===================== net.minecraft.client.render.VertexConsumerProvider
+Error: class not found: net.minecraft.client.render.VertexConsumerProvider
+
+===================== net.minecraft.client.render.VertexConsumer
+Error: class not found: net.minecraft.client.render.VertexConsumer
+
+===================== net.minecraft.network.packet.c2s.common.ResourcePackC2SPacket
+Error: class not found: net.minecraft.network.packet.c2s.common.ResourcePackC2SPacket
+
+===================== net.minecraft.network.packet.s2c.common.ResourcePackS2CPacket
+Error: class not found: net.minecraft.network.packet.s2c.common.ResourcePackS2CPacket
+
+===================== InnerClass search: PlayerInteractEntityC2SPacket
