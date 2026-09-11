@@ -17,30 +17,18 @@ Cannot remap modifiers because it does not exist in any of the targets [] or the
 
 > Task :compileJava
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:46: error: ')' expected
-        if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                   ^
+        if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                 ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:68: error: ')' expected
-            if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:137: error: ')' or ',' expected
-                        getMc().player.getInventory().setSelectedSlot(n2;
-                                                                        ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:141: error: ')' or ',' expected
-                    getMc().player.getInventory().setSelectedSlot(n;
-                                                                   ^
+            if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                     ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AimAssist.java:73: error: ')' expected
-            if (!(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                             ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:58: error: ')' or ',' expected
-        getMc().player.getInventory().setSelectedSlot(slot;
-                                                          ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:64: error: ')' or ',' expected
-                getMc().player.getInventory().setSelectedSlot(originalSlot;
-                                                                          ^
-7 errors
+            if (!ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                           ^
+3 errors
 
 > Task :compileJava FAILED
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789155459664.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/__run_2-1789155606206.json
 
 [Incubating] Problems report is available at: file:///home/runner/work/hdhdh/hdhdh/build/reports/problems/problems-report.html
 
@@ -49,28 +37,16 @@ FAILURE: Build failed with an exception.
 * What went wrong:
 Execution failed for task ':compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
 > Compilation failed; see the compiler output below.
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:137: error: ')' or ',' expected
-                          getMc().player.getInventory().setSelectedSlot(n2;
-                                                                          ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:141: error: ')' or ',' expected
-                      getMc().player.getInventory().setSelectedSlot(n;
-                                                                     ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:58: error: ')' or ',' expected
-          getMc().player.getInventory().setSelectedSlot(slot;
-                                                            ^
-  /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:64: error: ')' or ',' expected
-                  getMc().player.getInventory().setSelectedSlot(originalSlot;
-                                                                            ^
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:46: error: ')' expected
-          if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                     ^
+          if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                   ^
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:68: error: ')' expected
-              if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                         ^
+              if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                       ^
   /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AimAssist.java:73: error: ')' expected
-              if (!(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                               ^
-  7 errors
+              if (!ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                             ^
+  3 errors
 
 * Try:
 > Check your code and dependencies to fix the compilation error(s)
@@ -109,62 +85,19 @@ org.gradle.api.tasks.TaskExecutionException: Execution failed for task ':compile
 	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph$BuildOperationAwareExecutionAction.execute(DefaultTaskExecutionGraph.java:328)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.execute(DefaultPlanExecutor.java:459)
 	at org.gradle.execution.plan.DefaultPlanExecutor$ExecutorWorker.run(DefaultPlanExecutor.java:376)
-	at org.gradle.execution.plan.DefaultPlanExecutor.process(DefaultPlanExecutor.java:111)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.executeWithServices(DefaultTaskExecutionGraph.java:146)
-	at org.gradle.execution.taskgraph.DefaultTaskExecutionGraph.execute(DefaultTaskExecutionGraph.java:131)
-	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:35)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor$ExecuteTasks.call(BuildOperationFiringBuildWorkerExecutor.java:43)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
-	at org.gradle.execution.BuildOperationFiringBuildWorkerExecutor.execute(BuildOperationFiringBuildWorkerExecutor.java:40)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$executeTasks$11(DefaultBuildLifecycleController.java:323)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
-	at org.gradle.internal.model.StateTransitionController.lambda$tryTransition$9(StateTransitionController.java:215)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
-	at org.gradle.internal.model.StateTransitionController.tryTransition(StateTransitionController.java:215)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.executeTasks(DefaultBuildLifecycleController.java:314)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.runWork(DefaultBuildWorkGraphController.java:220)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
-	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:286)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:130)
-	at org.gradle.composite.internal.DefaultBuildController.doRun(DefaultBuildController.java:182)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.lambda$run$0(DefaultBuildController.java:199)
-	at org.gradle.internal.operations.CurrentBuildOperationRef.with(CurrentBuildOperationRef.java:84)
-	at org.gradle.composite.internal.DefaultBuildController$BuildOpRunnable.run(DefaultBuildController.java:199)
 	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
 	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
 Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Compilation failed; see the compiler output below.
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:46: error: ')' expected
-        if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                   ^
+        if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                 ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/SilentAim.java:68: error: ')' expected
-            if (weaponOnly.getObject() && !(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                                                       ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:137: error: ')' or ',' expected
-                        getMc().player.getInventory().setSelectedSlot(n2;
-                                                                        ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AutoCrystal.java:141: error: ')' or ',' expected
-                    getMc().player.getInventory().setSelectedSlot(n;
-                                                                   ^
+            if (weaponOnly.getObject() && !ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                                                     ^
 /home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/combat/AimAssist.java:73: error: ')' expected
-            if (!(ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack())) {
-                                                                             ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:58: error: ')' or ',' expected
-        getMc().player.getInventory().setSelectedSlot(slot;
-                                                          ^
-/home/runner/work/hdhdh/hdhdh/src/main/java/dev/zprestige/prestige/client/module/impl/misc/AutoPickaxe.java:64: error: ')' or ',' expected
-                getMc().player.getInventory().setSelectedSlot(originalSlot;
-                                                                          ^
-7 errors
+            if (!ItemChecks.isSwordOrAxe(getMc().player.getMainHandStack()) {
+                                                                           ^
+3 errors
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:89)
 	at org.gradle.api.internal.tasks.compile.JdkJavaCompiler.execute(JdkJavaCompiler.java:50)
 	at org.gradle.api.internal.tasks.compile.NormalizingJavaCompiler.delegateAndHandleErrors(NormalizingJavaCompiler.java:98)
@@ -296,7 +229,7 @@ Caused by: org.gradle.api.internal.tasks.compile.CompilationFailedException: Com
 	at org.gradle.internal.execution.steps.IdentifyStep.execute(IdentifyStep.java:38)
 	at org.gradle.internal.execution.impl.DefaultExecutionEngine$1.execute(DefaultExecutionEngine.java:68)
 	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeIfValid(ExecuteActionsTaskExecuter.java:132)
-	... 61 more
+	... 30 more
 
 
 Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
@@ -305,5 +238,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 58s
+BUILD FAILED in 45s
 1 actionable task: 1 executed
