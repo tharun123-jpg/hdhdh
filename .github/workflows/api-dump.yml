@@ -42,7 +42,7 @@ jobs:
         run: |
           set -o pipefail
           JAR=$(grep JAR= jar.path | cut -d= -f2)
-          CLASSES='net.minecraft.client.render.item.HeldItemRenderer'
+          CLASSES='net.minecraft.client.render.entity.EntityRenderManager net.minecraft.client.render.entity.EntityRenderer net.minecraft.client.render.WorldRenderer net.minecraft.client.world.ClientWorld net.minecraft.client.particle.ParticleManager net.minecraft.network.ClientConnection net.minecraft.client.network.ClientPlayNetworkHandler net.minecraft.client.MinecraftClient net.minecraft.client.gui.screen.Screen net.minecraft.entity.LivingEntity net.minecraft.entity.Entity net.minecraft.client.render.Camera net.minecraft.client.texture.NativeImage net.minecraft.client.Mouse net.minecraft.entity.player.PlayerEntity'
           {
             echo "# yarn 1.21.11 javap dump (private members)"
             for c in $CLASSES; do
