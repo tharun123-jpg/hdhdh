@@ -42,25 +42,21 @@ jobs:
         run: |
           set -o pipefail
           JAR=$(grep JAR= jar.path | cut -d= -f2)
-          CLASSES="net.minecraft.client.render.RenderLayer net.minecraft.client.render.RenderLayer$MultiPhaseParameters com.mojang.blaze3d.pipeline.RenderPipelines net.minecraft.client.render.RenderPipelines com.mojang.blaze3d.vertex.VertexFormats net.minecraft.client.render.VertexFormats net.minecraft.client.gui.hud.InGameHud net.minecraft.client.render.RenderTickCounter net.minecraft.entity.player.SkinTextures net.minecraft.client.gl.SimpleFramebuffer net.minecraft.client.gl.GlUniform net.minecraft.client.render.VertexConsumerProvider$Immediate net.minecraft.client.render.VertexRendering net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$PositionAndOnGround net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$Full net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$LookAndOnGround net.minecraft.world.explosion.ExplosionImpl net.minecraft.network.packet.c2s.common.ResourcePackC2SPacket net.minecraft.network.packet.s2c.common.ResourcePackS2CPacket net.minecraft.client.option.KeyBinding$Category net.minecraft.client.render.state.CameraRenderState net.minecraft.client.render.command.OrderedRenderCommandQueue net.minecraft.client.render.entity.state.EntityRenderState net.minecraft.client.render.entity.state.PlayerEntityRenderState net.minecraft.client.network.ClientPlayerInteractionManager net.minecraft.entity.Entity net.minecraft.client.render.Camera net.minecraft.client.render.GameRenderer net.minecraft.client.MinecraftClient net.minecraft.client.gui.screen.Screen net.minecraft.entity.LivingEntity net.minecraft.client.render.entity.EntityRenderDispatcher net.minecraft.client.render.item.HeldItemRenderer net.minecraft.client.gl.Framebuffer net.minecraft.client.texture.NativeImageBackedTexture net.minecraft.client.texture.TextureManager net.minecraft.client.gui.DrawContext net.minecraft.client.render.entity.EntityRenderer net.minecraft.client.util.Window net.minecraft.client.network.AbstractClientPlayerEntity net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen net.minecraft.client.gui.screen.ConnectScreen net.minecraft.client.util.math.MatrixStack"
+          CLASSES='net.minecraft.client.render.RenderLayer net.minecraft.client.render.RenderLayer$MultiPhaseParameters com.mojang.blaze3d.pipeline.RenderPipelines net.minecraft.client.render.RenderPipelines com.mojang.blaze3d.vertex.VertexFormats net.minecraft.client.render.VertexFormats net.minecraft.client.gui.hud.InGameHud net.minecraft.client.render.RenderTickCounter net.minecraft.entity.player.SkinTextures net.minecraft.client.gl.SimpleFramebuffer net.minecraft.client.gl.GlUniform net.minecraft.client.render.VertexConsumerProvider$Immediate net.minecraft.client.render.VertexRendering net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$PositionAndOnGround net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$Full net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket$LookAndOnGround net.minecraft.world.explosion.ExplosionImpl net.minecraft.network.packet.c2s.common.ResourcePackC2SPacket net.minecraft.network.packet.s2c.common.ResourcePackS2CPacket net.minecraft.client.option.KeyBinding$Category net.minecraft.client.render.state.CameraRenderState net.minecraft.client.render.command.OrderedRenderCommandQueue net.minecraft.client.render.entity.state.EntityRenderState net.minecraft.client.render.entity.state.PlayerEntityRenderState net.minecraft.client.network.ClientPlayerInteractionManager net.minecraft.entity.Entity net.minecraft.client.render.Camera net.minecraft.client.render.GameRenderer net.minecraft.client.MinecraftClient net.minecraft.client.gui.screen.Screen net.minecraft.entity.LivingEntity net.minecraft.client.render.entity.EntityRenderDispatcher net.minecraft.client.render.item.HeldItemRenderer net.minecraft.client.gl.Framebuffer net.minecraft.client.texture.NativeImageBackedTexture net.minecraft.client.texture.TextureManager net.minecraft.client.gui.DrawContext net.minecraft.client.render.entity.EntityRenderer net.minecraft.client.util.Window net.minecraft.client.network.AbstractClientPlayerEntity net.minecraft.client.util.math.MatrixStack'
           {
-            echo "# yarn 1.21.11 javap dump"
+            echo "# yarn 1.21.11 javap dump (private members)"
             for c in $CLASSES; do
               echo ""
               echo "===================== $c"
-              javap -p -classpath "$JAR" "$c" 2>&1 ||            done
+              javap -p -classpath "$JAR" "$c" 2>&1 || true
+            done
             echo ""
-            echo "===================== InnerClass search: PlayerInteractEntityC2SPacket"
-            unzip -l "$JAR" | grep -i "PlayerInteractEntityC2SPacket"
-            echo "===================== Search: terrain screen"
-            unzip -l "$JAR" | grep -iE "Terrain|LevelLoading" ||            echo "===================== Search: sword/pickaxe/armor items"
-            unzip -l "$JAR" | grep -iE "item/(Sword|Pickaxe|Armor|Tool|Mining)Item" ||            echo "===================== Search: ShaderProgram remnants"
-            unzip -l "$JAR" | grep -iE "gl/(Shader|GlProgram|GlUniform|ShaderStage)" ||             / Keyboard / ReceivingLevel / ExplosionImpl / BuiltBuffer / VertexFormats / InGame"
-            unzip -l "$JAR" | grep -iE "InGameHud|client/Keyboard|ReceivingLevel|ExplosionImpl|BuiltBuffer|vertex/VertexFormats|render/InGame" ||            echo "===================== Search: misc"
-            unzip -l "$JAR" | grep -iE "RenderPipelines|vertex/VertexFormats|render/VertexFormats|SimpleFramebuffer|ResourcePack(C2S|S2C)Packet|RenderLayer\.class|DynamicUniforms|MipmapTexture|draw/DrawContext" || true
-            echo "===================== Search: Attackable"
-            unzip -l "$JAR" | grep -i "Attackable" ||          } > /tmp/api-dump.txt 2>&1
-          tail -100 /tmp/api-dump.txt
+            echo "===================== Search: misc classes"
+            unzip -l "$JAR" | grep -iE "RenderPipelines|vertex/VertexFormats|render/VertexFormats|SimpleFramebuffer|ResourcePack(C2S|S2C)Packet|render/RenderLayer\.class|DynamicUniforms|draw/DrawContext|RenderTickCounter" || true
+            echo "===================== Search: item classes"
+            unzip -l "$JAR" | grep -iE "item/(Sword|Pickaxe|Armor|Axe|Tool)Item" || true
+          } > /tmp/api-dump.txt 2>&1
+          tail -5 /tmp/api-dump.txt
 
       - name: Commit dump
         if: always()
@@ -70,7 +66,7 @@ jobs:
           mkdir -p ci
           cp /tmp/api-dump.txt ci/api-dump.txt
           git add ci/api-dump.txt
-          git commit -m "ci: api dump [skip ci]" || { echo "nothing to commit"; exit 0; }
+          git commit -m "ci: api dump v4 [skip ci]" || { echo "nothing to commit"; exit 0; }
           BRANCH="${GITHUB_REF#refs/heads/}"
           for i in 1 2 3 4 5; do
             git fetch origin "$BRANCH" && git rebase origin/"$BRANCH" && git push origin HEAD:"$BRANCH" && exit 0
