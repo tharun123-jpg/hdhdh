@@ -56,7 +56,7 @@ public class Velocity extends Module {
 
     @EventListener
     public void event(PacketReceiveEvent event) {
-        if (event.getPacket() instanceof ExplosionS2CPacket packet && (packet.getPlayerVelocityX() > 0 || packet.getPlayerVelocityY() > 0 || packet.getPlayerVelocityZ() > 0)) {
+        if (event.getPacket() instanceof ExplosionS2CPacket packet && (packet.playerKnockback().isPresent())) {
             packets.add(packet);
         }
     }

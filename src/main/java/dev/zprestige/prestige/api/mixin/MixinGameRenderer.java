@@ -89,7 +89,9 @@ public class MixinGameRenderer
     }
 
     @Shadow
-    public abstract Matrix4f getBasicProjectionMatrix(float f);
+    public Matrix4f getBasicProjectionMatrix(float f) {
+        throw new AssertionError();
+    }
 
     @Unique
     private MatrixStack prestige$cameraStack(RenderTickCounter tickCounter) {

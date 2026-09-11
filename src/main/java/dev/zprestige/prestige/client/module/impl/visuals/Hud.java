@@ -72,9 +72,9 @@ public class Hud extends Module {
             float f5 = animation.getAnimationFactor();
             if (f5 > 0.1f) {
                 event.getMatrixStack().pushMatrix();
-                event.getMatrixStack().translate(f3 + f / 2, f4 + f2 / 2, 0);
+                event.getMatrixStack().translate(f3 + f / 2, f4 + f2 / 2);
                 event.getMatrixStack().scale(f5, f5);
-                event.getMatrixStack().translate(-f3 - f / 2, -f4 - f2 / 2, 0);
+                event.getMatrixStack().translate(-f3 - f / 2, -f4 - f2 / 2);
                 if (glow.getObject()) {
                     RenderUtil.renderShaderRect(event.getMatrixStack(), RenderUtil.getThemeColor(color, 10, 1), RenderUtil.getThemeColor(color, 10, 2), RenderUtil.getThemeColor(color, 10, 3), RenderUtil.getThemeColor(color, 10, 4), f3, f4, f, f2, 5, 10);
                 }

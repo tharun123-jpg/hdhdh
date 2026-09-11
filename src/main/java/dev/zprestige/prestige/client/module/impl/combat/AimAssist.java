@@ -1,5 +1,6 @@
 package dev.zprestige.prestige.client.module.impl.combat;
 
+import dev.zprestige.prestige.client.util.impl.ItemChecks;
 import dev.zprestige.prestige.client.util.impl.RenderUtil;
 
 import dev.zprestige.prestige.client.Prestige;

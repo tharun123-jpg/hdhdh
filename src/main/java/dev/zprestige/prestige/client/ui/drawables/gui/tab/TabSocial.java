@@ -80,7 +80,7 @@ public class TabSocial extends Drawable implements MC {
         float f14 = getY() + 30;
         int n3 = 0;
         for (PlayerListEntry playerListEntry : getMc().getNetworkHandler().getPlayerList()) {
-            String string = playerListEntry.getProfile().getName();
+            String string = playerListEntry.getProfile().name();
             if (!search.isEmpty() && !string.contains(search)) {
                 continue;
             }
@@ -150,7 +150,7 @@ public class TabSocial extends Drawable implements MC {
         RenderUtil.renderRoundedRectOutline(f + f3 - 25, f2 + 2.5f, f + f3 - 15, f2 + f5 - 2.5f, RenderUtil.getColor(-3, f4), 2);
         RenderUtil.renderRoundedRect(f + f3 - 37.5f, f2 + 2.5f, f + f3 - 27.5f, f2 + f5 - 2.5f, RenderUtil.getColor(0, f4), 2);
         RenderUtil.renderRoundedRectOutline(f + f3 - 37.5f, f2 + 2.5f, f + f3 - 27.5f, f2 + f5 - 2.5f, RenderUtil.getColor(-3, f4), 2);
-        String name = playerListEntry.getProfile().getName();
+        String name = playerListEntry.getProfile().name();
         float f6 = 0.8f;
         Matrix3x2fStack matrixStack = RenderHelper.getGuiMatrices();
         matrixStack.pushMatrix();

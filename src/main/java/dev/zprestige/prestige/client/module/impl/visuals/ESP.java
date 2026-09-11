@@ -172,7 +172,7 @@ public class ESP extends Module {
     }
 
     private void renderBrokenBlocks(MatrixStack matrixStack, Vec3d vec3d) {
-        Quaternionf quaternionf = getMc().getEntityRenderDispatcher().getRotation();
+        Quaternionf quaternionf = getMc().getEntityRenderDispatcher().camera.getRotation();
         if (quaternionf != null) {
             Int2ObjectMap<BlockBreakingInfo> int2ObjectMap = ((IWorldRenderer)getMc().worldRenderer).getBlockBreakingInfos();
             RenderUtil.setCameraAction();
@@ -195,7 +195,6 @@ public class ESP extends Module {
                         matrixStack.translate(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
                         matrixStack.multiply(quaternionf);
                         matrixStack.scale(-1, -1, 1);
-                        RenderSystem.disableDepthTest();
                         matrixStack.scale(0.015f, 0.015f, 0.015f);
                         Entity entity = getMc().world.getEntityById(entry.getValue().getActorId());
                         if (entity != null) {
@@ -205,7 +204,6 @@ public class ESP extends Module {
                             String string2 = (int) (f * 100) + "%";
                             font.drawString(string2, -font.getStringWidth(string) / 2 + font.getStringWidth(entity.getNameForScoreboard()) / 2 - font.getStringWidth(string2) / 2, font.getStringHeight() / 2, themeColor);
                         }
-                        RenderSystem.enableDepthTest();
                         matrixStack.pop();
                     }
                 }
@@ -234,7 +232,7 @@ public class ESP extends Module {
                 if (tracers.getValue("Pearl Trajectories")) {
                     ArrayList<Vec3d> arrayList = new ArrayList<>();
                     arrayList.add(vec3d);
-                    arrayList.add(entry.getKey().getPos());
+                    arrayList.add(RenderUtil.getEntityPos(entry.getKey()));
                     RenderUtil.renderLines(arrayList, themeColor);
                 }
                 if (!entry.getKey().isAlive()) {
@@ -281,7 +279,7 @@ public class ESP extends Module {
             setMatrix(matrixStack);
             vector3f.mulPosition(matrixStack.peek().getPositionMatrix().invert());
         }
-        return new Vec3d(vector3f.x, -vector3f.y, vector3f.z).rotateX(-(float)Math.toRadians(getMc().gameRenderer.getCamera().getPitch())).rotateY(-(float)Math.toRadians(getMc().gameRenderer.getCamera().getYaw())).add(getMc().gameRenderer.getCamera().getPos());
+        return new Vec3d(vector3f.x, -vector3f.y, vector3f.z).rotateX(-(float)Math.toRadians(getMc().gameRenderer.getCamera().getPitch())).rotateY(-(float)Math.toRadians(getMc().gameRenderer.getCamera().getYaw())).add(getMc().gameRenderer.getCamera().getCameraPos());
     }
 
     private void setMatrix(MatrixStack matrixStack) {

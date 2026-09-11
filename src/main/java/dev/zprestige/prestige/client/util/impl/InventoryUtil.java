@@ -9,6 +9,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.item.Items;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.slot.SlotActionType;
@@ -46,7 +47,7 @@ public class InventoryUtil implements MC {
         return null;
     }
 
-    public Integer findPotion(int n, int n2, StatusEffect statusEffect) {
+    public Integer findPotion(int n, int n2, RegistryEntry<StatusEffect> statusEffect) {
         for (int i = n; i < n2; i++) {
             ItemStack itemStack = getMc().player.getInventory().getStack(i);
             if (itemStack.getItem() == Items.SPLASH_POTION && (statusEffect == null || hasStatusEffect(itemStack, statusEffect))) {
@@ -56,8 +57,8 @@ public class InventoryUtil implements MC {
         return null;
     }
 
-    public boolean hasStatusEffect(ItemStack itemStack, StatusEffect statusEffect) {
-        for (StatusEffectInstance statusEffectInstance : PotionContentsComponent.getPotionEffects(itemStack)) {
+    public boolean hasStatusEffect(ItemStack itemStack, RegistryEntry<StatusEffect> statusEffect) {
+        for (StatusEffectInstance statusEffectInstance : itemStack.getOrDefault(net.minecraft.component.DataComponentTypes.POTION_CONTENTS, net.minecraft.component.type.PotionContentsComponent.DEFAULT).getEffects()) {
             if (statusEffectInstance.getEffectType() == statusEffect) {
                 return true;
             }

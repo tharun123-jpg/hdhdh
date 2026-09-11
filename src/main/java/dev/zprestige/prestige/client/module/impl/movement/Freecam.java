@@ -96,7 +96,7 @@ public class Freecam extends Module {
             double d2 = MathHelper.lerp(event.getTickDelta(), pos.y, pos2.y);
             double d3 = MathHelper.lerp(event.getTickDelta(), pos.z, pos2.z);
             ArrayList<Vec3d> arrayList = new ArrayList();
-            arrayList.add(getMc().player.getPos());
+            arrayList.add(getMc().new net.minecraft.util.math.Vec3d(player.getX(), player.getY(), player.getZ()));
             arrayList.add(new Vec3d(d, d2 - getMc().player.getEyeHeight(getMc().player.getPose()), d3));
             RenderUtil.renderLines(arrayList, Prestige.Companion.getModuleManager().getMenu().getColor().getObject());
             event.getMatrixStack().pop();

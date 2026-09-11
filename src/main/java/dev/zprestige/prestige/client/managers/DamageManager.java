@@ -50,7 +50,7 @@ public class DamageManager implements MC {
         PlayerListEntry playerListEntry = this.getMc().getNetworkHandler().getPlayerListEntry(player.getUuid());
         if (playerListEntry.getGameMode() == GameMode.CREATIVE) return 0;
 
-        ((IVec3d) vec3d).set(player.getPos().x, player.getPos().y, player.getPos().z);
+        ((IVec3d) vec3d).set(new Vec3d(player.getX(), player.getY(), player.getZ()).x, new Vec3d(player.getX(), player.getY(), player.getZ()).y, new Vec3d(player.getX(), player.getY(), player.getZ()).z);
         if (predictMovement) ((IVec3d) vec3d).set(vec3d.x + player.getVelocity().x, vec3d.y + player.getVelocity().y, vec3d.z + player.getVelocity().z);
 
         double modDistance = Math.sqrt(vec3d.squaredDistanceTo(crystal));
@@ -61,7 +61,7 @@ public class DamageManager implements MC {
         double damage = ((impact * impact + impact) / 2 * 7 * (6 * 2) + 1);
 
         damage = getDamageForDifficulty(damage);
-        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
+        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
         damage = resistanceReduction(player, damage);
 
         damage = blastProtReduction(player, damage);
@@ -195,7 +195,7 @@ public class DamageManager implements MC {
         damage = resistanceReduction(player, damage);
 
         // Reduce by armour
-        damage = DamageUtil.getDamageLeft((float) damage, (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
+        damage = DamageUtil.getDamageLeft(player, damage, getMc().world.getDamageSources().generic(), (float) player.getArmor(), (float) player.getAttributeInstance(EntityAttributes.ARMOR_TOUGHNESS).getValue());
 
         // Reduce by enchants
         damage = blastProtReduction(player, damage);

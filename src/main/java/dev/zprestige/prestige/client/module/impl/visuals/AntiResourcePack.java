@@ -16,10 +16,10 @@ public class AntiResourcePack extends Module {
 
     @EventListener
     public void event(PacketReceiveEvent event) {
-        if (event.getPacket() instanceof ResourcePackSendS2CPacket) {
+        if (event.getPacket() instanceof ResourcePackSendS2CPacket packet) {
             event.setCancelled();
-            PacketUtil.INSTANCE.sendPacket(new ResourcePackStatusC2SPacket(ResourcePackStatusC2SPacket.Status.ACCEPTED));
-            PacketUtil.INSTANCE.sendPacket(new ResourcePackStatusC2SPacket(ResourcePackStatusC2SPacket.Status.SUCCESSFULLY_LOADED));
+            PacketUtil.INSTANCE.sendPacket(new ResourcePackStatusC2SPacket(packet.id(), ResourcePackStatusC2SPacket.Status.ACCEPTED));
+            PacketUtil.INSTANCE.sendPacket(new ResourcePackStatusC2SPacket(packet.id(), ResourcePackStatusC2SPacket.Status.SUCCESSFULLY_LOADED));
         }
     }
 }

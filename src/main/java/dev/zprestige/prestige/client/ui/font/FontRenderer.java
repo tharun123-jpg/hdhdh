@@ -116,7 +116,7 @@ public class FontRenderer {
         NativeImage imgNew = new NativeImage(imageWidth, imageHeight, true);
         for (int x = 0; x < image.getWidth(); x++) {
             for (int y = 0; y < image.getHeight(); y++) {
-                imgNew.setColor(x, y, image.getColor(x, y));
+                imgNew.setColorArgb(x, y, image.getColorArgb(x, y));
             }
         }
 

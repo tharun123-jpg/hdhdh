@@ -74,7 +74,7 @@ public class ShortPearl extends Module {
                 }
                 case 1 -> {
                     if (RotationUtil.INSTANCE.setPitch(new Rotation(0.0f, pitchSetting.getObject()), smoothing.getObject() / 2.0f, 0.0f, 0.5f)) {
-                        PacketUtil.INSTANCE.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0));
+                        PacketUtil.INSTANCE.sendPacket(new PlayerInteractItemC2SPacket(Hand.MAIN_HAND, 0, getMc().player.getYaw(), getMc().player.getPitch()));
                         reset();
                     }
                 }

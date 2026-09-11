@@ -55,7 +55,7 @@ public class ItemChecks {
     }
 
     public static RegistryEntry<Enchantment> entry(net.minecraft.registry.RegistryKey<Enchantment> key) {
-        return Registries.ENCHANTMENT.entryOf(key);
+        return net.minecraft.client.MinecraftClient.getInstance().world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.ENCHANTMENT).entryOf(key);
     }
 
     /**
