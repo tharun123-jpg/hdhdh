@@ -43,6 +43,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "new-refmap.json"
+  }
 }
