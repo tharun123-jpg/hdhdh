@@ -42,7 +42,7 @@ jobs:
         run: |
           set -o pipefail
           JAR=$(grep JAR= jar.path | cut -d= -f2)
-          CLASSES='net.minecraft.registry.DynamicRegistryManager net.minecraft.entity.damage.DamageSources net.minecraft.enchantment.EnchantmentHelper net.minecraft.client.gui.Screen'
+          CLASSES='net.minecraft.registry.Registry'
           {
             echo "# yarn 1.21.11 javap dump (private members)"
             for c in $CLASSES; do
