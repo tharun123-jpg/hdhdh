@@ -1,232 +1,69 @@
 # yarn 1.21.11 javap dump (private members)
 
-===================== net.minecraft.registry.DynamicRegistryManager
-Compiled from "DynamicRegistryManager.java"
-public interface net.minecraft.registry.DynamicRegistryManager extends net.minecraft.registry.RegistryWrapper$WrapperLookup {
-  public static final org.slf4j.Logger LOGGER;
-  public static final net.minecraft.registry.DynamicRegistryManager$Immutable EMPTY;
-  public abstract <E> java.util.Optional<net.minecraft.registry.Registry<E>> getOptional(net.minecraft.registry.RegistryKey<? extends net.minecraft.registry.Registry<? extends E>>);
-  public default <E> net.minecraft.registry.Registry<E> getOrThrow(net.minecraft.registry.RegistryKey<? extends net.minecraft.registry.Registry<? extends E>>);
-  public abstract java.util.stream.Stream<net.minecraft.registry.DynamicRegistryManager$Entry<?>> streamAllRegistries();
-  public default java.util.stream.Stream<net.minecraft.registry.RegistryKey<? extends net.minecraft.registry.Registry<?>>> streamAllRegistryKeys();
-  public static net.minecraft.registry.DynamicRegistryManager$Immutable of(net.minecraft.registry.Registry<? extends net.minecraft.registry.Registry<?>>);
-  public default net.minecraft.registry.DynamicRegistryManager$Immutable toImmutable();
-  public default net.minecraft.registry.RegistryWrapper$Impl getOrThrow(net.minecraft.registry.RegistryKey);
-  public default net.minecraft.registry.RegistryEntryLookup getOrThrow(net.minecraft.registry.RegistryKey);
-  private static net.minecraft.registry.RegistryKey method_62703(net.minecraft.registry.DynamicRegistryManager$Entry);
-  private static java.lang.IllegalStateException method_30534(net.minecraft.registry.RegistryKey);
-  static {};
+===================== net.minecraft.registry.Registry
+Compiled from "Registry.java"
+public interface net.minecraft.registry.Registry<T> extends com.mojang.serialization.Keyable, net.minecraft.registry.RegistryWrapper$Impl<T>, net.minecraft.util.collection.IndexedIterable<T>, net.fabricmc.fabric.api.event.registry.FabricRegistry {
+  public abstract net.minecraft.registry.RegistryKey<? extends net.minecraft.registry.Registry<T>> getKey();
+  public default com.mojang.serialization.Codec<T> getCodec();
+  public default com.mojang.serialization.Codec<net.minecraft.registry.entry.RegistryEntry<T>> getEntryCodec();
+  private com.mojang.serialization.Codec<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getReferenceEntryCodec();
+  private com.mojang.serialization.DataResult<net.minecraft.registry.entry.RegistryEntry$Reference<T>> validateReference(net.minecraft.registry.entry.RegistryEntry<T>);
+  public default <U> java.util.stream.Stream<U> keys(com.mojang.serialization.DynamicOps<U>);
+  public abstract net.minecraft.util.Identifier getId(T);
+  public abstract java.util.Optional<net.minecraft.registry.RegistryKey<T>> getKey(T);
+  public abstract int getRawId(T);
+  public abstract T get(net.minecraft.registry.RegistryKey<T>);
+  public abstract T get(net.minecraft.util.Identifier);
+  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntryInfo> getEntryInfo(net.minecraft.registry.RegistryKey<T>);
+  public default java.util.Optional<T> getOptionalValue(net.minecraft.util.Identifier);
+  public default java.util.Optional<T> getOptionalValue(net.minecraft.registry.RegistryKey<T>);
+  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getDefaultEntry();
+  public default T getValueOrThrow(net.minecraft.registry.RegistryKey<T>);
+  public abstract java.util.Set<net.minecraft.util.Identifier> getIds();
+  public abstract java.util.Set<java.util.Map$Entry<net.minecraft.registry.RegistryKey<T>, T>> getEntrySet();
+  public abstract java.util.Set<net.minecraft.registry.RegistryKey<T>> getKeys();
+  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getRandom(net.minecraft.util.math.random.Random);
+  public default java.util.stream.Stream<T> stream();
+  public abstract boolean containsId(net.minecraft.util.Identifier);
+  public abstract boolean contains(net.minecraft.registry.RegistryKey<T>);
+  public static <T> T register(net.minecraft.registry.Registry<? super T>, java.lang.String, T);
+  public static <V, T extends V> T register(net.minecraft.registry.Registry<V>, net.minecraft.util.Identifier, T);
+  public static <V, T extends V> T register(net.minecraft.registry.Registry<V>, net.minecraft.registry.RegistryKey<V>, T);
+  public static <R, T extends R> net.minecraft.registry.entry.RegistryEntry$Reference<T> registerReference(net.minecraft.registry.Registry<R>, net.minecraft.registry.RegistryKey<R>, T);
+  public static <R, T extends R> net.minecraft.registry.entry.RegistryEntry$Reference<T> registerReference(net.minecraft.registry.Registry<R>, net.minecraft.util.Identifier, T);
+  public abstract net.minecraft.registry.Registry<T> freeze();
+  public abstract net.minecraft.registry.entry.RegistryEntry$Reference<T> createEntry(T);
+  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getEntry(int);
+  public abstract java.util.Optional<net.minecraft.registry.entry.RegistryEntry$Reference<T>> getEntry(net.minecraft.util.Identifier);
+  public abstract net.minecraft.registry.entry.RegistryEntry<T> getEntry(T);
+  public default java.lang.Iterable<net.minecraft.registry.entry.RegistryEntry<T>> iterateEntries(net.minecraft.registry.tag.TagKey<T>);
+  public abstract java.util.stream.Stream<net.minecraft.registry.entry.RegistryEntryList$Named<T>> streamTags();
+  public default net.minecraft.util.collection.IndexedIterable<net.minecraft.registry.entry.RegistryEntry<T>> getIndexedEntries();
+  public abstract net.minecraft.registry.Registry$PendingTagLoad<T> startTagReload(net.minecraft.registry.tag.TagGroupLoader$RegistryTags<T>);
+  private static java.lang.Object method_34028(com.mojang.serialization.DynamicOps, net.minecraft.util.Identifier);
+  private java.lang.String method_57063(net.minecraft.registry.entry.RegistryEntry);
+  private com.mojang.serialization.Lifecycle method_57060(net.minecraft.registry.entry.RegistryEntry$Reference);
+  private static net.minecraft.util.Identifier method_57062(net.minecraft.registry.entry.RegistryEntry$Reference);
+  private com.mojang.serialization.DataResult method_57065(net.minecraft.util.Identifier);
+  private com.mojang.serialization.DataResult method_57066(net.minecraft.util.Identifier);
+  private java.lang.String method_57067(net.minecraft.util.Identifier);
+  private static net.minecraft.registry.entry.RegistryEntry method_57064(net.minecraft.registry.entry.RegistryEntry$Reference);
+  private com.mojang.serialization.DataResult method_47448(java.lang.Object);
 }
-
-===================== net.minecraft.entity.damage.DamageSources
-Compiled from "DamageSources.java"
-public class net.minecraft.entity.damage.DamageSources {
-  public final net.minecraft.registry.Registry<net.minecraft.entity.damage.DamageType> registry;
-  private final net.minecraft.entity.damage.DamageSource inFire;
-  private final net.minecraft.entity.damage.DamageSource campfire;
-  private final net.minecraft.entity.damage.DamageSource lightningBolt;
-  private final net.minecraft.entity.damage.DamageSource onFire;
-  private final net.minecraft.entity.damage.DamageSource lava;
-  private final net.minecraft.entity.damage.DamageSource hotFloor;
-  private final net.minecraft.entity.damage.DamageSource inWall;
-  private final net.minecraft.entity.damage.DamageSource cramming;
-  private final net.minecraft.entity.damage.DamageSource drown;
-  private final net.minecraft.entity.damage.DamageSource starve;
-  private final net.minecraft.entity.damage.DamageSource cactus;
-  private final net.minecraft.entity.damage.DamageSource fall;
-  private final net.minecraft.entity.damage.DamageSource enderPearl;
-  private final net.minecraft.entity.damage.DamageSource flyIntoWall;
-  private final net.minecraft.entity.damage.DamageSource outOfWorld;
-  private final net.minecraft.entity.damage.DamageSource generic;
-  private final net.minecraft.entity.damage.DamageSource magic;
-  private final net.minecraft.entity.damage.DamageSource wither;
-  private final net.minecraft.entity.damage.DamageSource dragonBreath;
-  private final net.minecraft.entity.damage.DamageSource dryOut;
-  private final net.minecraft.entity.damage.DamageSource sweetBerryBush;
-  private final net.minecraft.entity.damage.DamageSource freeze;
-  private final net.minecraft.entity.damage.DamageSource stalagmite;
-  private final net.minecraft.entity.damage.DamageSource outsideBorder;
-  private final net.minecraft.entity.damage.DamageSource genericKill;
-  public net.minecraft.entity.damage.DamageSources(net.minecraft.registry.DynamicRegistryManager);
-  public final net.minecraft.entity.damage.DamageSource create(net.minecraft.registry.RegistryKey<net.minecraft.entity.damage.DamageType>);
-  public final net.minecraft.entity.damage.DamageSource create(net.minecraft.registry.RegistryKey<net.minecraft.entity.damage.DamageType>, net.minecraft.entity.Entity);
-  public final net.minecraft.entity.damage.DamageSource create(net.minecraft.registry.RegistryKey<net.minecraft.entity.damage.DamageType>, net.minecraft.entity.Entity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource inFire();
-  public net.minecraft.entity.damage.DamageSource campfire();
-  public net.minecraft.entity.damage.DamageSource lightningBolt();
-  public net.minecraft.entity.damage.DamageSource onFire();
-  public net.minecraft.entity.damage.DamageSource lava();
-  public net.minecraft.entity.damage.DamageSource hotFloor();
-  public net.minecraft.entity.damage.DamageSource inWall();
-  public net.minecraft.entity.damage.DamageSource cramming();
-  public net.minecraft.entity.damage.DamageSource drown();
-  public net.minecraft.entity.damage.DamageSource starve();
-  public net.minecraft.entity.damage.DamageSource cactus();
-  public net.minecraft.entity.damage.DamageSource fall();
-  public net.minecraft.entity.damage.DamageSource enderPearl();
-  public net.minecraft.entity.damage.DamageSource flyIntoWall();
-  public net.minecraft.entity.damage.DamageSource outOfWorld();
-  public net.minecraft.entity.damage.DamageSource generic();
-  public net.minecraft.entity.damage.DamageSource magic();
-  public net.minecraft.entity.damage.DamageSource wither();
-  public net.minecraft.entity.damage.DamageSource dragonBreath();
-  public net.minecraft.entity.damage.DamageSource dryOut();
-  public net.minecraft.entity.damage.DamageSource sweetBerryBush();
-  public net.minecraft.entity.damage.DamageSource freeze();
-  public net.minecraft.entity.damage.DamageSource stalagmite();
-  public net.minecraft.entity.damage.DamageSource fallingBlock(net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource fallingAnvil(net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource fallingStalactite(net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource sting(net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource mobAttack(net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource mobAttackNoAggro(net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource playerAttack(net.minecraft.entity.player.PlayerEntity);
-  public net.minecraft.entity.damage.DamageSource arrow(net.minecraft.entity.projectile.PersistentProjectileEntity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource trident(net.minecraft.entity.Entity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource mobProjectile(net.minecraft.entity.Entity, net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource spit(net.minecraft.entity.Entity, net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource windCharge(net.minecraft.entity.Entity, net.minecraft.entity.LivingEntity);
-  public net.minecraft.entity.damage.DamageSource fireworks(net.minecraft.entity.projectile.FireworkRocketEntity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource fireball(net.minecraft.entity.projectile.AbstractFireballEntity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource witherSkull(net.minecraft.entity.projectile.WitherSkullEntity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource thrown(net.minecraft.entity.Entity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource indirectMagic(net.minecraft.entity.Entity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource thorns(net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource explosion(net.minecraft.world.explosion.Explosion);
-  public net.minecraft.entity.damage.DamageSource explosion(net.minecraft.entity.Entity, net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource sonicBoom(net.minecraft.entity.Entity);
-  public net.minecraft.entity.damage.DamageSource badRespawnPoint(net.minecraft.util.math.Vec3d);
-  public net.minecraft.entity.damage.DamageSource outsideBorder();
-  public net.minecraft.entity.damage.DamageSource genericKill();
-  public net.minecraft.entity.damage.DamageSource maceSmash(net.minecraft.entity.Entity);
-}
-
-===================== net.minecraft.enchantment.EnchantmentHelper
-Compiled from "EnchantmentHelper.java"
-public class net.minecraft.enchantment.EnchantmentHelper {
-  public net.minecraft.enchantment.EnchantmentHelper();
-  public static int getLevel(net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>, net.minecraft.item.ItemStack);
-  public static net.minecraft.component.type.ItemEnchantmentsComponent apply(net.minecraft.item.ItemStack, java.util.function.Consumer<net.minecraft.component.type.ItemEnchantmentsComponent$Builder>);
-  public static boolean canHaveEnchantments(net.minecraft.item.ItemStack);
-  public static void set(net.minecraft.item.ItemStack, net.minecraft.component.type.ItemEnchantmentsComponent);
-  public static net.minecraft.component.type.ItemEnchantmentsComponent getEnchantments(net.minecraft.item.ItemStack);
-  public static net.minecraft.component.ComponentType<net.minecraft.component.type.ItemEnchantmentsComponent> getEnchantmentsComponentType(net.minecraft.item.ItemStack);
-  public static boolean hasEnchantments(net.minecraft.item.ItemStack);
-  public static int getItemDamage(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, int);
-  public static int getAmmoUse(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.item.ItemStack, int);
-  public static int getBlockExperience(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, int);
-  public static int getMobExperience(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.Entity, int);
-  public static net.minecraft.item.ItemStack getEnchantedBookWith(net.minecraft.enchantment.EnchantmentLevelEntry);
-  public static void forEachEnchantment(net.minecraft.item.ItemStack, net.minecraft.enchantment.EnchantmentHelper$Consumer);
-  public static void forEachEnchantment(net.minecraft.item.ItemStack, net.minecraft.entity.EquipmentSlot, net.minecraft.entity.LivingEntity, net.minecraft.enchantment.EnchantmentHelper$ContextAwareConsumer);
-  public static void forEachEnchantment(net.minecraft.entity.LivingEntity, net.minecraft.enchantment.EnchantmentHelper$ContextAwareConsumer);
-  public static boolean isInvulnerableTo(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource);
-  public static float getProtectionAmount(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource);
-  public static float getDamage(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, float);
-  public static float getSmashDamagePerFallenBlock(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, float);
-  public static float getArmorEffectiveness(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, float);
-  public static float modifyKnockback(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, float);
-  public static void onTargetDamaged(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource);
-  public static void onAttack(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity);
-  public static void onTargetDamaged(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, net.minecraft.item.ItemStack);
-  public static void onTargetDamaged(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, net.minecraft.item.ItemStack, java.util.function.Consumer<net.minecraft.item.Item>);
-  public static void applyLocationBasedEffects(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity);
-  public static void applyLocationBasedEffects(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.LivingEntity, net.minecraft.entity.EquipmentSlot);
-  public static void removeLocationBasedEffects(net.minecraft.entity.LivingEntity);
-  public static void removeLocationBasedEffects(net.minecraft.item.ItemStack, net.minecraft.entity.LivingEntity, net.minecraft.entity.EquipmentSlot);
-  public static void onTick(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity);
-  public static int getEquipmentLevel(net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>, net.minecraft.entity.LivingEntity);
-  public static int getProjectileCount(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, int);
-  public static float getProjectileSpread(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, float);
-  public static int getProjectilePiercing(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.item.ItemStack);
-  public static void onProjectileSpawned(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.projectile.ProjectileEntity, java.util.function.Consumer<net.minecraft.item.Item>);
-  public static void onHitBlock(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.LivingEntity, net.minecraft.entity.Entity, net.minecraft.entity.EquipmentSlot, net.minecraft.util.math.Vec3d, net.minecraft.block.BlockState, java.util.function.Consumer<net.minecraft.item.Item>);
-  public static int getRepairWithExperience(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, int);
-  public static float getEquipmentDropChance(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource, float);
-  public static void applyAttributeModifiers(net.minecraft.item.ItemStack, net.minecraft.component.type.AttributeModifierSlot, java.util.function.BiConsumer<net.minecraft.registry.entry.RegistryEntry<net.minecraft.entity.attribute.EntityAttribute>, net.minecraft.entity.attribute.EntityAttributeModifier>);
-  public static void applyAttributeModifiers(net.minecraft.item.ItemStack, net.minecraft.entity.EquipmentSlot, java.util.function.BiConsumer<net.minecraft.registry.entry.RegistryEntry<net.minecraft.entity.attribute.EntityAttribute>, net.minecraft.entity.attribute.EntityAttributeModifier>);
-  public static int getFishingLuckBonus(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity);
-  public static float getFishingTimeReduction(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity);
-  public static int getTridentReturnAcceleration(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity);
-  public static float getCrossbowChargeTime(net.minecraft.item.ItemStack, net.minecraft.entity.LivingEntity, float);
-  public static float getTridentSpinAttackStrength(net.minecraft.item.ItemStack, net.minecraft.entity.LivingEntity);
-  public static boolean hasAnyEnchantmentsIn(net.minecraft.item.ItemStack, net.minecraft.registry.tag.TagKey<net.minecraft.enchantment.Enchantment>);
-  public static boolean hasAnyEnchantmentsWith(net.minecraft.item.ItemStack, net.minecraft.component.ComponentType<?>);
-  public static <T> java.util.Optional<T> getEffect(net.minecraft.item.ItemStack, net.minecraft.component.ComponentType<java.util.List<T>>);
-  public static <T> com.mojang.datafixers.util.Pair<T, java.lang.Integer> getHighestLevelEffect(net.minecraft.item.ItemStack, net.minecraft.component.ComponentType<T>);
-  public static java.util.Optional<net.minecraft.enchantment.EnchantmentEffectContext> chooseEquipmentWith(net.minecraft.component.ComponentType<?>, net.minecraft.entity.LivingEntity, java.util.function.Predicate<net.minecraft.item.ItemStack>);
-  public static int calculateRequiredExperienceLevel(net.minecraft.util.math.random.Random, int, int, net.minecraft.item.ItemStack);
-  public static net.minecraft.item.ItemStack enchant(net.minecraft.util.math.random.Random, net.minecraft.item.ItemStack, int, net.minecraft.registry.DynamicRegistryManager, java.util.Optional<? extends net.minecraft.registry.entry.RegistryEntryList<net.minecraft.enchantment.Enchantment>>);
-  public static net.minecraft.item.ItemStack enchant(net.minecraft.util.math.random.Random, net.minecraft.item.ItemStack, int, java.util.stream.Stream<net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>>);
-  public static java.util.List<net.minecraft.enchantment.EnchantmentLevelEntry> generateEnchantments(net.minecraft.util.math.random.Random, net.minecraft.item.ItemStack, int, java.util.stream.Stream<net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>>);
-  public static void removeConflicts(java.util.List<net.minecraft.enchantment.EnchantmentLevelEntry>, net.minecraft.enchantment.EnchantmentLevelEntry);
-  public static boolean isCompatible(java.util.Collection<net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>>, net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>);
-  public static java.util.List<net.minecraft.enchantment.EnchantmentLevelEntry> getPossibleEntries(int, net.minecraft.item.ItemStack, java.util.stream.Stream<net.minecraft.registry.entry.RegistryEntry<net.minecraft.enchantment.Enchantment>>);
-  public static void applyEnchantmentProvider(net.minecraft.item.ItemStack, net.minecraft.registry.DynamicRegistryManager, net.minecraft.registry.RegistryKey<net.minecraft.enchantment.provider.EnchantmentProvider>, net.minecraft.world.LocalDifficulty, net.minecraft.util.math.random.Random);
-  private static void method_60145(net.minecraft.enchantment.provider.EnchantmentProvider, net.minecraft.item.ItemStack, net.minecraft.util.math.random.Random, net.minecraft.world.LocalDifficulty, net.minecraft.component.type.ItemEnchantmentsComponent$Builder);
-  private static void method_60106(int, java.util.List, net.minecraft.registry.entry.RegistryEntry);
-  private static boolean method_60143(net.minecraft.item.ItemStack, boolean, net.minecraft.registry.entry.RegistryEntry);
-  private static boolean method_60144(net.minecraft.enchantment.EnchantmentLevelEntry, net.minecraft.enchantment.EnchantmentLevelEntry);
-  private static java.util.stream.Stream method_60149(net.minecraft.registry.DynamicRegistryManager);
-  private static net.minecraft.registry.entry.RegistryEntry method_60147(net.minecraft.registry.entry.RegistryEntry$Reference);
-  private static void method_60152(org.apache.commons.lang3.mutable.MutableObject, net.minecraft.component.ComponentType, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60150(net.minecraft.component.ComponentType, org.apache.commons.lang3.mutable.MutableBoolean, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60126(net.minecraft.entity.LivingEntity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60130(net.minecraft.entity.LivingEntity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60122(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60162(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60172(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60134(net.minecraft.entity.EquipmentSlot, java.util.function.BiConsumer, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60148(net.minecraft.registry.entry.RegistryEntry, net.minecraft.entity.EquipmentSlot, java.util.function.BiConsumer, int, net.minecraft.enchantment.effect.AttributeEnchantmentEffect);
-  private static void method_60621(net.minecraft.component.type.AttributeModifierSlot, java.util.function.BiConsumer, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60623(net.minecraft.registry.entry.RegistryEntry, net.minecraft.component.type.AttributeModifierSlot, java.util.function.BiConsumer, int, net.minecraft.enchantment.effect.AttributeEnchantmentEffect);
-  private static void method_60114(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.util.math.random.Random, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60146(net.minecraft.loot.context.LootContext, org.apache.commons.lang3.mutable.MutableFloat, int, net.minecraft.util.math.random.Random, net.minecraft.enchantment.effect.TargetedEnchantmentEffect);
-  private static void method_60155(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.util.math.random.Random, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60166(net.minecraft.loot.context.LootContext, org.apache.commons.lang3.mutable.MutableFloat, int, net.minecraft.util.math.random.Random, net.minecraft.enchantment.effect.TargetedEnchantmentEffect);
-  private static void method_60163(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60131(net.minecraft.server.world.ServerWorld, net.minecraft.enchantment.EnchantmentEffectContext, net.minecraft.entity.Entity, net.minecraft.util.math.Vec3d, net.minecraft.block.BlockState, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60132(net.minecraft.server.world.ServerWorld, net.minecraft.enchantment.EnchantmentEffectContext, net.minecraft.entity.projectile.ProjectileEntity, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60173(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60177(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60179(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60116(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60136(net.minecraft.entity.LivingEntity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60164(net.minecraft.entity.LivingEntity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60156(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60167(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_63018(net.minecraft.server.world.ServerWorld, net.minecraft.enchantment.EnchantmentEffectContext, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_63017(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_63019(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_75256(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60121(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60161(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60171(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60176(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, net.minecraft.entity.Entity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60115(net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60151(org.apache.commons.lang3.mutable.MutableBoolean, net.minecraft.server.world.ServerWorld, net.minecraft.entity.LivingEntity, net.minecraft.entity.damage.DamageSource, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60110(net.minecraft.server.world.ServerWorld, net.minecraft.entity.Entity, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int, net.minecraft.enchantment.EnchantmentEffectContext);
-  private static void method_60178(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60180(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-  private static void method_60181(net.minecraft.server.world.ServerWorld, net.minecraft.item.ItemStack, org.apache.commons.lang3.mutable.MutableFloat, net.minecraft.registry.entry.RegistryEntry, int);
-}
-
-===================== net.minecraft.client.gui.Screen
-Error: class not found: net.minecraft.client.gui.Screen
 
 ===================== Search: misc classes
-      891  2026-09-11 19:55   net/minecraft/client/gl/SimpleFramebuffer.class
-     4180  2026-09-11 19:55   net/minecraft/client/gl/SimpleFramebufferFactory.class
-     2832  2026-09-11 19:55   net/minecraft/client/render/VertexFormats.class
-      850  2026-09-11 19:55   net/minecraft/client/render/RenderTickCounter.class
-      480  2026-09-11 19:55   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
-     3616  2026-09-11 19:55   net/minecraft/client/gl/DynamicUniforms.class
-     7300  2026-09-11 19:55   net/minecraft/client/gl/DynamicUniformStorage.class
-    22718  2026-09-11 19:55   net/minecraft/client/gl/RenderPipelines.class
-    12580  2026-09-11 19:55   net/minecraft/client/render/RenderLayer.class
-     3105  2026-09-11 19:55   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
-     3400  2026-09-11 19:55   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
-     2625  2026-09-11 19:55   net/minecraft/client/render/RenderTickCounter$Dynamic.class
-      970  2026-09-11 19:55   net/minecraft/client/render/RenderTickCounter$Constant.class
+      891  2026-09-11 20:00   net/minecraft/client/gl/SimpleFramebuffer.class
+     4180  2026-09-11 20:00   net/minecraft/client/gl/SimpleFramebufferFactory.class
+     2832  2026-09-11 20:00   net/minecraft/client/render/VertexFormats.class
+      850  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter.class
+      480  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniformStorage$Uploadable.class
+     3616  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms.class
+     7300  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniformStorage.class
+    22718  2026-09-11 20:00   net/minecraft/client/gl/RenderPipelines.class
+    12580  2026-09-11 20:00   net/minecraft/client/render/RenderLayer.class
+     3105  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms$TransformsValue.class
+     3400  2026-09-11 20:00   net/minecraft/client/gl/DynamicUniforms$ChunkSectionsValue.class
+     2625  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter$Dynamic.class
+      970  2026-09-11 20:00   net/minecraft/client/render/RenderTickCounter$Constant.class
 ===================== Search: item classes
-    11326  2026-09-11 19:55   net/minecraft/item/AxeItem.class
+    11326  2026-09-11 20:00   net/minecraft/item/AxeItem.class
