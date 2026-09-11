@@ -13,12 +13,12 @@ public class ClickManager implements MC {
     public boolean click() {
         if (clickUtil != null) {
             if (System.currentTimeMillis() - clickUtil.getTime() > clickUtil.getIdk() && !clickUtil.shouldClick()) {
-                ((IMouse)getMc().mouse).handleMouseButton(getMc().getWindow().getHandle(), clickUtil.getMode(), 1, 0);
+                ((IMouse)getMc().mouse).handleMouseButton(getMc().getWindow().getHandle(), new net.minecraft.client.input.MouseInput(clickUtil.getMode(), 0), 1);
                 clickUtil.setClick(true);
             }
             if (System.currentTimeMillis() - clickUtil.getTime() > clickUtil.getIdk()) {
                 if (System.currentTimeMillis() - clickUtil.getTime() > clickUtil.getIdk() + clickUtil.getRandom()) {
-                    ((IMouse)getMc().mouse).handleMouseButton(getMc().getWindow().getHandle(), clickUtil.getMode(), 0, 0);
+                    ((IMouse)getMc().mouse).handleMouseButton(getMc().getWindow().getHandle(), new net.minecraft.client.input.MouseInput(clickUtil.getMode(), 0), 0);
                     clickUtil = null;
                 }
             }

@@ -35,5 +35,14 @@ public abstract class MixinEntityRenderer<T extends Entity, S extends EntityRend
                 }
             }
         }
+        if (state.id != 0) {
+            ClientWorld world = (ClientWorld) net.minecraft.client.MinecraftClient.getInstance().world;
+            if (world != null) {
+                Entity entity = world.getEntityById(state.id);
+                if (entity != null) {
+                    new dev.zprestige.prestige.client.event.impl.RenderHitboxEvent(entity).invoke();
+                }
+            }
+        }
     }
 }

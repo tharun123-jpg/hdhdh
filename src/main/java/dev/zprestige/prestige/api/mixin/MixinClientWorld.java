@@ -16,8 +16,8 @@ public abstract class MixinClientWorld {
     @Shadow
     public abstract Entity getEntityById(int var1);
 
-    @Inject(method={"addEntityPrivate"}, at={@At(value="TAIL")})
-    void onAddEntityPrivate(int id, Entity entity, CallbackInfo callbackInfo) {
+    @Inject(method={"addEntity(Lnet/minecraft/entity/Entity;)V"}, at={@At(value="TAIL")})
+    void onAddEntity(Entity entity, CallbackInfo callbackInfo) {
         if (Prestige.Companion.getSelfDestructed()) {
             return;
         }

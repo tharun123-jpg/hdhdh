@@ -14,14 +14,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value={WorldRenderer.class})
 public class MixinWorldRenderer {
 
-    @Shadow
-    public Frustum frustum;
-
-    @ModifyVariable(method={"getLightmapCoordinates(Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)I"}, at=@At(value="STORE"), ordinal=0)
+    @ModifyVariable(method={"getLightmapCoordinates(Lnet/minecraft/client/render/WorldRenderer$BrightnessGetter;Lnet/minecraft/world/BlockRenderView;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;)I"}, at=@At(value="STORE"), ordinal=0)
     private static int getLightmapCoordinatesModifySkyLight(int n) {
         if (Prestige.Companion.getSelfDestructed()) {
             return n;
@@ -34,10 +32,10 @@ public class MixinWorldRenderer {
     }
 
     @Inject(at={@At(value="RETURN")}, method={"setupFrustum"})
-    void onUpdateFrustum(MatrixStack matrixStack, Vec3d vec3d, Matrix4f matrix4f, CallbackInfo callbackInfo) {
+    void onUpdateFrustum(Matrix4f matrix4f, Matrix4f matrix4f2, Vec3d vec3d, CallbackInfoReturnable<Frustum> callbackInfoReturnable) {
         if (Prestige.Companion.getSelfDestructed()) {
             return;
         }
-        new FrustrumEvent(frustum).invoke();
+        new FrustrumEvent(callbackInfoReturnable.getReturnValue()).invoke();
     }
 }

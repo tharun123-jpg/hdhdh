@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value={InGameOverlayRenderer.class})
 public class MixinInGameOverlayRenderer {
     @Inject(method={"renderFireOverlay"}, at={@At(value="INVOKE", target="Lnet/minecraft/client/util/math/MatrixStack;translate(FFF)V")}, cancellable=true)
-    private static void renderFireOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo callbackInfo) {
+    private static void renderFireOverlay(MatrixStack matrixStack, net.minecraft.client.render.VertexConsumerProvider vertexConsumerProvider, net.minecraft.client.texture.Sprite sprite, CallbackInfo callbackInfo) {
         if (Prestige.Companion.getSelfDestructed()) {
             return;
         }

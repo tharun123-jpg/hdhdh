@@ -7,5 +7,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(value={Mouse.class})
 public interface IMouse {
     @Invoker(value="onMouseButton")
-    public void handleMouseButton(long var1, int var3, int var4, int var5);
+    public void handleMouseButton(long window, net.minecraft.client.input.MouseInput input, int action);
 }
